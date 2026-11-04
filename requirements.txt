@@ -1,0 +1,13 @@
+# Install PyTorch FIRST using the selector at https://pytorch.org/get-started/locally/
+# so you get the build matching your GPU/CUDA version (or CPU-only).
+# Then: pip install -e ".[dev]"   (installs everything below plus this package)
+torch>=2.2
+torchvision>=0.17
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+scipy>=1.10
+matplotlib>=3.7
+pillow>=10.0
+tqdm>=4.65
+pytest>=7.0
