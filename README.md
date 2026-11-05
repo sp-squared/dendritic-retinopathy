@@ -193,7 +193,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/figures/aptos_qwk_vs_params.png` | test QWK vs. parameters (mean ± SD over seeds) |
 | `results/figures/aptos_confusion_<model>.png` | row-normalised confusion matrix, best config per model (selected by validation QWK) |
 | `results/figures/aptos_summary.csv` | per-configuration mean/SD table |
-| `results/models/<run_id>.pt` | best checkpoint, model config, feature standardisation stats |
+| `results/models/<run_id>.pt` | best checkpoint (compact: only unmasked weights; masks regenerated from the seed), model config, feature standardisation stats |
 | `results/predictions/<run_id>.csv` | per-image test predictions (`id_code`, `true`, `pred`) |
 | `results/analysis/activation_summary*.csv` | per run / per config: fraction of FDR-significant units, selectivity, progression score |
 | `results/analysis/units/<run_id>.csv` | per-unit "DE table": Kruskal–Wallis and Spearman p/q values, grade means, selectivity |

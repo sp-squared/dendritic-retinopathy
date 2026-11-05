@@ -14,7 +14,7 @@ import torch
 from scipy import stats
 
 from .metrics import N_GRADES, quadratic_kappa
-from .models import build_model
+from .models import build_model, load_compact_state_dict
 
 
 # --- Multiple testing --------------------------------------------------------
@@ -43,7 +43,10 @@ def load_checkpoint(path, device="cpu"):
     ckpt = torch.load(path, map_location=device, weights_only=False)
     args = argparse.Namespace(**ckpt["model_args"])
     model = build_model(args, ckpt["in_features"], ckpt["n_out"])
-    model.load_state_dict(ckpt["state_dict"])
+    if ckpt.get("compact"):
+        load_compact_state_dict(model, ckpt["state_dict"])
+    else:
+        model.load_state_dict(ckpt["state_dict"])
     return model.to(device).eval(), ckpt
 
 

@@ -130,6 +130,45 @@ class VanillaMLP(nn.Module):
         return self.out(self.body(x.flatten(1)))
 
 
+def _mask_signature(mask: torch.Tensor) -> list[int]:
+    """Cheap fingerprint of a mask's nonzero positions (count + index checksum)."""
+    idx = torch.nonzero(mask.bool().flatten()).flatten().to(torch.int64)
+    return [int(idx.numel()), int((idx % 1_000_003).sum().item()), int(mask.shape[0]), int(mask.shape[1])]
+
+
+def compact_state_dict(model: nn.Module) -> dict:
+    """State dict without the dense masked matrices: for every MaskedLinear only the
+    weights at unmasked positions are kept (plus a mask fingerprint). Masks are
+    regenerated from the mask seed when loading. A spatial dANN layer shrinks from
+    hundreds of MB (dense weight + dense mask) to ~100 KB."""
+    sd = {k: v.detach().cpu() for k, v in model.state_dict().items()}
+    for name, m in model.named_modules():
+        if isinstance(m, MaskedLinear):
+            sd.pop(f"{name}.weight"), sd.pop(f"{name}.mask")
+            sd[f"{name}.weight_values"] = m.weight.detach().cpu()[m.mask.cpu().bool()].clone()
+            sd[f"{name}.mask_signature"] = torch.tensor(_mask_signature(m.mask.cpu()))
+    return sd
+
+
+def load_compact_state_dict(model: nn.Module, sd: dict) -> None:
+    """Inverse of compact_state_dict. `model` must be built with the same args (same
+    mask seed), so its regenerated masks match; this is checked via the fingerprint."""
+    sd = dict(sd)
+    for name, m in model.named_modules():
+        if isinstance(m, MaskedLinear):
+            vals = sd.pop(f"{name}.weight_values")
+            sig = sd.pop(f"{name}.mask_signature").tolist()
+            if sig != _mask_signature(m.mask.cpu()):
+                raise ValueError(f"regenerated mask for {name!r} does not match the checkpoint")
+            with torch.no_grad():
+                m.weight.zero_()
+                m.weight[m.mask.bool()] = vals.to(m.weight.device, m.weight.dtype)
+    missing, unexpected = model.load_state_dict(sd, strict=False)
+    masked = {f"{n}.{t}" for n, mm in model.named_modules() if isinstance(mm, MaskedLinear) for t in ("weight", "mask")}
+    if set(missing) - masked or unexpected:
+        raise ValueError(f"checkpoint mismatch: missing {set(missing) - masked}, unexpected {unexpected}")
+
+
 def effective_params(model: nn.Module) -> int:
     """Trainable parameters that can actually be non-zero (masked weights excluded)."""
     total = 0
@@ -183,6 +222,8 @@ __all__ = [
     "DANN",
     "VanillaMLP",
     "effective_params",
+    "compact_state_dict",
+    "load_compact_state_dict",
     "build_model",
     "add_model_args",
 ]

@@ -86,3 +86,22 @@ def test_fmnist_lrf_unchanged_full_patch():
     model = DANN(784, 10, somas=[4], dendrites_per_soma=2, synapses=16, sampling="lrf",
                  image_shape=(1, 28, 28), rf_size=4, seed=0)
     assert (model.body[0].dendrites.mask.sum(1) == 16).all()
+
+
+def test_compact_state_dict_roundtrip():
+    from dendritic_dr.models import compact_state_dict, load_compact_state_dict
+
+    kw = dict(somas=[8], dendrites_per_soma=4, synapses=8, sampling="lrf", image_shape=(16, 5, 5), rf_size=3, seed=3)
+    a = DANN(16 * 25, 5, **kw)
+    with torch.no_grad():
+        for p in a.parameters():
+            p.add_(torch.randn_like(p))
+        for m in a.modules():  # keep masked entries at zero, as training does
+            if isinstance(m, MaskedLinear):
+                m.weight.mul_(m.mask)
+    sd = compact_state_dict(a)
+    assert not any(k.endswith(".mask") for k in sd)
+    b = DANN(16 * 25, 5, **kw)
+    load_compact_state_dict(b, sd)
+    x = torch.randn(4, 16 * 25)
+    assert torch.equal(a(x), b(x))

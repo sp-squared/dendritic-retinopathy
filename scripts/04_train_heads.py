@@ -34,7 +34,7 @@ import torch.nn.functional as F
 
 from dendritic_dr.features import load_features, standardization, to_tensors
 from dendritic_dr.metrics import head_outputs, ordinal_loss, predict, summarize
-from dendritic_dr.models import add_model_args, build_model, effective_params
+from dendritic_dr.models import add_model_args, build_model, compact_state_dict, effective_params
 from dendritic_dr.utils import append_result, get_device, results_root, set_seed
 
 # Args stored in each checkpoint so the model can be rebuilt by later scripts.
@@ -118,7 +118,8 @@ def run(args, seed, raw, data, mu, sd, device, out_root):
     (out_root / "models").mkdir(parents=True, exist_ok=True)
     torch.save(
         {
-            "state_dict": {k: v.cpu() for k, v in best_state.items()},
+            "state_dict": compact_state_dict(model),  # masks regenerated from the seed on load
+            "compact": True,
             "model_args": {k: getattr(args, k) for k in MODEL_ARG_KEYS},
             "in_features": int(xtr.shape[1]),
             "n_out": n_out,
