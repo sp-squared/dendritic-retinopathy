@@ -99,10 +99,18 @@ def site_column(meta: pd.DataFrame) -> str:
 SYMBOL_COLS = ("gene_name", "symbol", "gene_symbol", "genename", "name")
 
 
+def detect_sep(path: Path) -> str:
+    """Tab or comma, from the header line (the GSE160306 counts file is comma-separated)."""
+    opener = gzip.open if str(path).endswith(".gz") else open
+    with opener(path, "rt", encoding="utf-8", errors="replace") as f:
+        header = f.readline()
+    return "\t" if header.count("\t") >= header.count(",") else ","
+
+
 def load_counts(path: Path, meta: pd.DataFrame):
     """Genes x samples integer matrix (columns renamed to sample titles) and a
     gene-id -> symbol Series when the file carries a symbol column."""
-    df = pd.read_csv(path, sep="\t", index_col=0, compression="infer")
+    df = pd.read_csv(path, sep=detect_sep(path), index_col=0, compression="infer")
     numeric = df.select_dtypes(include=[np.number])
     dropped = [c for c in df.columns if c not in numeric.columns]
     symbols = None
@@ -203,9 +211,13 @@ def main():
                 print(meta[c].value_counts(dropna=False).to_string(), "\n")
         if "disease_group_detailed" in meta:
             print(pd.crosstab(meta[site], meta["disease_group_detailed"]).to_string(), "\n")
-        counts = pd.read_csv(args.counts, sep="\t", index_col=0, nrows=5, compression="infer")
+        counts = pd.read_csv(args.counts, sep=detect_sep(Path(args.counts)), index_col=0, nrows=5, compression="infer")
         print(f"counts file: first columns {list(counts.columns[:6])} ...; {counts.shape[1]} columns")
         print(counts.iloc[:5, :4].to_string())
+        titles = set(meta["title"])
+        hits = sum(c in titles for c in counts.columns)
+        print(f"{hits} of {counts.shape[1]} count columns match sample titles exactly "
+              "(other names are matched by GSM id or trailing number when the analysis runs)")
         print(f"\nwrote {out / 'samples.csv'}")
         return
 
