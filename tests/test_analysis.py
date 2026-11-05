@@ -128,3 +128,29 @@ def test_image_properties(tmp_path):
     assert d["contrast"] == 0 and d["brightness"] > 7
     assert (d["orig_width"], d["orig_height"]) == (70, 50)
     assert "orig_width" not in image_properties(tmp_path / "p.png")
+
+
+def test_idrid_preprocessing_keeps_masks_aligned(tmp_path):
+    import importlib.util
+
+    import numpy as np
+    from PIL import Image
+
+    spec = importlib.util.spec_from_file_location("idrid", "scripts/17_idrid_lesions.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    img = np.zeros((60, 100, 3), np.uint8)
+    img[5:55, 20:80] = 120  # fundus region inside a black border
+    img[30, 50] = 255  # a bright 'lesion' pixel
+    lesion = np.zeros((60, 100), np.uint8)
+    lesion[30, 50] = 255
+    d = tmp_path / "A. Segmentation"
+    d.mkdir()
+    Image.fromarray(img).save(d / "IDRiD_01.jpg", quality=100)
+    Image.fromarray(lesion).save(d / "IDRiD_01_MA.tif")
+    found = m.find_idrid(tmp_path)
+    assert list(found) == ["IDRiD_01"] and set(found["IDRiD_01"][1]) == {"MA"}
+    green, masks = m.prep_pair(*found["IDRiD_01"], size=60)
+    assert green.shape == (60, 60) and masks["MA"].any() and not masks["HE"].any()
+    yx = np.argwhere(masks["MA"]).mean(0)
+    assert abs(yx[0] - green.argmax() // 60) <= 2 and abs(yx[1] - green.argmax() % 60) <= 2

@@ -95,6 +95,7 @@ dendritic-retinopathy/
 │   ├── 14_global_baseline.py    global image statistics vs. the one-unit raw-pixel model
 │   ├── 15_train_cnn.py          small CNN trained end to end at 512 px, dendritic or dense first layer
 │   ├── 16_cnn_comparison.py     paired comparison of the CNN first-layer variants
+│   ├── 17_idrid_lesions.py      do individual dendrites respond to individual lesions? (IDRiD masks)
 │   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
 ├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -287,6 +288,21 @@ python scripts/16_cnn_comparison.py                   # -> cnn_by_config.csv, cn
 Quick offline check: `python scripts/15_train_cnn.py --smoke --stem dend-lrf --seeds 0 1`, then
 `python scripts/16_cnn_comparison.py --smoke`.
 
+**4g. Lesion selectivity on IDRiD: do individual dendrites respond to individual lesions?**
+IDRiD has 81 fundus images with pixel masks for microaneurysms (MA), haemorrhages (HE), hard exudates (EX)
+and soft exudates (SE). Without retraining, every step-4f CNN is run on these images. For each first-layer
+soma/channel and each dendrite it reports the AUC for lesion vs. lesion-free locations, and for each unit the
+share of individual lesions it detects compared with the same lesion shapes moved to lesion-free places
+(chance). Local intensity and contrast serve as baseline "detectors".
+Prediction, stated before running: clustered dendrites are more lesion-selective than scattered ones, most
+for small lesions (MA, HE).
+Download `A. Segmentation.zip` from <https://ieee-dataport.org/open-access/indian-diabetic-retinopathy-image-dataset-idrid>
+(free IEEE account; CC BY 4.0) and unzip it under `data/raw/idrid/`. Needs the CNN checkpoints of step 4f and
+`pixels_green_512.npz` (for the input normalisation used in training).
+```bash
+python scripts/17_idrid_lesions.py   # -> idrid_unit_auc.csv, idrid_detection.csv, idrid_summary.csv, idrid_tests.csv, figures
+```
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
@@ -346,6 +362,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/analysis/image_properties.csv` | per-image brightness, contrast, sharpness, green mean/SD, original resolution and file size |
 | `results/analysis/global_baseline.csv`, `global_unit_corr.csv` | step 4e: global-statistics baselines vs. the one-unit raw-pixel model; the unit's correlation with each property |
 | `results/analysis/cnn_by_config.csv`, `cnn_paired.csv`, `fig_cnn.png` | step 4f: QWK per first-layer variant; clustered vs. scattered dendrites and dendritic vs. dense, with Wilcoxon/bootstrap tests |
+| `results/analysis/idrid_summary.csv`, `idrid_tests.csv`, `fig_idrid.png`, `fig_idrid_example.png` | step 4g: lesion selectivity of first-layer somas, channels and dendrites on IDRiD; per-unit tables in `idrid_unit_auc.csv`, `idrid_detection.csv` |
 | `molecular/geo2r/de_results.tsv`, `de_significant.tsv` | PyDESeq2 results for all tested genes; DEGs passing padj and fold-change thresholds |
 | `molecular/geo2r/run_info.json`, `samples.csv` | design, thresholds, sample list (one per donor), DEG counts, software versions |
 | `molecular/geo2r/volcano.png` | volcano plot |
@@ -381,6 +398,8 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 - Paszke, A. et al. (2019). PyTorch: an imperative style, high-performance deep learning library. *NeurIPS*.
 - Pedregosa, F. et al. (2011). Scikit-learn: machine learning in Python. *JMLR*, 12, 2825–2830.
 - Virtanen, P. et al. (2020). SciPy 1.0: fundamental algorithms for scientific computing in Python. *Nature Methods*, 17, 261–272.
+- Porwal, P. et al. (2018). Indian Diabetic Retinopathy Image Dataset (IDRiD): a database for diabetic retinopathy
+  screening research. *Data*, 3(3), 25. doi:10.3390/data3030025
 - Benjamini, Y. and Hochberg, Y. (1995). Controlling the false discovery rate: a practical and powerful approach
   to multiple testing. *J. R. Stat. Soc. B*, 57, 289–300.
 - Efron, B. and Tibshirani, R. (1993). *An Introduction to the Bootstrap*. Chapman & Hall.

@@ -22,6 +22,12 @@ Nothing in this folder is committed except this file.
 
 Only the labelled training set (3,662 images) is used; the competition test set has no public labels.
 
+## IDRiD lesion masks (step 4g, optional)
+
+Download `A. Segmentation.zip` from https://ieee-dataport.org/open-access/indian-diabetic-retinopathy-image-dataset-idrid
+(free IEEE account; CC BY 4.0) and unzip it anywhere under `data/raw/idrid/`. Script 17 finds the files by name:
+`IDRiD_xx.jpg` and the masks `IDRiD_xx_MA.tif`, `_HE.tif`, `_EX.tif`, `_SE.tif`, `_OD.tif` (81 images).
+
 ## Fashion-MNIST (replication step)
 
 Downloaded automatically by torchvision into `data/fmnist/` the first time you run
