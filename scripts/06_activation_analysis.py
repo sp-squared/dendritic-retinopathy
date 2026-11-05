@@ -48,6 +48,7 @@ from dendritic_dr.analysis import (
     progression_score,
 )
 from dendritic_dr.features import load_features, to_tensors
+from dendritic_dr.plotting import config_label, style
 from dendritic_dr.utils import results_root
 
 GRADE_LABELS = ["0 No DR", "1 Mild", "2 Moderate", "3 Severe", "4 PDR"]
@@ -114,17 +115,20 @@ def pca_plot(A, y, title, out):
 
 
 def selectivity_plot(unit_tables: dict, out):
+    """unit_tables: {label: (model, pooled per-unit DataFrame)}."""
     fig, ax = plt.subplots(figsize=(5.5, 3.8))
     bins = np.arange(0.5, 6.5, 1)
     width = 0.8 / max(1, len(unit_tables))
-    for i, (config, df) in enumerate(unit_tables.items()):
+    for i, (label, (model, df)) in enumerate(unit_tables.items()):
         vals = df["n_grades_responsive"].dropna()
         counts, _ = np.histogram(vals, bins=bins)
-        ax.bar(np.arange(1, 6) - 0.4 + width * (i + 0.5), counts / max(1, counts.sum()), width=width, label=config)
+        hatch = "//" if i >= 3 else None
+        ax.bar(np.arange(1, 6) - 0.4 + width * (i + 0.5), counts / max(1, counts.sum()), width=width,
+               label=label, color=style(model)["color"], hatch=hatch, edgecolor="white")
     ax.set_xticks(range(1, 6))
     ax.set_xlabel("Number of DR grades a unit responds to\n(1 = grade-specific, 5 = mixed selectivity)")
     ax.set_ylabel("Fraction of active units")
-    ax.legend(fontsize=6)
+    ax.legend(fontsize=8, title="pooled over seeds", title_fontsize=7)
     fig.tight_layout()
     fig.savefig(out, dpi=200)
     plt.close(fig)
@@ -152,6 +156,7 @@ def main():
     feats_cache, summary, pooled_units = {}, [], {}
     for config in configs:
         cruns = runs[runs["config"] == config].sort_values("seed")
+        label = config_label(cruns.iloc[0])
         for i, row in enumerate(cruns.itertuples()):
             model, ckpt = load_checkpoint(root / "models" / f"{row.run_id}.pt")
             fname = ckpt["model_args"]["features"]
@@ -163,7 +168,7 @@ def main():
             A = hidden_activations(model, x)
             units = differential_activation(A, y)
             units.to_csv(out_dir / "units" / f"{row.run_id}.csv", index=False)
-            pooled_units.setdefault(config, []).append(units)
+            pooled_units.setdefault(label, (row.model, []))[1].append(units)
             act = units[units["active"]]
             summary.append(
                 {
@@ -185,8 +190,8 @@ def main():
                 }
             )
             if i == 0:  # figures from the lowest seed of each config
-                heatmap(A, y, units, f"{config} (seed {row.seed})", out_dir / f"fig_heatmap_{config}.png", args.fdr)
-                pca_plot(A, y, f"{config} (seed {row.seed})", out_dir / f"fig_pca_{config}.png")
+                heatmap(A, y, units, f"{label} (seed {row.seed})", out_dir / f"fig_heatmap_{config}.png", args.fdr)
+                pca_plot(A, y, f"{label} (seed {row.seed})", out_dir / f"fig_pca_{config}.png")
 
     sdf = pd.DataFrame(summary)
     sdf.to_csv(out_dir / "activation_summary.csv", index=False)
@@ -195,7 +200,7 @@ def main():
     by_cfg.columns = [f"{a}_{b}" for a, b in by_cfg.columns]
     by_cfg.insert(0, "n_seeds", num.size())
     by_cfg.to_csv(out_dir / "activation_summary_by_config.csv")
-    selectivity_plot({c: pd.concat(v) for c, v in pooled_units.items()}, out_dir / "fig_selectivity.png")
+    selectivity_plot({lab: (m, pd.concat(v)) for lab, (m, v) in pooled_units.items()}, out_dir / "fig_selectivity.png")
 
     cols = ["n_seeds", "test_qwk_mean", "frac_sig_of_active_mean", "mean_grades_responsive_mean", "progression_score_mean"]
     with pd.option_context("display.width", 160, "display.max_columns", 10):

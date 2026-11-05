@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from dendritic_dr.plotting import config_label, display_name, style
 from dendritic_dr.utils import results_root
 
 CONFIG_COLS = ["somas", "dendrites", "synapses", "rf_size", "hidden", "dropout", "loss", "features"]
@@ -42,14 +43,17 @@ def metric_vs_params(df, metric, ylabel, out):
         params=("effective_params", "first"), mean=(metric, "mean"), sd=(metric, "std"), n=(metric, "size")
     ).reset_index()
     fig, ax = plt.subplots(figsize=(5.5, 4))
-    for model, sub in g.groupby("model"):
-        sub = sub.sort_values("params")
-        ax.errorbar(sub["params"], sub["mean"], yerr=sub["sd"].fillna(0), marker="o", capsize=3, label=model)
+    order = ["dann-lrf", "dann-r", "vanilla"]
+    for model in sorted(g["model"].unique(), key=lambda m: order.index(m) if m in order else 99):
+        sub = g[g["model"] == model].sort_values("params")
+        st = style(model)
+        ax.errorbar(sub["params"], sub["mean"], yerr=sub["sd"].fillna(0), capsize=3, markersize=6,
+                    linewidth=1.5, color=st["color"], marker=st["marker"], label=display_name(model))
     ax.set_xscale("log")
     ax.set_xlabel("Effective trainable parameters (log scale)")
     ax.set_ylabel(ylabel)
     ax.grid(alpha=0.3)
-    ax.legend()
+    ax.legend(title=f"mean ± SD over {int(g['n'].max())} seeds", title_fontsize=8, fontsize=9)
     fig.tight_layout()
     fig.savefig(out, dpi=200)
     plt.close(fig)
@@ -74,7 +78,8 @@ def confusion_plots(df, out_dir: Path):
         ax.set_yticks(range(5), GRADES, fontsize=8)
         ax.set_xlabel("Predicted grade")
         ax.set_ylabel("True grade")
-        ax.set_title(f"{model} (summed over {len(cms)} seeds)", fontsize=9)
+        label = config_label(sub[sub["config"] == best_cfg].iloc[0])
+        ax.set_title(f"{label}\n(test set, summed over {len(cms)} seeds)", fontsize=9)
         fig.colorbar(im, ax=ax, fraction=0.046)
         fig.tight_layout()
         out = out_dir / f"aptos_confusion_{model}.png"
