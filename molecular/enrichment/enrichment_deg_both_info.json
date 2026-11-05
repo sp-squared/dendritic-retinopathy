@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-04",
+  "tool": "g:Profiler (gprofiler-official)",
+  "organism": "hsapiens",
+  "sources": [
+    "GO:BP",
+    "KEGG",
+    "REAC"
+  ],
+  "correction": "Benjamini-Hochberg FDR",
+  "alpha": 0.05,
+  "domain_scope": "custom_annotated (genes tested by DESeq2)",
+  "query_size": 58,
+  "display_filter": {
+    "max_term_size": 1500,
+    "min_overlap": 3
+  },
+  "background_size": 23256,
+  "gene_set": "deg",
+  "direction": "both",
+  "n_terms": 157
+}

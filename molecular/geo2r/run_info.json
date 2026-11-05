@@ -1,0 +1,241 @@
+{
+  "dataset": "GSE160306",
+  "site": "Macula",
+  "group_col": "disease_group_detailed",
+  "case": [
+    "NPDR",
+    "NPDR + DME",
+    "PDR + DME"
+  ],
+  "control": [
+    "Control"
+  ],
+  "n_case": 16,
+  "n_control": 10,
+  "design": "~age + gender + condition",
+  "min_count": 10,
+  "genes_tested": 23256,
+  "alpha": 0.05,
+  "lfc": 0.58,
+  "dropped_duplicate_donor_samples": [
+    "sample_64",
+    "sample_65",
+    "sample_70"
+  ],
+  "n_padj_only": 95,
+  "n_significant": 58,
+  "n_up": 49,
+  "n_down": 9,
+  "samples": [
+    {
+      "title": "sample_01",
+      "gsm": "GSM4871112",
+      "donor": "04_014",
+      "condition": "control",
+      "age": 80,
+      "gender": "female"
+    },
+    {
+      "title": "sample_10",
+      "gsm": "GSM4871113",
+      "donor": "16_044",
+      "condition": "control",
+      "age": 78,
+      "gender": "female"
+    },
+    {
+      "title": "sample_02",
+      "gsm": "GSM4871123",
+      "donor": "05_014",
+      "condition": "control",
+      "age": 73,
+      "gender": "male"
+    },
+    {
+      "title": "sample_03",
+      "gsm": "GSM4871134",
+      "donor": "05_035",
+      "condition": "control",
+      "age": 73,
+      "gender": "female"
+    },
+    {
+      "title": "sample_04",
+      "gsm": "GSM4871145",
+      "donor": "05_044",
+      "condition": "control",
+      "age": 81,
+      "gender": "male"
+    },
+    {
+      "title": "sample_41",
+      "gsm": "GSM4871147",
+      "donor": "06_016",
+      "condition": "case",
+      "age": 65,
+      "gender": "female"
+    },
+    {
+      "title": "sample_42",
+      "gsm": "GSM4871148",
+      "donor": "08_027",
+      "condition": "case",
+      "age": 84,
+      "gender": "male"
+    },
+    {
+      "title": "sample_43",
+      "gsm": "GSM4871149",
+      "donor": "09_023",
+      "condition": "case",
+      "age": 89,
+      "gender": "male"
+    },
+    {
+      "title": "sample_44",
+      "gsm": "GSM4871150",
+      "donor": "09_024",
+      "condition": "case",
+      "age": 69,
+      "gender": "male"
+    },
+    {
+      "title": "sample_46",
+      "gsm": "GSM4871151",
+      "donor": "15_048",
+      "condition": "case",
+      "age": 97,
+      "gender": "male"
+    },
+    {
+      "title": "sample_47",
+      "gsm": "GSM4871152",
+      "donor": "15_076",
+      "condition": "case",
+      "age": 81,
+      "gender": "male"
+    },
+    {
+      "title": "sample_48",
+      "gsm": "GSM4871153",
+      "donor": "16_063",
+      "condition": "case",
+      "age": 62,
+      "gender": "male"
+    },
+    {
+      "title": "sample_49",
+      "gsm": "GSM4871154",
+      "donor": "17_093",
+      "condition": "case",
+      "age": 66,
+      "gender": "female"
+    },
+    {
+      "title": "sample_05",
+      "gsm": "GSM4871155",
+      "donor": "06_025",
+      "condition": "control",
+      "age": 82,
+      "gender": "female"
+    },
+    {
+      "title": "sample_50",
+      "gsm": "GSM4871156",
+      "donor": "17_071",
+      "condition": "case",
+      "age": 90,
+      "gender": "male"
+    },
+    {
+      "title": "sample_06",
+      "gsm": "GSM4871166",
+      "donor": "06_043",
+      "condition": "control",
+      "age": 84,
+      "gender": "female"
+    },
+    {
+      "title": "sample_61",
+      "gsm": "GSM4871168",
+      "donor": "04_028",
+      "condition": "case",
+      "age": 69,
+      "gender": "male"
+    },
+    {
+      "title": "sample_62",
+      "gsm": "GSM4871169",
+      "donor": "13_030",
+      "condition": "case",
+      "age": 77,
+      "gender": "female"
+    },
+    {
+      "title": "sample_63",
+      "gsm": "GSM4871170",
+      "donor": "05_011",
+      "condition": "case",
+      "age": 73,
+      "gender": "female"
+    },
+    {
+      "title": "sample_66",
+      "gsm": "GSM4871173",
+      "donor": "05_049",
+      "condition": "case",
+      "age": 76,
+      "gender": "female"
+    },
+    {
+      "title": "sample_67",
+      "gsm": "GSM4871174",
+      "donor": "10_005",
+      "condition": "case",
+      "age": 59,
+      "gender": "male"
+    },
+    {
+      "title": "sample_68",
+      "gsm": "GSM4871175",
+      "donor": "16_055",
+      "condition": "case",
+      "age": 61,
+      "gender": "female"
+    },
+    {
+      "title": "sample_69",
+      "gsm": "GSM4871176",
+      "donor": "17_037",
+      "condition": "case",
+      "age": 82,
+      "gender": "female"
+    },
+    {
+      "title": "sample_07",
+      "gsm": "GSM4871177",
+      "donor": "06_055",
+      "condition": "control",
+      "age": 63,
+      "gender": "male"
+    },
+    {
+      "title": "sample_08",
+      "gsm": "GSM4871188",
+      "donor": "08_049",
+      "condition": "control",
+      "age": 80,
+      "gender": "female"
+    },
+    {
+      "title": "sample_09",
+      "gsm": "GSM4871190",
+      "donor": "06_056",
+      "condition": "control",
+      "age": 70,
+      "gender": "male"
+    }
+  ],
+  "pydeseq2": "0.5.4",
+  "python": "3.14.4"
+}
