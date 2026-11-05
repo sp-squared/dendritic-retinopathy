@@ -111,3 +111,20 @@ def test_smoke_pixels_load_as_images():
     d = load_features("smoke_pixels", smoke=True)
     assert d["image_shape"] == (1, 16, 16)
     assert d["X_train"].shape[1] == 256 and d["X_train"].dtype.name == "float32"
+
+
+def test_image_properties(tmp_path):
+    import numpy as np
+    from PIL import Image
+
+    from dendritic_dr.data import image_properties
+
+    img = np.zeros((32, 32, 3), np.uint8)
+    img[8:24, 8:24] = (40, 120, 60)  # fundus region; the rest is black border
+    Image.fromarray(img).save(tmp_path / "p.png")
+    Image.fromarray(np.zeros((50, 70, 3), np.uint8)).save(tmp_path / "r.png")
+    d = image_properties(tmp_path / "p.png", tmp_path / "r.png")
+    assert d["green_mean"] == 120 and d["green_std"] == 0
+    assert d["contrast"] == 0 and d["brightness"] > 7
+    assert (d["orig_width"], d["orig_height"]) == (70, 50)
+    assert "orig_width" not in image_properties(tmp_path / "p.png")

@@ -92,6 +92,7 @@ dendritic-retinopathy/
 │   ├── 11_receptive_field_sweep.py  locality effect (LRF - random) across ResNet stages
 │   ├── 12_extract_pixels.py     downsampled raw fundus pixels (no CNN) -> .npz, same format as features
 │   ├── 13_pixel_comparison.py   dendritic vs. dense heads on raw pixels: LRF vs. random, dANN vs. dense
+│   ├── 14_global_baseline.py    global image statistics vs. the one-unit raw-pixel model
 │   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
 ├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -99,7 +100,7 @@ dendritic-retinopathy/
 │   ├── metrics.py            QWK, ordinal (cumulative-link) loss
 │   ├── analysis.py           FDR, differential activation, selectivity, PCA, bootstrap
 │   ├── features.py           loading/standardising cached features (pooled and spatial)
-│   ├── data.py               fundus preprocessing, raw-pixel conversion, splits, Dataset
+│   ├── data.py               fundus preprocessing, raw pixels, image properties, splits, Dataset
 │   ├── plotting.py           display names, colour-blind-safe styles, axis formatting
 │   └── utils.py              paths, seeding, device, CSV logging
 ├── tests/                    unit tests (pytest): models/masks, analysis, plotting
@@ -238,6 +239,15 @@ python scripts/13_pixel_comparison.py          # -> pixels_by_config.csv, pixels
 ```
 Raw-pixel runs are left out of the step 5 figures (`--exclude pixels`, the default) and plotted by script 13.
 
+**4e. Global-statistics check.** On raw pixels the best model was a dense ANN with one hidden unit, i.e. a
+single weighted sum over the image. This step checks whether that unit mostly reads image-wide properties
+(brightness, contrast, sharpness; camera proxies from step 8) rather than lesions: logistic-regression
+baselines on a few global statistics per image, compared with the one-unit model by a paired bootstrap,
+plus the hidden unit's Spearman correlation with each property.
+```bash
+python scripts/14_global_baseline.py     # -> image_properties.csv, global_baseline.csv, global_unit_corr.csv
+```
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
@@ -292,6 +302,8 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/analysis/rf_sweep.csv`, `fig_rf_sweep.png` | step 4c: LRF − R difference per ResNet stage with Wilcoxon/bootstrap tests and the depth trend |
 | `results/analysis/rf_sweep_scaled.csv`, `fig_rf_sweep_scaled.png` | step 4c window-size control: same analysis with the window at ~30% of the map width at every stage |
 | `results/analysis/pixels_by_config.csv`, `pixels_paired.csv`, `fig_pixels.png` | step 4d: raw-pixel heads; QWK vs. parameters, LRF − random and dANN − nearest-dense differences with Wilcoxon/bootstrap tests |
+| `results/analysis/image_properties.csv` | per-image brightness, contrast, sharpness, green mean/SD, original resolution and file size |
+| `results/analysis/global_baseline.csv`, `global_unit_corr.csv` | step 4e: global-statistics baselines vs. the one-unit raw-pixel model; the unit's correlation with each property |
 | `molecular/geo2r/de_results.tsv`, `de_significant.tsv` | PyDESeq2 results for all tested genes; DEGs passing padj and fold-change thresholds |
 | `molecular/geo2r/run_info.json`, `samples.csv` | design, thresholds, sample list (one per donor), DEG counts, software versions |
 | `molecular/geo2r/volcano.png` | volcano plot |

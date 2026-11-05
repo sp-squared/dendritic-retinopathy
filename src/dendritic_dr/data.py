@@ -50,6 +50,30 @@ def fundus_pixels(img: Image.Image, size: int, channel: str = "green") -> np.nda
     return np.ascontiguousarray(np.asarray(img, dtype=np.uint8).transpose(2, 0, 1)[CHANNELS[channel]])
 
 
+def image_properties(proc_path: Path, raw_path: Path | None = None) -> dict:
+    """Global, lesion-independent properties of one fundus image (as in step 8):
+    brightness and contrast (mean and SD of grey levels inside the fundus), sharpness
+    (variance of the Laplacian), the same mean/SD for the green channel and, if the raw
+    Kaggle file is given, its original resolution and file size (camera proxies)."""
+    rgb = np.asarray(Image.open(proc_path).convert("RGB"), dtype=np.float32)
+    g = np.asarray(Image.open(proc_path).convert("L"), dtype=np.float32)
+    inside = g > 7  # ignore the black border
+    lap = -4 * g[1:-1, 1:-1] + g[:-2, 1:-1] + g[2:, 1:-1] + g[1:-1, :-2] + g[1:-1, 2:]
+    green = rgb[..., 1][inside]
+    out = {
+        "brightness": float(g[inside].mean()) if inside.any() else 0.0,
+        "contrast": float(g[inside].std()) if inside.any() else 0.0,
+        "sharpness": float(lap.var()),
+        "green_mean": float(green.mean()) if green.size else 0.0,
+        "green_std": float(green.std()) if green.size else 0.0,
+    }
+    if raw_path is not None:
+        with Image.open(raw_path) as im:  # reads the header only
+            out["orig_width"], out["orig_height"] = im.size
+        out["file_kb"] = Path(raw_path).stat().st_size / 1024
+    return out
+
+
 def make_splits(labels: pd.DataFrame, seed: int, val_frac: float, test_frac: float) -> pd.DataFrame:
     """Stratified train/val/test split on the labelled APTOS training set
     (the official Kaggle test set has no public labels)."""
