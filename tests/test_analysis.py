@@ -77,3 +77,14 @@ def test_append_result_handles_new_columns(tmp_path):
     d = pd.read_csv(p)
     assert list(d.columns) == ["a", "b", "c"] and len(d) == 3
     assert d["c"].isna().tolist() == [True, False, True]
+
+
+def test_rf_sweep_parses_stage_and_grid():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("sweep", "scripts/11_receptive_field_sweep.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    assert (m.stage_of("resnet18_224_spatial"), m.grid_of("resnet18_224_spatial")) == (4, 7)
+    assert (m.stage_of("resnet18_224_spatial_l2_g14"), m.grid_of("resnet18_224_spatial_l2_g14")) == (2, 14)
+    assert (m.stage_of("resnet18_224_spatial_l3"), m.grid_of("resnet18_224_spatial_l3")) == (3, 14)

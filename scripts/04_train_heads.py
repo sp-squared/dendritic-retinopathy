@@ -179,7 +179,8 @@ def main():
     args = p.parse_args()
     if args.smoke:
         args.epochs = min(args.epochs, 30)
-        args.features = "smoke_spatial" if "spatial" in args.features else "smoke"
+        if not args.features.startswith("smoke"):
+            args.features = "smoke_spatial" if "spatial" in args.features else "smoke"
 
     device = get_device(args.device)
     raw = load_features(args.features, args.smoke)

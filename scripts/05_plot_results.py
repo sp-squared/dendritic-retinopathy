@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 import matplotlib
@@ -66,7 +67,8 @@ def _lines(g):
     for model in sorted(g["model"].unique(), key=lambda m: (order.index(base_model(m)) if base_model(m) in order else 99, m)):
         sub = g[g["model"] == model]
         feat = model.split("@")[1] if "@" in model else ""
-        tag = f" [{'spatial' if 'spatial' in feat else 'pooled'}]" if feat else ""
+        stage = re.search(r"_l(\d)", feat)
+        tag = (f" [layer{stage.group(1) if stage else 4} map]" if "spatial" in feat else " [pooled]") if feat else ""
         syns = sub["_syn"][sub["_syn"] != ""]
         if syns.nunique() <= 1:
             out.append((model, display_name(base_model(model)) + tag, False, sub))

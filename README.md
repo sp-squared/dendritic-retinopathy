@@ -83,7 +83,8 @@ dendritic-dr/
 │   ├── 07_stats.py              bootstrap CIs, paired Wilcoxon, FDR across comparisons
 │   ├── 08_inspect_subcluster.py exploratory: acquisition properties of a PCA subcluster
 │   ├── 09_differential_expression.py  PyDESeq2 on GSE160306 retina RNA-seq
-│   └── 10_enrichment.py         g:Profiler GO/KEGG/Reactome enrichment, custom background
+│   ├── 10_enrichment.py         g:Profiler GO/KEGG/Reactome enrichment, custom background
+│   └── 11_receptive_field_sweep.py  locality effect (LRF - random) across ResNet stages
 ├── molecular/                GEO2R / STRING / enrichment exports + protocol (manual web-tool steps)
 ├── src/dendritic_dr/
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -150,6 +151,20 @@ for s in 32 64 128 256; do
 done
 python scripts/07_stats.py --pair resnet18_224_spatial_dann-lrf_s128_d16_y16_rf3_ce resnet18_224_spatial_dann-r_s128_d16_y16_ce \
                            --pair resnet18_224_spatial_dann-lrf_s128_d16_y16_rf3_ce resnet18_224_vanilla_h73_ce
+```
+
+**4c. Receptive-field sweep: does the locality advantage shrink with depth?**
+Hypothesis (stated in advance): dANN-LRF beats dANN-R when map cells are local (early stages)
+and the gap shrinks to zero at layer4. Each stage is pooled to ~25k inputs so only locality differs.
+```bash
+python scripts/03_extract_features.py --backbone resnet18 --input-size 224 --spatial --layer 1 --grid 20
+python scripts/03_extract_features.py --backbone resnet18 --input-size 224 --spatial --layer 2 --grid 14
+python scripts/03_extract_features.py --backbone resnet18 --input-size 224 --spatial --layer 3 --grid 10
+for f in resnet18_224_spatial_l1_g20 resnet18_224_spatial_l2_g14 resnet18_224_spatial_l3_g10; do
+  python scripts/04_train_heads.py --features $f --model dann-lrf --somas 128 --rf-size 3 --seeds 0 1 2 3 4 5 6 7 8 9
+  python scripts/04_train_heads.py --features $f --model dann-r   --somas 128 --seeds 0 1 2 3 4 5 6 7 8 9
+done
+python scripts/11_receptive_field_sweep.py     # layer4 runs from step 4b are reused
 ```
 
 **5. Figures**

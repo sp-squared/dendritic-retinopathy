@@ -9,16 +9,19 @@ from .utils import DATA_DIR
 SPLITS = ("train", "val", "test")
 
 
-def smoke_features(seed: int = 0, dim: int = 512, spatial: bool = False) -> dict:
+def smoke_features(seed: int = 0, dim: int = 512, spatial: bool = False, spread: int = 0) -> dict:
     """Random features with a weak grade signal, for offline end-to-end checks.
-    spatial=True gives (N, 32, 7, 7) maps whose signal sits in a few local regions."""
+    spatial=True gives (N, 32, 7, 7) maps whose signal sits in local regions; `spread`
+    widens those regions (used to mimic later ResNet stages in the sweep smoke test)."""
     rng = np.random.default_rng(seed)
     shape = (32, 7, 7) if spatial else (dim,)
     direction = np.zeros(shape, np.float32)
-    if spatial:  # signal confined to two 2x2 regions, on a subset of channels
-        direction[:8, 1:3, 1:3] = rng.normal(size=(8, 2, 2))
-        direction[8:16, 4:6, 4:6] = rng.normal(size=(8, 2, 2))
-        direction *= 3.0
+    if spatial:  # signal on a subset of channels, in two regions that widen with `spread`
+        a0, a1 = max(0, 1 - spread), min(7, 3 + spread)
+        b0, b1 = max(0, 4 - spread), min(7, 6 + spread)
+        direction[:8, a0:a1, a0:a1] = rng.normal(size=(8, a1 - a0, a1 - a0))
+        direction[8:16, b0:b1, b0:b1] = rng.normal(size=(8, b1 - b0, b1 - b0))
+        direction *= 3.0 * 2 / (a1 - a0)  # keep total signal roughly constant as it spreads
     else:
         direction[:] = rng.normal(size=shape)
     out = {}
@@ -34,7 +37,10 @@ def load_features(name: str, smoke: bool = False) -> dict:
     """Load cached features. Spatial feature maps (N, C, H, W) are flattened to
     (N, C*H*W) and their shape is returned under 'image_shape' (None for vectors)."""
     if smoke:
-        d = smoke_features(spatial="spatial" in name)
+        import re
+
+        m = re.search(r"_l(\d)", name)
+        d = smoke_features(spatial="spatial" in name, spread=int(m.group(1)) - 1 if m else 0)
     else:
         d = dict(np.load(DATA_DIR / "features" / f"{name}.npz", allow_pickle=True))
     d["image_shape"] = None
