@@ -81,7 +81,8 @@ dendritic-dr/
 │   ├── 05_plot_results.py       report figures (QWK vs. params, confusion matrices)
 │   ├── 06_activation_analysis.py  differential activation, clustering, PCA, selectivity
 │   ├── 07_stats.py              bootstrap CIs, paired Wilcoxon, FDR across comparisons
-│   └── 08_inspect_subcluster.py exploratory: acquisition properties of a PCA subcluster
+│   ├── 08_inspect_subcluster.py exploratory: acquisition properties of a PCA subcluster
+│   └── 09_differential_expression.py  PyDESeq2 on GSE160306 retina RNA-seq
 ├── molecular/                GEO2R / STRING / enrichment exports + protocol (manual web-tool steps)
 ├── src/dendritic_dr/
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -156,7 +157,13 @@ rest of that grade on original resolution (camera proxy), brightness, contrast a
 python scripts/08_inspect_subcluster.py --config resnet18_224_dann-r_s128_d16_y16_ce --pc1-max 0 --pc2-min 2.5
 ```
 
-**8. Molecular context**: follow the protocol in [`molecular/README.md`](molecular/README.md)
+**8. Molecular context**: differential expression in human DR retina (GSE160306), then STRING and enrichment
+```bash
+pip install -e ".[molecular]"   # adds PyDESeq2
+python scripts/09_differential_expression.py --inspect
+python scripts/09_differential_expression.py --group-col disease_group_detailed --case PDR --control Control
+```
+Download instructions and the remaining web-tool steps: [`molecular/README.md`](molecular/README.md)
 (GEO2R, STRING and enrichment are web tools; all exports and settings are saved in that folder).
 
 ## Expected outputs
@@ -209,4 +216,10 @@ python scripts/08_inspect_subcluster.py --config resnet18_224_dann-r_s128_d16_y1
 - Benjamini, Y. and Hochberg, Y. (1995). Controlling the false discovery rate: a practical and powerful approach
   to multiple testing. *J. R. Stat. Soc. B*, 57, 289–300.
 - Efron, B. and Tibshirani, R. (1993). *An Introduction to the Bootstrap*. Chapman & Hall.
-- Molecular-analysis tools (GEO, GEO2R/limma, STRING, Enrichr): see `molecular/README.md`.
+- Becker, K. et al. (2021). In-depth transcriptomic analysis of human retina reveals molecular mechanisms underlying
+  diabetic retinopathy. *Scientific Reports*, 11, 10494. (GSE160306)
+- Love, M. I., Huber, W. and Anders, S. (2014). Moderated estimation of fold change and dispersion for RNA-seq data
+  with DESeq2. *Genome Biology*, 15, 550.
+- Muzellec, B. et al. (2023). PyDESeq2: a python package for bulk RNA-seq differential expression analysis.
+  *Bioinformatics*, 39, btad547.
+- Molecular-analysis tools (GEO, STRING, Enrichr): see `molecular/README.md`.

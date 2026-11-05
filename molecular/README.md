@@ -12,7 +12,7 @@ These steps use web tools (GEO2R, STRING, Enrichr/STRING enrichment), so reprodu
 ```
 molecular/
 ├── README.md            this protocol: fill in every [TODO]
-├── geo2r/               GEO2R full results table (.tsv) + the R script GEO2R shows
+├── geo2r/               DE results from script 09 (raw/ downloads are git-ignored)
 ├── string/              STRING network (.tsv edges, .png image) + hub ranking
 ├── enrichment/          GO / KEGG / Reactome tables (.tsv)
 └── lesion_process_table.md   final table used in the report
@@ -21,17 +21,25 @@ molecular/
 ## Protocol (record what you actually did)
 
 ### 1. Dataset (NCBI GEO)
-- Accession: [TODO, e.g. GSExxxxx]   Platform: [TODO]
-- Tissue / species: [TODO: retina; human preferred]
-- Groups compared: [TODO: e.g. DR (n=?) vs. non-diabetic control (n=?)]
-- Why this dataset: [TODO: tissue relevance, sample size, publication]
-- Citation: [TODO: the dataset's original paper]
+- Accession: GSE160306 (SubSeries of GSE160310), human post-mortem retina, total RNA-seq
+- Citation: Becker et al. (2021), *Scientific Reports* 11:10494
+- Groups compared: macula, PDR vs. healthy controls (exact n in `geo2r/run_info.json`)
+- Download (from the repo root):
+  ```bash
+  mkdir -p molecular/geo2r/raw && cd molecular/geo2r/raw
+  wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE160nnn/GSE160306/matrix/GSE160306_series_matrix.txt.gz
+  wget https://ftp.ncbi.nlm.nih.gov/geo/series/GSE160nnn/GSE160306/suppl/GSE160306_human_retina_DR_totalRNA_counts.txt.gz
+  cd ../../..
+  ```
 
-### 2. Differential expression (GEO2R)
-- Settings: log transform [TODO], adjustment = Benjamini-Hochberg, other [TODO]
-- DEG thresholds: adj. p < [0.05], |log2FC| > [1]
-- Number of DEGs: up [TODO] / down [TODO]
-- Saved: `geo2r/full_table.tsv`, `geo2r/geo2r_script.R`
+### 2. Differential expression (scripted: `scripts/09_differential_expression.py`)
+- PyDESeq2, design `~ age + gender + condition`, Wald test, Benjamini-Hochberg
+- Macula only (each donor gave a macula and a periphery sample)
+- Genes kept: >= 10 counts in at least as many samples as the smaller group
+- DEG thresholds: padj < 0.05, |log2FC| >= 1
+- Outputs: `geo2r/de_results.tsv`, `geo2r/de_significant.tsv`, `geo2r/string_input.txt`,
+  `geo2r/volcano.png`, `geo2r/run_info.json`
+- Number of DEGs: up [TODO] / down [TODO] (from `run_info.json`)
 
 ### 3. PPI network (STRING, https://string-db.org)
 - STRING version: [TODO]   Species: Homo sapiens
@@ -65,6 +73,6 @@ for example, which grade boundaries the model confuses, and whether the change b
 grades shows up visually as small or as large lesions.
 
 ## Tools to cite
-GEO (Barrett et al., 2013), GEO2R/limma (Ritchie et al., 2015), STRING (Szklarczyk et al.;
+GEO (Barrett et al., 2013), DESeq2 (Love et al., 2014) / PyDESeq2 (Muzellec et al., 2023), STRING (Szklarczyk et al.;
 cite the version you used), Enrichr (Kuleshov et al., 2016) or STRING enrichment,
 Cytoscape (Shannon et al., 2003) if used.
