@@ -5,6 +5,17 @@ the DEGs from step 9, against a CUSTOM background: the genes actually tested by
 DESeq2 (expressed in retina). A whole-genome background would make any
 retina-expressed gene look "enriched".
 
+Default domain scope is "custom_annotated": the background is restricted to tested
+genes that carry at least one annotation in the chosen sources. With plain "custom",
+the many unannotated (largely non-coding) background genes make "having any
+annotation" look enriched, and root terms such as "biological_process" come out
+significant (an annotation-bias artefact).
+
+The full table keeps every significant term. The printed list and the plot hide
+terms that are too broad to interpret (> --max-display-size genes, e.g. root terms)
+or that rest on fewer than --min-overlap DEGs; this filter is for display only and
+does not change the statistics.
+
 Requires internet access (g:Profiler web service) and `pip install gprofiler-official`.
 
 Examples
@@ -57,12 +68,12 @@ def load_sets(args):
     return query, background, symbols
 
 
-def run_gprofiler(query, background, sources, alpha):
+def run_gprofiler(query, background, sources, alpha, domain_scope):
     from gprofiler import GProfiler
 
     gp = GProfiler(return_dataframe=True, user_agent="dendritic-dr-course-project")
     df = gp.profile(organism="hsapiens", query=query, sources=sources, user_threshold=alpha,
-                    significance_threshold_method="fdr", domain_scope="custom", background=background,
+                    significance_threshold_method="fdr", domain_scope=domain_scope, background=background,
                     no_evidences=False)
     return df
 
@@ -94,6 +105,9 @@ def main():
     p.add_argument("--alpha", type=float, default=0.05)
     p.add_argument("--lfc", type=float, default=0.58)
     p.add_argument("--sources", nargs="+", default=["GO:BP", "KEGG", "REAC"])
+    p.add_argument("--domain-scope", choices=["custom_annotated", "custom"], default="custom_annotated")
+    p.add_argument("--max-display-size", type=int, default=1500, help="hide broader terms in print/plot")
+    p.add_argument("--min-overlap", type=int, default=3, help="hide terms with fewer DEGs in print/plot")
     args = p.parse_args()
 
     query, background, symbols = load_sets(args)
@@ -102,11 +116,12 @@ def main():
     if len(query) < 5:
         raise SystemExit("fewer than 5 query genes; nothing meaningful to test")
 
-    df = run_gprofiler(query, background, args.sources, args.alpha)
+    df = run_gprofiler(query, background, args.sources, args.alpha, args.domain_scope)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     info = {"date": str(date.today()), "tool": "g:Profiler (gprofiler-official)", "organism": "hsapiens",
             "sources": args.sources, "correction": "Benjamini-Hochberg FDR", "alpha": args.alpha,
-            "domain_scope": "custom (genes tested by DESeq2)", "query_size": len(query),
+            "domain_scope": f"{args.domain_scope} (genes tested by DESeq2)", "query_size": len(query),
+            "display_filter": {"max_term_size": args.max_display_size, "min_overlap": args.min_overlap},
             "background_size": len(background), "gene_set": args.gene_set, "direction": args.direction,
             "n_terms": int(len(df))}
     (OUT_DIR / f"enrichment_{tag}_info.json").write_text(json.dumps(info, indent=2))
@@ -121,11 +136,17 @@ def main():
     cols = [c for c in ["source", "native", "name", "p_value", "term_size", "query_size", "intersection_size",
                         "precision", "recall", "genes"] if c in df]
     df = df.sort_values("p_value")[cols]
+    df["shown"] = (df["term_size"] <= args.max_display_size) & (df["intersection_size"] >= args.min_overlap)
     df.to_csv(OUT_DIR / f"enrichment_{tag}.tsv", sep="\t", index=False)
-    with pd.option_context("display.width", 160, "display.max_colwidth", 60):
-        print(df.head(15)[["source", "name", "p_value", "intersection_size", "term_size"]].to_string(index=False))
-    plot_top(df, f"Enrichment of DR DEGs ({tag}, n={len(query)}) vs. tested-gene background",
-             OUT_DIR / f"enrichment_{tag}.png")
+    shown = df[df["shown"]]
+    print(f"{len(df)} significant terms; {len(shown)} interpretable (term size <= {args.max_display_size}, "
+          f">= {args.min_overlap} DEGs); full list in the TSV")
+    with pd.option_context("display.width", 180, "display.max_colwidth", 60):
+        if len(shown):
+            print(shown.head(15)[["source", "name", "p_value", "intersection_size", "term_size", "genes"]].to_string(index=False))
+    if len(shown):
+        plot_top(shown, f"Enrichment of DR DEGs ({tag}, n={len(query)}) vs. tested, annotated genes",
+                 OUT_DIR / f"enrichment_{tag}.png")
     print(f"wrote {OUT_DIR / f'enrichment_{tag}.tsv'}")
 
 

@@ -54,7 +54,9 @@ molecular/
 ### 4. Functional enrichment (scripted: `scripts/10_enrichment.py`)
 - Tool: g:Profiler via `gprofiler-official` (record the data version from the g:Profiler website)
 - Sources: GO Biological Process, KEGG, Reactome
-- Background: custom = the 23,256 genes tested by DESeq2 (`domain_scope="custom"`)
+- Background: the genes tested by DESeq2, restricted to annotated genes (`domain_scope="custom_annotated"`);
+  plain `custom` produced root-term "enrichment" (annotation bias), see `enrichment_*_info.json`
+- Display filter (print/plot only): term size <= 1500, >= 3 DEGs per term
 - Significance: Benjamini-Hochberg FDR < 0.05
 - Saved: `enrichment/enrichment_deg_both.tsv`, `.png`, `_info.json`
 
