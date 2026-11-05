@@ -98,6 +98,8 @@ dendritic-retinopathy/
 │   ├── 17_idrid_lesions.py      do individual dendrites respond to individual lesions? (IDRiD masks)
 │   ├── 18_train_lesions.py      train first-layer variants on IDRiD lesion masks (dense lesion prediction)
 │   ├── 19_lesion_comparison.py  lesion AP per variant; lesion- vs. grade-trained unit selectivity
+│   ├── 20_train_fullres.py      lesion detection at 2048 px on IDRiD + DDR patches, Tversky loss, FROC
+│   ├── 21_fullres_comparison.py FROC / AP per variant on the IDRiD and DDR test sets
 │   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
 ├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -108,9 +110,10 @@ dendritic-retinopathy/
 │   ├── data.py               fundus preprocessing, raw pixels, image properties, splits, Dataset
 │   ├── cnn.py                dendritic convolution (DendriticConv2d), the end-to-end CNN, LesionNet
 │   ├── idrid.py              IDRiD loading/caching, lesion grids, unit selectivity (steps 17-19)
+│   ├── fullres.py            DDR finder, 2048 px cache, patch sampler, Tversky loss, FROC (steps 20-21)
 │   ├── plotting.py           display names, colour-blind-safe styles, axis formatting
 │   └── utils.py              paths, seeding, device, CSV logging
-├── tests/                    unit tests (pytest): models/masks, analysis, plotting
+├── tests/                    unit tests (pytest): models/masks, analysis, plotting, FROC/Tversky
 ├── results/                  committed outputs of the real runs
 │   ├── fmnist.csv            one row per Fashion-MNIST run
 │   ├── aptos_heads.csv       one row per APTOS head run
@@ -324,6 +327,24 @@ done
 python scripts/19_lesion_comparison.py   # -> lesion_by_config.csv, lesion_tests.csv, lesion_grade_reference.csv, fig_lesions.png
 ```
 
+**4i. Near-native resolution: IDRiD + DDR, Tversky loss, FROC (optional, a few GPU hours)**
+Step 4h trained at 512 px, where a microaneurysm is 1-3 px wide, on 44 images. Here the fundus is resized to
+2048 px (a microaneurysm spans ~4-12 px), DDR's 383 lesion-annotated training images are added to IDRiD's, and
+the network trains on 384 px patches (half centred near a lesion) with a Tversky loss that weights misses
+(beta = 0.7) above false alarms (alpha = 0.3). Scoring is FROC per lesion type (mean sensitivity at 1/8-8 false
+positives per image; the microaneurysm-detection standard), plus cell-level AP, on IDRiD's 27 test images (same
+as step 4h) and DDR's 225. Needs the DDR download in [`data/README.md`](data/README.md); the first run
+preprocesses all images into `data/features/lesions_2048/` (~15 min, a few GB).
+Prediction, stated before running: clustered dendrites keep their microaneurysm advantage over scattered ones
+(higher MA FROC on both test sets) and match the dense 5 x 5 layer.
+```bash
+for st in "dend-lrf" "dend-r" "conv --kernel 5"; do
+  python scripts/20_train_fullres.py --stem $st --seeds 0 1 2 3 4 5 6 7 8 9
+done
+python scripts/21_fullres_comparison.py   # -> fullres_by_config.csv, fullres_tests.csv, fig_fullres.png
+# optional ablations: does DDR help? (--train-on idrid); step 4h's loss (--loss bce); dense 12 x 12 (--stem conv)
+```
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
@@ -359,6 +380,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 
 | File | Contents |
 |---|---|
+| `results/fullres_runs.csv` | step 4i: one row per near-native-resolution lesion run: variant, training set, loss, best epoch, FROC / sensitivity at 1 FP / AP / AUC per lesion type on the IDRiD and DDR test sets |
 | `results/cnn_runs.csv` | step 4f: one row per end-to-end CNN run: first-layer variant, parameters, best epoch, val/test QWK, confusion matrix |
 | `results/fmnist.csv` | one row per run: model, config, effective params, train/test accuracy and loss |
 | `results/aptos_heads.csv` | one row per run: config, effective params, best epoch, val/test QWK, test accuracy, test confusion matrix (JSON) |
