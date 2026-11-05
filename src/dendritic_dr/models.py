@@ -46,12 +46,72 @@ class MaskedLinear(nn.Module):
         return n + (self.bias.numel() if self.bias is not None else 0)
 
 
+class IndexedMaskedLinear(nn.Module):
+    """Memory-light equivalent of MaskedLinear for very large, very sparse layers.
+
+    Instead of a dense (out x in) weight and mask, each output unit stores the column
+    indices of its k inputs (buffer `idx`, sorted per row) and k weights. The forward
+    pass gathers those inputs: y = sum_j x[:, idx[:, j]] * weight[:, j] + bias. This is
+    the same function as MaskedLinear with the same mask, but memory grows with the
+    number of synapses, not with in_features (a 2,048-dendrite layer on 200k inputs:
+    ~130 KB of weights instead of several GB). Used automatically by `masked_linear`.
+    """
+
+    def __init__(self, mask: torch.Tensor, bias: bool = True):
+        super().__init__()
+        mask = mask.bool()
+        out_f, in_f = mask.shape
+        counts = mask.sum(dim=1)
+        if not bool((counts == counts[0]).all()):
+            raise ValueError("IndexedMaskedLinear needs the same number of inputs per unit")
+        k = int(counts[0])
+        idx = torch.nonzero(mask)[:, 1].reshape(out_f, k)  # row-major: columns ascending per row
+        self.in_features = in_f
+        self.register_buffer("idx", idx)
+        self.weight = nn.Parameter(torch.empty(out_f, k))
+        self.bias = nn.Parameter(torch.zeros(out_f)) if bias else None
+        self.reset_parameters()
+
+    def reset_parameters(self) -> None:
+        bound = (6.0 / max(self.weight.shape[1], 1)) ** 0.5  # He-uniform on the effective fan-in
+        with torch.no_grad():
+            self.weight.uniform_(-bound, bound)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        y = (x[:, self.idx] * self.weight).sum(-1)
+        return y + self.bias if self.bias is not None else y
+
+    def dense_mask(self) -> torch.Tensor:
+        m = torch.zeros(self.idx.shape[0], self.in_features, dtype=torch.bool, device=self.idx.device)
+        m.scatter_(1, self.idx, True)
+        return m
+
+    def effective_params(self) -> int:
+        return self.weight.numel() + (self.bias.numel() if self.bias is not None else 0)
+
+
+# Dense masked layers above this many entries (out x in) switch to IndexedMaskedLinear.
+# All earlier experiments are below it (largest: 4,096 x 25,088 = 1.0e8), so their
+# checkpoints and results are unchanged.
+INDEXED_THRESHOLD = 200_000_000
+
+
+def masked_linear(mask: torch.Tensor, bias: bool = True) -> nn.Module:
+    if mask.numel() > INDEXED_THRESHOLD:
+        return IndexedMaskedLinear(mask, bias)
+    return MaskedLinear(mask, bias)
+
+
+def _is_masked(m: nn.Module) -> bool:
+    return isinstance(m, (MaskedLinear, IndexedMaskedLinear))
+
+
 class DendriticLayer(nn.Module):
     """inputs -> dendrites (ReLU) -> somas (ReLU)."""
 
     def __init__(self, dendrite_mask: torch.Tensor, n_somas: int, dendrites_per_soma: int):
         super().__init__()
-        self.dendrites = MaskedLinear(dendrite_mask)
+        self.dendrites = masked_linear(dendrite_mask)
         self.somas = MaskedLinear(soma_mask(n_somas, dendrites_per_soma))
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -136,6 +196,22 @@ def _mask_signature(mask: torch.Tensor) -> list[int]:
     return [int(idx.numel()), int((idx % 1_000_003).sum().item()), int(mask.shape[0]), int(mask.shape[1])]
 
 
+def _layer_signature(m: nn.Module) -> list[int]:
+    """Mask fingerprint of either masked layer type (identical for the same mask)."""
+    if isinstance(m, IndexedMaskedLinear):
+        rows = torch.arange(m.idx.shape[0], device=m.idx.device).unsqueeze(1)
+        flat = (rows * m.in_features + m.idx).flatten().cpu().to(torch.int64)
+        return [int(flat.numel()), int((flat % 1_000_003).sum().item()), int(m.idx.shape[0]), int(m.in_features)]
+    return _mask_signature(m.mask.cpu())
+
+
+def _unmasked_values(m: nn.Module) -> torch.Tensor:
+    """Weights at unmasked positions, in row-major order (same order for both types)."""
+    if isinstance(m, IndexedMaskedLinear):
+        return m.weight.detach().cpu().flatten().clone()
+    return m.weight.detach().cpu()[m.mask.cpu().bool()].clone()
+
+
 def compact_state_dict(model: nn.Module) -> dict:
     """State dict without the dense masked matrices: for every MaskedLinear only the
     weights at unmasked positions are kept (plus a mask fingerprint). Masks are
@@ -143,10 +219,11 @@ def compact_state_dict(model: nn.Module) -> dict:
     hundreds of MB (dense weight + dense mask) to ~100 KB."""
     sd = {k: v.detach().cpu() for k, v in model.state_dict().items()}
     for name, m in model.named_modules():
-        if isinstance(m, MaskedLinear):
-            sd.pop(f"{name}.weight"), sd.pop(f"{name}.mask")
-            sd[f"{name}.weight_values"] = m.weight.detach().cpu()[m.mask.cpu().bool()].clone()
-            sd[f"{name}.mask_signature"] = torch.tensor(_mask_signature(m.mask.cpu()))
+        if _is_masked(m):
+            sd.pop(f"{name}.weight")
+            sd.pop(f"{name}.mask" if isinstance(m, MaskedLinear) else f"{name}.idx")
+            sd[f"{name}.weight_values"] = _unmasked_values(m)
+            sd[f"{name}.mask_signature"] = torch.tensor(_layer_signature(m))
     return sd
 
 
@@ -155,16 +232,20 @@ def load_compact_state_dict(model: nn.Module, sd: dict) -> None:
     mask seed), so its regenerated masks match; this is checked via the fingerprint."""
     sd = dict(sd)
     for name, m in model.named_modules():
-        if isinstance(m, MaskedLinear):
+        if _is_masked(m):
             vals = sd.pop(f"{name}.weight_values")
             sig = sd.pop(f"{name}.mask_signature").tolist()
-            if sig != _mask_signature(m.mask.cpu()):
+            if sig != _layer_signature(m):
                 raise ValueError(f"regenerated mask for {name!r} does not match the checkpoint")
             with torch.no_grad():
-                m.weight.zero_()
-                m.weight[m.mask.bool()] = vals.to(m.weight.device, m.weight.dtype)
+                if isinstance(m, IndexedMaskedLinear):
+                    m.weight.copy_(vals.reshape(m.weight.shape).to(m.weight.device, m.weight.dtype))
+                else:
+                    m.weight.zero_()
+                    m.weight[m.mask.bool()] = vals.to(m.weight.device, m.weight.dtype)
     missing, unexpected = model.load_state_dict(sd, strict=False)
-    masked = {f"{n}.{t}" for n, mm in model.named_modules() if isinstance(mm, MaskedLinear) for t in ("weight", "mask")}
+    masked = {f"{n}.{t}" for n, mm in model.named_modules() if _is_masked(mm)
+              for t in ("weight", "mask", "idx")}
     if set(missing) - masked or unexpected:
         raise ValueError(f"checkpoint mismatch: missing {set(missing) - masked}, unexpected {unexpected}")
 
@@ -174,7 +255,7 @@ def effective_params(model: nn.Module) -> int:
     total = 0
     masked_ids = set()
     for m in model.modules():
-        if isinstance(m, MaskedLinear):
+        if _is_masked(m):
             total += m.effective_params()
             masked_ids.update(id(p) for p in m.parameters())
     total += sum(p.numel() for p in model.parameters() if p.requires_grad and id(p) not in masked_ids)
@@ -218,6 +299,8 @@ def add_model_args(p) -> None:
 
 __all__ = [
     "MaskedLinear",
+    "IndexedMaskedLinear",
+    "masked_linear",
     "DendriticLayer",
     "DANN",
     "VanillaMLP",

@@ -119,3 +119,42 @@ def test_lrf_even_window_stays_inside_map():
         for row in m.reshape(32, c, h, w):
             ys, xs = np.nonzero(row.any(0).numpy())
             assert ys.max() - ys.min() < rf and xs.max() - xs.min() < rf
+
+
+def test_indexed_masked_linear_matches_dense():
+    import numpy as np
+    import torch
+
+    from dendritic_dr import models
+    from dendritic_dr.masks import random_dendrite_mask
+
+    mask = random_dendrite_mask(50, 12, 5, np.random.default_rng(0))
+    dense, idx = models.MaskedLinear(mask), models.IndexedMaskedLinear(mask)
+    with torch.no_grad():
+        idx.weight.copy_(models._unmasked_values(dense).reshape(12, 5))
+        idx.bias.copy_(dense.bias)
+    x = torch.randn(7, 50)
+    assert torch.allclose(dense(x), idx(x), atol=1e-6)
+    assert torch.equal(idx.dense_mask(), mask.bool())
+    assert models._layer_signature(dense) == models._layer_signature(idx)
+    assert idx.effective_params() == dense.effective_params()
+
+
+def test_indexed_layer_used_above_threshold_and_roundtrips(monkeypatch):
+    import argparse
+
+    import torch
+
+    from dendritic_dr import models
+
+    monkeypatch.setattr(models, "INDEXED_THRESHOLD", 0)  # force the indexed path on a small model
+    args = argparse.Namespace(model="dann-lrf", somas=[8], dendrites=4, synapses=6, rf_size=3,
+                              hidden=[8], dropout=0.0, mask_seed=None, seed=1, image_shape=(4, 9, 9))
+    m = models.build_model(args, 4 * 81, 5)
+    assert isinstance(m.body[0].dendrites, models.IndexedMaskedLinear)
+    sd = models.compact_state_dict(m)
+    m2 = models.build_model(args, 4 * 81, 5)
+    models.load_compact_state_dict(m2, sd)
+    x = torch.randn(3, 4 * 81)
+    assert torch.allclose(m(x), m2(x))
+    assert models.effective_params(m) == 8 * 4 * 6 + 32 + 32 + 8 + 8 * 5 + 5

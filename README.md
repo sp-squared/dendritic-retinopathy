@@ -96,7 +96,7 @@ dendritic-retinopathy/
 │   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
 ├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
-│   ├── models.py             MaskedLinear, DANN, VanillaMLP, effective_params, compact checkpoints
+│   ├── models.py             MaskedLinear (+ memory-light IndexedMaskedLinear), DANN, VanillaMLP, compact checkpoints
 │   ├── metrics.py            QWK, ordinal (cumulative-link) loss
 │   ├── analysis.py           FDR, differential activation, selectivity, PCA, bootstrap
 │   ├── features.py           loading/standardising cached features (pooled and spatial)
@@ -219,6 +219,21 @@ python scripts/04_train_heads.py --features resnet18_224_spatial       --model d
 python scripts/11_receptive_field_sweep.py --rf-sizes 6 4 3 2   # -> rf_sweep_scaled.csv, fig_rf_sweep_scaled.png
 ```
 
+*Unpooled layer1.* The sweep average-pooled layer1 from 56 x 56 to 20 x 20, which may have blurred
+away fine-scale locality. This reruns layer1 unpooled (64 x 56 x 56 = 200,704 inputs) with a 3 x 3 window
+(the most local setting, 5% of the width) and an 8 x 8 window (15%, the same image area as the pooled
+3 x 3 window). Layers this large switch automatically to a memory-light sparse layer
+(`IndexedMaskedLinear`, mathematically identical). The feature file is ~1.2 GB and loading it needs
+roughly 10 GB of RAM and 3 GB of GPU memory.
+```bash
+python scripts/03_extract_features.py --backbone resnet18 --input-size 224 --spatial --layer 1
+python scripts/04_train_heads.py --features resnet18_224_spatial_l1 --model dann-lrf --somas 128 --rf-size 3 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/04_train_heads.py --features resnet18_224_spatial_l1 --model dann-lrf --somas 128 --rf-size 8 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/04_train_heads.py --features resnet18_224_spatial_l1 --model dann-r   --somas 128 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/11_receptive_field_sweep.py --features resnet18_224_spatial_l1 --rf-size 3 --tag l1_unpooled_rf3
+python scripts/11_receptive_field_sweep.py --features resnet18_224_spatial_l1 --rf-size 8 --tag l1_unpooled_rf8
+```
+
 **4d. Raw pixels: do dendrites regain their advantage without a CNN?**
 Steps 4b–4c found no locality advantage on CNN features at any depth. This step tests the
 interpretation directly: the heads are trained on downsampled fundus pixels (green channel, 128 x 128 =
@@ -300,6 +315,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/analysis/fig_subcluster_pca.png`, `fig_subcluster_contact.png` | selected PCA subcluster, and example images of it vs. the rest of the grade |
 | `results/analysis/subcluster_images.csv`, `subcluster_stats.csv` | per-image acquisition properties; Mann–Whitney tests with BH q-values |
 | `results/analysis/rf_sweep.csv`, `fig_rf_sweep.png` | step 4c: LRF − R difference per ResNet stage with Wilcoxon/bootstrap tests and the depth trend |
+| `results/analysis/rf_sweep_l1_unpooled_rf3.csv`, `_rf8.csv` (+ `fig_rf_sweep_*.png`) | step 4c unpooled layer1: LRF − R with a 3 x 3 and an 8 x 8 window on the 56 x 56 map |
 | `results/analysis/rf_sweep_scaled.csv`, `fig_rf_sweep_scaled.png` | step 4c window-size control: same analysis with the window at ~30% of the map width at every stage |
 | `results/analysis/pixels_by_config.csv`, `pixels_paired.csv`, `fig_pixels.png` | step 4d: raw-pixel heads; QWK vs. parameters, LRF − random and dANN − nearest-dense differences with Wilcoxon/bootstrap tests |
 | `results/analysis/image_properties.csv` | per-image brightness, contrast, sharpness, green mean/SD, original resolution and file size |

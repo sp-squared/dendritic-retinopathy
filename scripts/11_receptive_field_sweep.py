@@ -27,6 +27,11 @@ Run after training (see README, step 4c):
 python scripts/11_receptive_field_sweep.py                       # fixed 3x3 window
 python scripts/11_receptive_field_sweep.py --rf-sizes 6 4 3 2    # window ~30% of width
 python scripts/11_receptive_field_sweep.py --somas 32            # secondary size, if trained
+python scripts/11_receptive_field_sweep.py --features resnet18_224_spatial_l1 --rf-size 3 --tag l1_unpooled_rf3
+
+By default the sweep uses the pooled stage features of step 4c (<prefix>_spatial_l1_g20,
+_l2_g14, _l3_g10 and <prefix>_spatial); --features picks other feature sets (then --tag is
+required so the default outputs are not overwritten).
 
 Outputs (results/analysis/): rf_sweep.csv, fig_rf_sweep.png
 (with --rf-sizes: rf_sweep_scaled.csv, fig_rf_sweep_scaled.png, or use --tag)
@@ -83,6 +88,8 @@ def main():
     p.add_argument("--rf-sizes", type=int, nargs=4, default=None, metavar=("L1", "L2", "L3", "L4"),
                    help="window size per stage (layer1..layer4); overrides --rf-size")
     p.add_argument("--tag", default=None, help="output-name suffix (default 'scaled' with --rf-sizes)")
+    p.add_argument("--features", nargs="+", default=None,
+                   help="feature sets to analyse, one per stage (default: the pooled step-4c stages)")
     p.add_argument("--reference", default=None, help="config of a pooled reference head (default <prefix>_vanilla_h73_ce)")
     p.add_argument("--n-boot", type=int, default=2000)
     p.add_argument("--smoke", action="store_true")
@@ -91,6 +98,8 @@ def main():
         args.prefix = "smoke"
     rf_of = (dict(zip([1, 2, 3, 4], args.rf_sizes)) if args.rf_sizes
              else {k: args.rf_size for k in [1, 2, 3, 4]})
+    if args.features and not args.tag:
+        raise SystemExit("--features needs --tag, so the default sweep outputs are not overwritten")
     tag = args.tag if args.tag is not None else ("scaled" if args.rf_sizes else "")
     suffix = f"_{tag}" if tag else ""
 
@@ -98,8 +107,15 @@ def main():
     out_dir = root / "analysis"
     out_dir.mkdir(parents=True, exist_ok=True)
     runs = pd.read_csv(root / "aptos_heads.csv")
-    sel = runs[runs["features"].astype(str).str.startswith(args.prefix)
-               & runs["features"].astype(str).str.contains("spatial")
+    feats_col = runs["features"].astype(str)
+    if args.features:
+        wanted = feats_col.isin(args.features)
+    elif args.smoke:
+        wanted = feats_col.str.startswith(args.prefix) & feats_col.str.contains("spatial")
+    else:  # the pooled stages of step 4c (unpooled or other grids need --features)
+        wanted = feats_col.isin([f"{args.prefix}_spatial_l1_g20", f"{args.prefix}_spatial_l2_g14",
+                                 f"{args.prefix}_spatial_l3_g10", f"{args.prefix}_spatial"])
+    sel = runs[wanted
                & runs["model"].isin(["dann-lrf", "dann-r"])
                & (runs["somas"].map(clean) == str(args.somas))
                & (runs["dendrites"].map(clean) == str(args.dendrites))
@@ -114,6 +130,8 @@ def main():
 
     rows, per_seed = [], []
     for stage, g in sorted(sel.groupby("stage")):
+        if g["features"].nunique() > 1:
+            raise SystemExit(f"layer{stage}: several feature sets {sorted(g['features'].unique())}; pick one with --features")
         feats = g["features"].iloc[0]
         a = g[g["model"] == "dann-lrf"].set_index("seed")
         b = g[g["model"] == "dann-r"].set_index("seed")
