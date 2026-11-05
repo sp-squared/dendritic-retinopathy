@@ -80,7 +80,8 @@ dendritic-dr/
 │   ├── 04_train_heads.py        dendritic / dense heads on features
 │   ├── 05_plot_results.py       report figures (QWK vs. params, confusion matrices)
 │   ├── 06_activation_analysis.py  differential activation, clustering, PCA, selectivity
-│   └── 07_stats.py              bootstrap CIs, paired Wilcoxon, FDR across comparisons
+│   ├── 07_stats.py              bootstrap CIs, paired Wilcoxon, FDR across comparisons
+│   └── 08_inspect_subcluster.py exploratory: acquisition properties of a PCA subcluster
 ├── molecular/                GEO2R / STRING / enrichment exports + protocol (manual web-tool steps)
 ├── src/dendritic_dr/
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -147,6 +148,12 @@ python scripts/06_activation_analysis.py --features resnet18_224
 **7. Statistics** (each dendritic config paired with the closest-sized dense config; or `--pair A B`)
 ```bash
 python scripts/07_stats.py --features resnet18_224
+```
+
+**Exploratory: inspect a PCA subcluster** (e.g. the grade-0 cluster in `fig_pca_*.png`): compares it with the
+rest of that grade on original resolution (camera proxy), brightness, contrast and sharpness, with an example sheet
+```bash
+python scripts/08_inspect_subcluster.py --config resnet18_224_dann-r_s128_d16_y16_ce --pc1-max 0 --pc2-min 2.5
 ```
 
 **8. Molecular context**: follow the protocol in [`molecular/README.md`](molecular/README.md)
