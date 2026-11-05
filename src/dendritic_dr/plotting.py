@@ -50,3 +50,25 @@ def config_label(row) -> str:
         return f"{display_name(model)}, {size} hidden" if size else display_name(model)
     size = _first_int(row.get("somas"))
     return f"{display_name(model)}, {size} somas" if size else display_name(model)
+
+
+def _human_count(x: float) -> str:
+    """20000 -> '20k', 1500000 -> '1.5M'."""
+    if x >= 1e6:
+        s = f"{x / 1e6:.1f}".rstrip("0").rstrip(".")
+        return f"{s}M"
+    if x >= 1e3:
+        s = f"{x / 1e3:.1f}".rstrip("0").rstrip(".")
+        return f"{s}k"
+    return f"{x:g}"
+
+
+def format_params_axis(ax) -> None:
+    """Log-scale x axis with plain labels (10k, 20k, 50k, 100k ...) at 1-2-5 steps,
+    instead of overlapping scientific-notation minor labels."""
+    from matplotlib.ticker import FuncFormatter, LogLocator, NullFormatter, NullLocator
+
+    ax.xaxis.set_major_locator(LogLocator(base=10, subs=(1.0, 2.0, 5.0)))
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: _human_count(x)))
+    ax.xaxis.set_minor_locator(NullLocator())
+    ax.xaxis.set_minor_formatter(NullFormatter())

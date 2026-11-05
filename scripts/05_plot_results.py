@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from dendritic_dr.plotting import config_label, display_name, style
+from dendritic_dr.plotting import config_label, display_name, format_params_axis, style
 from dendritic_dr.utils import results_root
 
 CONFIG_COLS = ["somas", "dendrites", "synapses", "rf_size", "hidden", "dropout", "loss", "features"]
@@ -50,6 +50,7 @@ def metric_vs_params(df, metric, ylabel, out):
         ax.errorbar(sub["params"], sub["mean"], yerr=sub["sd"].fillna(0), capsize=3, markersize=6,
                     linewidth=1.5, color=st["color"], marker=st["marker"], label=display_name(model))
     ax.set_xscale("log")
+    format_params_axis(ax)
     ax.set_xlabel("Effective trainable parameters (log scale)")
     ax.set_ylabel(ylabel)
     ax.grid(alpha=0.3)
