@@ -33,14 +33,34 @@ def smoke_features(seed: int = 0, dim: int = 512, spatial: bool = False, spread:
     return out
 
 
+def smoke_pixels(seed: int = 0, size: int = 16) -> dict:
+    """Synthetic single-channel 'images' (N, 1, size, size) whose grade signal sits in two
+    small bright spots, mimicking local lesions, for offline checks of the raw-pixel step."""
+    rng = np.random.default_rng(seed)
+    direction = np.zeros((1, size, size), np.float32)
+    for y0, x0 in [(3, 3), (size - 6, size - 7)]:
+        direction[0, y0 : y0 + 3, x0 : x0 + 3] = 2.0
+    out = {}
+    for split, n in zip(SPLITS, (600, 150, 150)):
+        y = rng.choice(5, size=n, p=[0.45, 0.12, 0.25, 0.08, 0.10])
+        X = rng.normal(size=(n, 1, size, size)).astype(np.float32) + 0.3 * y.reshape(-1, 1, 1, 1) * direction
+        out[f"X_{split}"], out[f"y_{split}"] = X, y
+        out[f"ids_{split}"] = np.array([f"smoke_{split}_{i:04d}" for i in range(n)])
+    return out
+
+
 def load_features(name: str, smoke: bool = False) -> dict:
-    """Load cached features. Spatial feature maps (N, C, H, W) are flattened to
+    """Load cached features (or raw pixels from step 12, stored as uint8).
+    Spatial feature maps and images (N, C, H, W) are flattened to
     (N, C*H*W) and their shape is returned under 'image_shape' (None for vectors)."""
     if smoke:
         import re
 
         m = re.search(r"_l(\d)", name)
-        d = smoke_features(spatial="spatial" in name, spread=int(m.group(1)) - 1 if m else 0)
+        if "pixels" in name:
+            d = smoke_pixels()
+        else:
+            d = smoke_features(spatial="spatial" in name, spread=int(m.group(1)) - 1 if m else 0)
     else:
         d = dict(np.load(DATA_DIR / "features" / f"{name}.npz", allow_pickle=True))
     d["image_shape"] = None

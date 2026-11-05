@@ -88,3 +88,26 @@ def test_rf_sweep_parses_stage_and_grid():
     assert (m.stage_of("resnet18_224_spatial"), m.grid_of("resnet18_224_spatial")) == (4, 7)
     assert (m.stage_of("resnet18_224_spatial_l2_g14"), m.grid_of("resnet18_224_spatial_l2_g14")) == (2, 14)
     assert (m.stage_of("resnet18_224_spatial_l3"), m.grid_of("resnet18_224_spatial_l3")) == (3, 14)
+
+
+def test_fundus_pixels_shapes_and_dtype():
+    import numpy as np
+    from PIL import Image
+
+    from dendritic_dr.data import fundus_pixels
+
+    img = Image.fromarray(np.random.default_rng(0).integers(0, 255, (64, 64, 3), dtype=np.uint8))
+    g = fundus_pixels(img, 16, "green")
+    assert g.shape == (1, 16, 16) and g.dtype == np.uint8
+    assert fundus_pixels(img, 16, "gray").shape == (1, 16, 16)
+    assert fundus_pixels(img, 16, "rgb").shape == (3, 16, 16)
+    rgb = fundus_pixels(img, 16, "rgb")
+    assert (rgb[1] == g[0]).all()  # green channel is the middle RGB plane
+
+
+def test_smoke_pixels_load_as_images():
+    from dendritic_dr.features import load_features
+
+    d = load_features("smoke_pixels", smoke=True)
+    assert d["image_shape"] == (1, 16, 16)
+    assert d["X_train"].shape[1] == 256 and d["X_train"].dtype.name == "float32"

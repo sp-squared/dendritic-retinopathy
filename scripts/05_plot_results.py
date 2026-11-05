@@ -156,6 +156,8 @@ def main():
     p.add_argument("--smoke", action="store_true", help="read/write under results/smoke/")
     p.add_argument("--aptos-csv", default=None, help="defaults to <results>/aptos_heads.csv")
     p.add_argument("--fmnist-csv", default=None, help="defaults to <results>/fmnist.csv")
+    p.add_argument("--exclude", nargs="*", default=["pixels"],
+                   help="feature-name prefixes left out of the APTOS figures (raw-pixel runs: script 13)")
     args = p.parse_args()
     root = results_root(args.smoke)
     args.aptos_csv = args.aptos_csv or str(root / "aptos_heads.csv")
@@ -166,6 +168,8 @@ def main():
     aptos, fmnist = Path(args.aptos_csv), Path(args.fmnist_csv)
     if aptos.exists():
         df = pd.read_csv(aptos)
+        for prefix in args.exclude or []:
+            df = df[~df["features"].astype(str).str.startswith(prefix)]
         summary = metric_vs_params(df, "test_qwk", "Test quadratic weighted kappa", out_dir / "aptos_qwk_vs_params.png")
         summary.to_csv(out_dir / "aptos_summary.csv", index=False)
         confusion_plots(df, out_dir)

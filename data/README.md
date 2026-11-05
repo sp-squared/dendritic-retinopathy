@@ -35,4 +35,5 @@ Downloaded automatically by torchvision into `data/fmnist/` the first time you r
 | `data/features/<backbone>_<size>.npz` | `scripts/03_extract_features.py` |
 | `data/features/<backbone>_<size>_spatial.npz` | `scripts/03_extract_features.py --spatial` (layer4 7 x 7 map) |
 | `data/features/<backbone>_<size>_spatial_l<layer>_g<grid>.npz` | `scripts/03_extract_features.py --spatial --layer L --grid G` (step 4c) |
+| `data/features/pixels_<channel>_<size>.npz` | `scripts/12_extract_pixels.py` (step 4d, raw pixels) |
 | `data/fmnist/` | torchvision, on the first run of `scripts/01_replicate_fmnist.py` |

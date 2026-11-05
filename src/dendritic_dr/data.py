@@ -35,6 +35,21 @@ def preprocess_image(src: Path, size: int) -> Image.Image:
     return img.resize((size, size), Image.Resampling.LANCZOS)
 
 
+CHANNELS = {"green": [1], "red": [0], "blue": [2], "rgb": [0, 1, 2]}
+
+
+def fundus_pixels(img: Image.Image, size: int, channel: str = "green") -> np.ndarray:
+    """Downsample a (preprocessed, square) fundus image to `size` x `size` and return
+    uint8 pixels of shape (C, size, size). "green" keeps the green channel, where vessels,
+    microaneurysms and hemorrhages have the most contrast; "gray" is luminance; "rgb" all three."""
+    img = img.convert("RGB").resize((size, size), Image.Resampling.LANCZOS)
+    if channel == "gray":
+        return np.asarray(img.convert("L"), dtype=np.uint8)[None]
+    if channel not in CHANNELS:
+        raise ValueError(f"unknown channel {channel!r}; choose gray or one of {sorted(CHANNELS)}")
+    return np.ascontiguousarray(np.asarray(img, dtype=np.uint8).transpose(2, 0, 1)[CHANNELS[channel]])
+
+
 def make_splits(labels: pd.DataFrame, seed: int, val_frac: float, test_frac: float) -> pd.DataFrame:
     """Stratified train/val/test split on the labelled APTOS training set
     (the official Kaggle test set has no public labels)."""

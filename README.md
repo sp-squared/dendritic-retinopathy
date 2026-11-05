@@ -90,6 +90,8 @@ dendritic-retinopathy/
 │   ├── 09_differential_expression.py  PyDESeq2 on GSE160306 retina RNA-seq
 │   ├── 10_enrichment.py         g:Profiler GO/KEGG/Reactome enrichment, custom background
 │   ├── 11_receptive_field_sweep.py  locality effect (LRF - random) across ResNet stages
+│   ├── 12_extract_pixels.py     downsampled raw fundus pixels (no CNN) -> .npz, same format as features
+│   ├── 13_pixel_comparison.py   dendritic vs. dense heads on raw pixels: LRF vs. random, dANN vs. dense
 │   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
 ├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -97,7 +99,7 @@ dendritic-retinopathy/
 │   ├── metrics.py            QWK, ordinal (cumulative-link) loss
 │   ├── analysis.py           FDR, differential activation, selectivity, PCA, bootstrap
 │   ├── features.py           loading/standardising cached features (pooled and spatial)
-│   ├── data.py               fundus preprocessing, splits, Dataset
+│   ├── data.py               fundus preprocessing, raw-pixel conversion, splits, Dataset
 │   ├── plotting.py           display names, colour-blind-safe styles, axis formatting
 │   └── utils.py              paths, seeding, device, CSV logging
 ├── tests/                    unit tests (pytest): models/masks, analysis, plotting
@@ -143,6 +145,10 @@ python scripts/04_train_heads.py --smoke --model vanilla --hidden 32 --seeds 0 1
 python scripts/05_plot_results.py --smoke
 python scripts/06_activation_analysis.py --smoke
 python scripts/07_stats.py --smoke
+python scripts/04_train_heads.py --smoke --features smoke_pixels --model dann-lrf --somas 32 --rf-size 4 --seeds 0 1 2
+python scripts/04_train_heads.py --smoke --features smoke_pixels --model dann-r   --somas 32 --seeds 0 1 2
+python scripts/04_train_heads.py --smoke --features smoke_pixels --model vanilla  --hidden 4 --seeds 0 1 2
+python scripts/13_pixel_comparison.py --smoke
 ```
 
 **1. Fashion-MNIST replication**
@@ -212,6 +218,26 @@ python scripts/04_train_heads.py --features resnet18_224_spatial       --model d
 python scripts/11_receptive_field_sweep.py --rf-sizes 6 4 3 2   # -> rf_sweep_scaled.csv, fig_rf_sweep_scaled.png
 ```
 
+**4d. Raw pixels: do dendrites regain their advantage without a CNN?**
+Steps 4b–4c found no locality advantage on CNN features at any depth. This step tests the
+interpretation directly: the heads are trained on downsampled fundus pixels (green channel, 128 x 128 =
+16,384 inputs). dANN-LRF dendrites see a 4 x 4 pixel patch (16 synapses, as on Fashion-MNIST); dANN-R
+dendrites see 16 random pixels. Prediction, stated before running: if locality is what helped on
+Fashion-MNIST, LRF beats random and matches or beats a dense ANN of similar size.
+A dense ANN needs about 16k parameters per hidden unit here, so its sizes are 1–16 hidden units.
+```bash
+python scripts/12_extract_pixels.py            # data/features/pixels_green_128.npz (about 1 minute)
+for s in 32 64 128 256; do
+  python scripts/04_train_heads.py --features pixels_green_128 --model dann-lrf --somas $s --rf-size 4 --seeds 0 1 2 3 4 5 6 7 8 9
+  python scripts/04_train_heads.py --features pixels_green_128 --model dann-r   --somas $s --seeds 0 1 2 3 4 5 6 7 8 9
+done
+for h in 1 2 4 8 16; do
+  python scripts/04_train_heads.py --features pixels_green_128 --model vanilla --hidden $h --seeds 0 1 2 3 4 5 6 7 8 9
+done
+python scripts/13_pixel_comparison.py          # -> pixels_by_config.csv, pixels_paired.csv, fig_pixels.png
+```
+Raw-pixel runs are left out of the step 5 figures (`--exclude pixels`, the default) and plotted by script 13.
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
@@ -265,6 +291,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/analysis/subcluster_images.csv`, `subcluster_stats.csv` | per-image acquisition properties; Mann–Whitney tests with BH q-values |
 | `results/analysis/rf_sweep.csv`, `fig_rf_sweep.png` | step 4c: LRF − R difference per ResNet stage with Wilcoxon/bootstrap tests and the depth trend |
 | `results/analysis/rf_sweep_scaled.csv`, `fig_rf_sweep_scaled.png` | step 4c window-size control: same analysis with the window at ~30% of the map width at every stage |
+| `results/analysis/pixels_by_config.csv`, `pixels_paired.csv`, `fig_pixels.png` | step 4d: raw-pixel heads; QWK vs. parameters, LRF − random and dANN − nearest-dense differences with Wilcoxon/bootstrap tests |
 | `molecular/geo2r/de_results.tsv`, `de_significant.tsv` | PyDESeq2 results for all tested genes; DEGs passing padj and fold-change thresholds |
 | `molecular/geo2r/run_info.json`, `samples.csv` | design, thresholds, sample list (one per donor), DEG counts, software versions |
 | `molecular/geo2r/volcano.png` | volcano plot |
