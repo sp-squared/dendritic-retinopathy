@@ -228,8 +228,19 @@ def main():
     for cov in args.covariates:
         if sel[cov].isna().any():
             raise SystemExit(f"covariate {cov!r} has missing values in the selected samples")
-    if sel["donor"].duplicated().any() if "donor" in sel else False:
-        raise SystemExit("a donor appears twice in the selection; analyse one site at a time")
+    dropped_dupes = []
+    if "donor" in sel and sel["donor"].duplicated().any():
+        # Some donors gave two samples from the same site (e.g. both eyes). Keep one per
+        # donor so samples stay independent: the higher-RIN sample, ties -> first listed.
+        dup = sel[sel["donor"].duplicated(keep=False)]
+        cols = [c for c in ["title", "donor", "eye", args.group_col, "rin"] if c in dup]
+        print("donors with more than one sample at this site:")
+        print(dup.sort_values("donor")[cols].to_string(index=False))
+        rin = sel["rin"] if "rin" in sel else pd.Series(0, index=sel.index)
+        keep_idx = sel.assign(_rin=rin.fillna(-1)).sort_values("_rin", ascending=False).drop_duplicates("donor").index
+        dropped_dupes = sel.loc[~sel.index.isin(keep_idx), "title"].tolist()
+        sel = sel.loc[sel.index.isin(keep_idx)]
+        print(f"kept the higher-RIN sample per donor; dropped: {', '.join(dropped_dupes)}\n")
     n_case, n_ctrl = (sel["condition"] == "case").sum(), (sel["condition"] == "control").sum()
     print(f"{args.site}: {n_case} cases ({', '.join(args.case)}) vs. {n_ctrl} controls ({', '.join(args.control)})")
     if min(n_case, n_ctrl) < 3:
@@ -274,6 +285,7 @@ def main():
     info = {"dataset": "GSE160306", "site": args.site, "group_col": args.group_col, "case": args.case,
             "control": args.control, "n_case": int(n_case), "n_control": int(n_ctrl), "design": design,
             "min_count": args.min_count, "genes_tested": int(X.shape[1]), "alpha": args.alpha, "lfc": args.lfc,
+            "dropped_duplicate_donor_samples": dropped_dupes,
             "n_significant": int(len(sig)), "n_up": int(n_up), "n_down": int(n_down),
             "samples": sel[["title", "gsm", "donor", "condition"] + args.covariates].to_dict(orient="records")
             if "donor" in sel else sel["title"].tolist(),
