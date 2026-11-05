@@ -37,6 +37,9 @@ molecular/
 - Macula only (each donor gave a macula and a periphery sample)
 - Genes kept: >= 10 counts in at least as many samples as the smaller group
 - DEG thresholds: padj < 0.05, |log2FC| >= 1
+- DEG threshold used: padj < 0.05 and |log2FC| >= 0.58 (1.5-fold), chosen because effects in bulk
+  post-mortem retina are modest; the count at padj < 0.05 alone is also reported (`run_info.json`)
+- Gene symbols: MyGene.info lookup, cached in `geo2r/gene_symbols.tsv`
 - Outputs: `geo2r/de_results.tsv`, `geo2r/de_significant.tsv`, `geo2r/string_input.txt`,
   `geo2r/volcano.png`, `geo2r/run_info.json`
 - Number of DEGs: up [TODO] / down [TODO] (from `run_info.json`)

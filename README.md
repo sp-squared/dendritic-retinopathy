@@ -161,7 +161,7 @@ python scripts/08_inspect_subcluster.py --config resnet18_224_dann-r_s128_d16_y1
 ```bash
 pip install -e ".[molecular]"   # adds PyDESeq2
 python scripts/09_differential_expression.py --inspect
-python scripts/09_differential_expression.py --group-col disease_group_detailed --case PDR --control Control
+python scripts/09_differential_expression.py --group-col disease_group_detailed --case "NPDR" "NPDR + DME" "PDR + DME" --control "Control" --lfc 0.58
 ```
 Download instructions and the remaining web-tool steps: [`molecular/README.md`](molecular/README.md)
 (GEO2R, STRING and enrichment are web tools; all exports and settings are saved in that folder).

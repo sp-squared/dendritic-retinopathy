@@ -31,6 +31,13 @@ Outputs (molecular/geo2r/):
 """
 from __future__ import annotations
 
+import os
+
+# PyDESeq2 fits genes in parallel worker processes, which ignore warnings filters set
+# in this process; the environment variable reaches them. The warnings are harmless
+# overflow messages during dispersion fitting.
+os.environ.setdefault("PYTHONWARNINGS", "ignore::RuntimeWarning")
+
 import argparse
 import csv
 import warnings
@@ -141,6 +148,32 @@ def load_counts(path: Path, meta: pd.DataFrame):
     return numeric.round().astype(int), symbols
 
 
+# --- gene symbols ---------------------------------------------------------------
+
+def annotate_symbols(gene_ids, cache: Path) -> pd.Series:
+    """Ensembl gene id -> HGNC symbol via MyGene.info, cached to a TSV so the lookup
+    runs once and later runs are offline and reproducible. Missing -> NaN."""
+    ids = pd.Index(gene_ids).astype(str).str.replace(r"\.\d+$", "", regex=True)
+    known = pd.Series(dtype=str)
+    if cache.exists():
+        known = pd.read_csv(cache, sep="\t", index_col=0)["symbol"]
+    todo = [i for i in ids.unique() if i not in known.index]
+    if todo:
+        try:
+            import mygene
+
+            hits = mygene.MyGeneInfo().querymany(todo, scopes="ensembl.gene", fields="symbol",
+                                                 species="human", verbose=False, as_dataframe=False)
+            new = {h["query"]: h.get("symbol") for h in hits if not h.get("notfound")}
+            known = pd.concat([known, pd.Series(new, dtype=object)])
+            known = known[~known.index.duplicated()]
+            known.rename("symbol").rename_axis("gene_id").to_csv(cache, sep="\t")
+            print(f"annotated {len(new):,} of {len(todo):,} new gene ids (cached in {cache.name})")
+        except Exception as e:  # no network or mygene not installed
+            print(f"note: symbol lookup skipped ({type(e).__name__}: {e}); using Ensembl ids")
+    return pd.Series(ids.map(known).values, index=pd.Index(gene_ids))
+
+
 # --- DE ---------------------------------------------------------------------------
 
 def run_deseq(counts: pd.DataFrame, meta: pd.DataFrame, covariates: list[str]):
@@ -168,10 +201,12 @@ def volcano(res: pd.DataFrame, alpha: float, lfc: float, title: str, out: Path):
     ax.axhline(-np.log10(alpha), ls="--", lw=0.8, color="black")
     for x in (-lfc, lfc):
         ax.axvline(x, ls="--", lw=0.8, color="black")
-    top = r[sig].nsmallest(10, "padj")
-    for gene, row in top.iterrows():
-        ax.annotate(str(row.get("symbol", gene)), (row["log2FoldChange"], -np.log10(max(row["padj"], 1e-300))),
-                    fontsize=6, xytext=(2, 2), textcoords="offset points")
+    top = r[sig].nsmallest(8, "padj")
+    for k, (gene, row) in enumerate(top.iterrows()):
+        label = row["symbol"] if isinstance(row.get("symbol"), str) else str(gene)
+        ax.annotate(label, (row["log2FoldChange"], -np.log10(max(row["padj"], 1e-300))), fontsize=6,
+                    xytext=(4, 6 if k % 2 == 0 else -8), textcoords="offset points",
+                    arrowprops=dict(arrowstyle="-", lw=0.4, color="#555555"))
     ax.set_xlabel("log2 fold change (cases vs. controls)")
     ax.set_ylabel("-log10 adjusted p-value")
     ax.set_title(title, fontsize=9)
@@ -196,6 +231,7 @@ def main():
     p.add_argument("--alpha", type=float, default=0.05)
     p.add_argument("--lfc", type=float, default=1.0, help="|log2FC| threshold for de_significant / STRING")
     p.add_argument("--out-dir", default=str(GEO_DIR))
+    p.add_argument("--no-symbols", action="store_true", help="skip the MyGene.info symbol lookup")
     args = p.parse_args()
 
     out = Path(args.out_dir)
@@ -267,18 +303,24 @@ def main():
     res["gene_id_stripped"] = res["gene_id"].astype(str).str.replace(r"\.\d+$", "", regex=True)
     if symbols is not None:
         res.insert(1, "symbol", res["gene_id"].map(symbols))
+    elif not args.no_symbols:
+        sig_ids = res.loc[res["padj"] < args.alpha, "gene_id"]
+        sym = annotate_symbols(sig_ids, out / "gene_symbols.tsv")
+        res.insert(1, "symbol", res["gene_id"].map(sym))
     res.to_csv(out / "de_results.tsv", sep="\t", index=False)
     sig = res[(res["padj"] < args.alpha) & (res["log2FoldChange"].abs() >= args.lfc)]
     sig.to_csv(out / "de_significant.tsv", sep="\t", index=False)
-    ids = sig["symbol"] if "symbol" in sig and sig["symbol"].notna().all() else sig["gene_id_stripped"]
-    (out / "string_input.txt").write_text("\n".join(ids.astype(str)) + "\n")
+    # STRING maps Ensembl ids itself; ids are unambiguous, symbols are for people
+    (out / "string_input.txt").write_text("\n".join(sig["gene_id_stripped"].astype(str)) + "\n")
+    n_p_only = int((res["padj"] < args.alpha).sum())
+    print(f"genes with padj < {args.alpha} (any fold change): {n_p_only}")
     n_up, n_down = (sig["log2FoldChange"] > 0).sum(), (sig["log2FoldChange"] < 0).sum()
     print(f"significant (padj < {args.alpha}, |log2FC| >= {args.lfc}): {len(sig)} ({n_up} up, {n_down} down)")
     cols = ["gene_id"] + (["symbol"] if "symbol" in res else []) + ["baseMean", "log2FoldChange", "pvalue", "padj"]
     print(res.head(15)[cols].round(4).to_string(index=False))
 
     volcano(res.set_index("gene_id"), args.alpha, args.lfc,
-            f"GSE160306 {args.site}: {'+'.join(args.case)} (n={n_case}) vs. {'+'.join(args.control)} (n={n_ctrl})",
+            f"GSE160306 {args.site}: cases (n={n_case}: {', '.join(args.case)}) vs. controls (n={n_ctrl})",
             out / "volcano.png")
 
     import pydeseq2
@@ -286,6 +328,7 @@ def main():
             "control": args.control, "n_case": int(n_case), "n_control": int(n_ctrl), "design": design,
             "min_count": args.min_count, "genes_tested": int(X.shape[1]), "alpha": args.alpha, "lfc": args.lfc,
             "dropped_duplicate_donor_samples": dropped_dupes,
+            "n_padj_only": n_p_only,
             "n_significant": int(len(sig)), "n_up": int(n_up), "n_down": int(n_down),
             "samples": sel[["title", "gsm", "donor", "condition"] + args.covariates].to_dict(orient="records")
             if "donor" in sel else sel["title"].tolist(),
