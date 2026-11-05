@@ -37,29 +37,74 @@ def config_key(df):
     return df[["model"] + cols].astype(object).fillna("").astype(str).agg("|".join, axis=1)
 
 
+def _clean(v) -> str:
+    """CSV cell -> tidy string: 16.0 -> '16', '[128]' -> '128', NaN -> ''."""
+    if v is None or (isinstance(v, float) and v != v) or str(v) == "":
+        return ""
+    t = str(v).strip("[]")
+    try:
+        f = float(t)
+        return str(int(f)) if f.is_integer() else t
+    except ValueError:
+        return t
+
+
+def _lines(g):
+    """Split configs into plotted lines.
+
+    Main line per model: its size sweep at the most common synapses-per-dendrite.
+    If a model also has runs at other synapse counts (an ablation), those form a
+    separate dashed line together with the main-sweep point at the same soma
+    count, so the ablation is never joined onto the size sweep.
+    Returns a list of (model, label, is_ablation, sub-DataFrame).
+    """
+    out = []
+    order = ["dann-lrf", "dann-r", "vanilla"]
+    for model in sorted(g["model"].unique(), key=lambda m: order.index(m) if m in order else 99):
+        sub = g[g["model"] == model]
+        syns = sub["_syn"][sub["_syn"] != ""]
+        if syns.nunique() <= 1:
+            out.append((model, display_name(model), False, sub))
+            continue
+        base = syns.mode().iloc[0]
+        main = sub[sub["_syn"] == base]
+        out.append((model, f"{display_name(model)}, {base} synapses/dendrite", False, main))
+        abl = sub[sub["_syn"] != base]
+        for somas in abl["_somas"].unique():
+            line = pd.concat([main[main["_somas"] == somas], abl[abl["_somas"] == somas]])
+            lo, hi = line["_syn"].astype(float).min(), line["_syn"].astype(float).max()
+            out.append((model, f"{display_name(model)}, {somas} somas, {lo:g}→{hi:g} synapses", True, line))
+    return out
+
+
 def metric_vs_params(df, metric, ylabel, out):
     df = df.assign(config=config_key(df))
-    g = df.groupby(["model", "config"]).agg(
+    df = df.assign(
+        _syn=df["synapses"].map(_clean) if "synapses" in df else "",
+        _somas=df["somas"].map(_clean) if "somas" in df else "",
+    )
+    g = df.groupby(["model", "config", "_syn", "_somas"]).agg(
         params=("effective_params", "first"), mean=(metric, "mean"), sd=(metric, "std"), n=(metric, "size")
     ).reset_index()
     fig, ax = plt.subplots(figsize=(5.5, 4))
-    order = ["dann-lrf", "dann-r", "vanilla"]
-    for model in sorted(g["model"].unique(), key=lambda m: order.index(m) if m in order else 99):
-        sub = g[g["model"] == model].sort_values("params")
+    for model, label, is_abl, sub in _lines(g):
+        sub = sub.sort_values("params")
         st = style(model)
         ax.errorbar(sub["params"], sub["mean"], yerr=sub["sd"].fillna(0), capsize=3, markersize=6,
-                    linewidth=1.5, color=st["color"], marker=st["marker"], label=display_name(model))
+                    linewidth=1.5, color=st["color"], marker=st["marker"], label=label,
+                    linestyle="--" if is_abl else "-",
+                    markerfacecolor="white" if is_abl else st["color"])
     ax.set_xscale("log")
     format_params_axis(ax)
     ax.set_xlabel("Effective trainable parameters (log scale)")
     ax.set_ylabel(ylabel)
     ax.grid(alpha=0.3)
-    ax.legend(title=f"mean ± SD over {int(g['n'].max())} seeds", title_fontsize=8, fontsize=9)
+    ax.legend(title=f"mean ± SD over {int(g['n'].max())} seeds", title_fontsize=8, fontsize=8, loc="best")
     fig.tight_layout()
     fig.savefig(out, dpi=200)
     plt.close(fig)
     print(f"wrote {out}")
-    return g
+    return g.drop(columns=["_syn", "_somas"])
 
 
 def confusion_plots(df, out_dir: Path):
