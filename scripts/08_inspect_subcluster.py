@@ -106,7 +106,7 @@ def main():
     run_id = f"{args.config}_seed{args.seed}"
     model, ckpt = load_checkpoint(root / "models" / f"{run_id}.pt")
     fname = ckpt["model_args"]["features"]
-    raw = load_features(fname, smoke=(fname == "smoke"))
+    raw = load_features(fname, smoke=fname.startswith("smoke"))
     x, yt = to_tensors(raw, "cpu", ckpt["feature_mean"], ckpt["feature_std"])[args.split]
     y = yt.numpy()
     ids = np.asarray(raw[f"ids_{args.split}"]).astype(str)

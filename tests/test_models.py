@@ -61,3 +61,28 @@ def test_ordinal_roundtrip():
 def test_qwk_perfect_and_worst():
     assert quadratic_kappa([0, 1, 2, 3, 4], [0, 1, 2, 3, 4]) == 1.0
     assert quadratic_kappa([0, 0, 4, 4], [4, 4, 0, 0]) < 0
+
+
+def test_lrf_channel_sparse_mask_is_local_and_sparse():
+    m = local_rf_dendrite_mask((512, 7, 7), 8, 4, 3, np.random.default_rng(0), synapses=16)
+    assert m.shape == (32, 512 * 7 * 7)
+    assert (m.sum(1) == 16).all()  # 16 synapses, not 3*3*512
+    for d in range(32):
+        _, ys, xs = np.nonzero(m[d].reshape(512, 7, 7).numpy())
+        assert ys.max() - ys.min() <= 2 and xs.max() - xs.min() <= 2  # inside one 3x3 window
+
+
+def test_dann_lrf_on_feature_maps_matches_random_param_count():
+    shape = (64, 7, 7)
+    lrf = DANN(64 * 49, 5, somas=[32], dendrites_per_soma=4, synapses=16, sampling="lrf",
+               image_shape=shape, rf_size=3, seed=0)
+    rnd = DANN(64 * 49, 5, somas=[32], dendrites_per_soma=4, synapses=16, sampling="random", seed=0)
+    assert lrf(torch.randn(2, *shape)).shape == (2, 5)
+    assert effective_params(lrf) == effective_params(rnd)  # only locality differs
+
+
+def test_fmnist_lrf_unchanged_full_patch():
+    # single-channel images keep the full rf x rf patch (original replication setup)
+    model = DANN(784, 10, somas=[4], dendrites_per_soma=2, synapses=16, sampling="lrf",
+                 image_shape=(1, 28, 28), rf_size=4, seed=0)
+    assert (model.body[0].dendrites.mask.sum(1) == 16).all()

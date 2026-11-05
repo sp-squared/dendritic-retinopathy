@@ -90,7 +90,12 @@ class DANN(nn.Module):
             if i == 0 and sampling == "lrf":
                 if image_shape is None:
                     raise ValueError("sampling='lrf' needs image_shape")
-                dmask = local_rf_dendrite_mask(image_shape, n_somas, dendrites_per_soma, rf_size, rng)
+                c = image_shape[0]
+                # single-channel images (Fashion-MNIST): full patch, as in the original setup;
+                # many-channel feature maps: `synapses` sampled inside each local patch
+                lrf_syn = None if c * rf_size * rf_size <= synapses else synapses
+                dmask = local_rf_dendrite_mask(image_shape, n_somas, dendrites_per_soma, rf_size, rng,
+                                               synapses=lrf_syn)
             elif sampling in ("random", "lrf"):
                 dmask = random_dendrite_mask(prev, n_dend, min(synapses, prev), rng)
             else:
@@ -142,6 +147,10 @@ def build_model(args, in_features: int, n_out: int, image_shape=None) -> nn.Modu
     if args.model == "vanilla":
         return VanillaMLP(in_features, n_out, args.hidden, dropout=args.dropout)
     sampling = "lrf" if args.model == "dann-lrf" else "random"
+    if image_shape is None:
+        image_shape = getattr(args, "image_shape", None)
+    if image_shape is not None:
+        image_shape = tuple(int(v) for v in image_shape)
     return DANN(
         in_features,
         n_out,

@@ -6,10 +6,16 @@ enough to run many seeds and configurations on modest local hardware.
 Example
 -------
 python scripts/03_extract_features.py --backbone resnet18 --input-size 224
-python scripts/03_extract_features.py --backbone resnet50 --input-size 384
+python scripts/03_extract_features.py --backbone resnet18 --input-size 224 --spatial   # 512 x 7 x 7 maps
+python scripts/03_extract_features.py --backbone resnet18 --input-size 512 --spatial --grid 8
 
-Writes data/features/<backbone>_<input-size>.npz containing, per split,
-X_<split> (N x D float32), y_<split> (N,), ids_<split> (N,).
+Writes data/features/<backbone>_<input-size>[_spatial[<grid>]].npz containing, per split,
+X_<split> (N x D float32, or N x C x H x W float16 with --spatial), y_<split>, ids_<split>.
+
+--spatial keeps the last convolutional feature map instead of global-average-pooling it,
+so each grid cell describes one region of the fundus (7 x 7 at 224 px, 16 x 16 at 512 px).
+--grid N average-pools that map to N x N to limit file size (16 x 16 x 512 x 3,662 images
+in float16 is about 1 GB; 8 x 8 is about 240 MB).
 """
 from __future__ import annotations
 
@@ -34,9 +40,13 @@ BACKBONES = {
 }
 
 
-def build_backbone(name: str) -> nn.Module:
+def build_backbone(name: str, spatial: bool = False, grid: int | None = None) -> nn.Module:
     ctor, weights = BACKBONES[name]
     net = ctor(weights=weights)
+    if spatial:
+        # everything up to (not including) global pooling: output (N, C, H, W)
+        body = nn.Sequential(*list(net.children())[:-2]) if hasattr(net, "fc") else net.features
+        return (nn.Sequential(body, nn.AdaptiveAvgPool2d(grid)) if grid else body).eval()
     # Replace the classifier with identity so the forward pass returns pooled features.
     if hasattr(net, "fc"):
         net.fc = nn.Identity()
@@ -63,12 +73,14 @@ def main():
     p.add_argument("--batch-size", type=int, default=32)
     p.add_argument("--num-workers", type=int, default=default_num_workers())
     p.add_argument("--device", default="auto")
+    p.add_argument("--spatial", action="store_true", help="keep the spatial feature map (no global pooling)")
+    p.add_argument("--grid", type=int, default=None, help="with --spatial: pool the map to grid x grid")
     args = p.parse_args()
 
     image_dir = args.image_dir or DATA_DIR / "processed" / "aptos_512"
     splits = pd.read_csv(DATA_DIR / "processed" / "splits.csv")
     device = get_device(args.device)
-    net = build_backbone(args.backbone).to(device)
+    net = build_backbone(args.backbone, args.spatial, args.grid).to(device)
 
     tf = transforms.Compose(
         [
@@ -83,10 +95,13 @@ def main():
         ds = FundusDataset(splits[splits["split"] == split], image_dir, tf)
         loader = DataLoader(ds, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
         X, y, ids = extract(net, loader, device)
+        if args.spatial:
+            X = X.astype(np.float16)  # halves file size; heads convert back to float32
         out[f"X_{split}"], out[f"y_{split}"], out[f"ids_{split}"] = X, y, ids
         print(f"{split}: {X.shape}")
 
-    dst = DATA_DIR / "features" / f"{args.backbone}_{args.input_size}.npz"
+    suffix = f"_spatial{args.grid or ''}" if args.spatial else ""
+    dst = DATA_DIR / "features" / f"{args.backbone}_{args.input_size}{suffix}.npz"
     dst.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(dst, **out)
     print(f"saved {dst}")

@@ -137,6 +137,21 @@ python scripts/04_train_heads.py --features resnet18_224 --model vanilla --hidde
 Each run saves its checkpoint (`results/models/`) and per-image test predictions (`results/predictions/`).
 Add `--loss ordinal` to treat grades as ordered, or `--class-weights` to counter class imbalance.
 
+**4b. Spatial follow-up: does the dendritic advantage need spatial structure?**
+Keep ResNet-18's last convolutional map (512 channels x 7 x 7 grid) instead of the pooled vector.
+dANN-LRF dendrites sample 16 entries inside a local 3 x 3 window; dANN-R dendrites sample 16 entries
+anywhere. Both have identical parameter counts, so the comparison isolates locality. (A size-matched
+dense head is impossible on 25,088 inputs; the pooled dense head from step 4 is the practical benchmark.)
+```bash
+python scripts/03_extract_features.py --backbone resnet18 --input-size 224 --spatial
+for s in 32 64 128 256; do
+  python scripts/04_train_heads.py --features resnet18_224_spatial --model dann-lrf --somas $s --rf-size 3 --seeds 0 1 2 3 4 5 6 7 8 9
+  python scripts/04_train_heads.py --features resnet18_224_spatial --model dann-r   --somas $s --seeds 0 1 2 3 4 5 6 7 8 9
+done
+python scripts/07_stats.py --pair resnet18_224_spatial_dann-lrf_s128_d16_y16_rf3_ce resnet18_224_spatial_dann-r_s128_d16_y16_ce \
+                           --pair resnet18_224_spatial_dann-lrf_s128_d16_y16_rf3_ce resnet18_224_vanilla_h73_ce
+```
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py

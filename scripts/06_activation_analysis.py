@@ -161,7 +161,7 @@ def main():
             model, ckpt = load_checkpoint(root / "models" / f"{row.run_id}.pt")
             fname = ckpt["model_args"]["features"]
             if fname not in feats_cache:
-                feats_cache[fname] = load_features(fname, smoke=(fname == "smoke"))
+                feats_cache[fname] = load_features(fname, smoke=fname.startswith("smoke"))
             raw = feats_cache[fname]
             x, yt = to_tensors(raw, "cpu", ckpt["feature_mean"], ckpt["feature_std"])[args.split]
             y = yt.numpy()

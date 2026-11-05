@@ -60,25 +60,33 @@ def _lines(g):
     """
     out = []
     order = ["dann-lrf", "dann-r", "vanilla"]
-    for model in sorted(g["model"].unique(), key=lambda m: order.index(m) if m in order else 99):
+    def base_model(m):
+        return m.split("@")[0]
+
+    for model in sorted(g["model"].unique(), key=lambda m: (order.index(base_model(m)) if base_model(m) in order else 99, m)):
         sub = g[g["model"] == model]
+        feat = model.split("@")[1] if "@" in model else ""
+        tag = f" [{'spatial' if 'spatial' in feat else 'pooled'}]" if feat else ""
         syns = sub["_syn"][sub["_syn"] != ""]
         if syns.nunique() <= 1:
-            out.append((model, display_name(model), False, sub))
+            out.append((model, display_name(base_model(model)) + tag, False, sub))
             continue
         base = syns.mode().iloc[0]
         main = sub[sub["_syn"] == base]
-        out.append((model, f"{display_name(model)}, {base} synapses/dendrite", False, main))
+        out.append((model, f"{display_name(model.split('@')[0])}{tag}, {base} synapses/dendrite", False, main))
         abl = sub[sub["_syn"] != base]
         for somas in abl["_somas"].unique():
             line = pd.concat([main[main["_somas"] == somas], abl[abl["_somas"] == somas]])
             lo, hi = line["_syn"].astype(float).min(), line["_syn"].astype(float).max()
-            out.append((model, f"{display_name(model)}, {somas} somas, {lo:g}→{hi:g} synapses", True, line))
+            out.append((model, f"{display_name(model.split('@')[0])}{tag}, {somas} somas, {lo:g}→{hi:g} synapses", True, line))
     return out
 
 
 def metric_vs_params(df, metric, ylabel, out):
     df = df.assign(config=config_key(df))
+    if "features" in df and df["features"].nunique() > 1:
+        # pooled and spatial runs of the same model are different experiments: separate lines
+        df = df.assign(model=df["model"] + "@" + df["features"].astype(str))
     df = df.assign(
         _syn=df["synapses"].map(_clean) if "synapses" in df else "",
         _somas=df["somas"].map(_clean) if "somas" in df else "",
@@ -89,10 +97,11 @@ def metric_vs_params(df, metric, ylabel, out):
     fig, ax = plt.subplots(figsize=(5.5, 4))
     for model, label, is_abl, sub in _lines(g):
         sub = sub.sort_values("params")
-        st = style(model)
+        st = style(model.split("@")[0])
+        spatial = "spatial" in model.split("@")[-1] if "@" in model else False
         ax.errorbar(sub["params"], sub["mean"], yerr=sub["sd"].fillna(0), capsize=3, markersize=6,
                     linewidth=1.5, color=st["color"], marker=st["marker"], label=label,
-                    linestyle="--" if is_abl else "-",
+                    linestyle="--" if is_abl else (":" if spatial else "-"),
                     markerfacecolor="white" if is_abl else st["color"])
     ax.set_xscale("log")
     format_params_axis(ax)

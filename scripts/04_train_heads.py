@@ -10,6 +10,11 @@ python scripts/04_train_heads.py --features resnet18_224 --model vanilla --hidde
 python scripts/04_train_heads.py --features resnet18_224 --model dann-r --loss ordinal
 python scripts/04_train_heads.py --smoke   # offline check with synthetic features
 
+Spatial feature maps (from 03 --spatial): dendrites can sample local patches of the grid
+python scripts/04_train_heads.py --features resnet18_224_spatial --model dann-lrf --somas 128 --rf-size 3 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/04_train_heads.py --features resnet18_224_spatial --model dann-r   --somas 128 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/04_train_heads.py --smoke --features smoke_spatial --model dann-lrf --rf-size 3
+
 Each run writes
   results/aptos_heads.csv                 one summary row (confusion matrix as JSON)
   results/models/<run_id>.pt              best checkpoint + config + standardisation stats
@@ -34,7 +39,7 @@ from dendritic_dr.utils import append_result, get_device, results_root, set_seed
 
 # Args stored in each checkpoint so the model can be rebuilt by later scripts.
 MODEL_ARG_KEYS = ["model", "somas", "dendrites", "synapses", "rf_size", "hidden", "dropout",
-                  "mask_seed", "seed", "loss", "features", "class_weights"]
+                  "mask_seed", "seed", "loss", "features", "class_weights", "image_shape"]
 
 
 def config_tag(args) -> str:
@@ -43,6 +48,8 @@ def config_tag(args) -> str:
         arch = "h" + "-".join(map(str, args.hidden))
     else:
         arch = f"s{'-'.join(map(str, args.somas))}_d{args.dendrites}_y{args.synapses}"
+        if args.model == "dann-lrf":
+            arch += f"_rf{args.rf_size}"
     tag = f"{args.features}_{args.model}_{arch}_{args.loss}"
     if args.dropout > 0:
         tag += f"_do{args.dropout:g}"
@@ -69,7 +76,7 @@ def run(args, seed, raw, data, mu, sd, device, out_root):
     args.seed = seed
     (xtr, ytr), (xva, yva), (xte, yte) = data["train"], data["val"], data["test"]
     n_out = head_outputs(args.loss)
-    model = build_model(args, in_features=xtr.shape[1], n_out=n_out).to(device)
+    model = build_model(args, in_features=xtr.shape[1], n_out=n_out, image_shape=args.image_shape).to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
     cw = None
@@ -139,6 +146,7 @@ def run(args, seed, raw, data, mu, sd, device, out_root):
             "somas": args.somas if args.model != "vanilla" else "",
             "dendrites": args.dendrites if args.model != "vanilla" else "",
             "synapses": args.synapses if args.model != "vanilla" else "",
+            "rf_size": args.rf_size if args.model == "dann-lrf" else "",
             "hidden": args.hidden if args.model == "vanilla" else "",
             "dropout": args.dropout,
             "class_weights": args.class_weights,
@@ -169,10 +177,16 @@ def main():
     p.add_argument("--smoke", action="store_true")
     args = p.parse_args()
     if args.smoke:
-        args.epochs, args.features = min(args.epochs, 30), "smoke"
+        args.epochs = min(args.epochs, 30)
+        args.features = "smoke_spatial" if "spatial" in args.features else "smoke"
 
     device = get_device(args.device)
     raw = load_features(args.features, args.smoke)
+    args.image_shape = raw["image_shape"]
+    if args.model == "dann-lrf" and args.image_shape is None:
+        raise SystemExit("dann-lrf needs spatial features (C x H x W); extract them with 03 --spatial")
+    if args.image_shape is not None:
+        print(f"spatial features: {args.image_shape[0]} channels x {args.image_shape[1]} x {args.image_shape[2]} grid")
     mu, sd = standardization(raw)
     data = to_tensors(raw, device, mu, sd)
     out_root = results_root(args.smoke)
