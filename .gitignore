@@ -1,0 +1,64 @@
+# Sensitive files: credentials, tokens, keys
+kaggle.json
+.kaggle/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*credentials*
+*secret*
+*token*
+.netrc
+.pypirc
+
+# Large data: download separately (see data/README.md, molecular/README.md)
+data/*
+!data/README.md
+molecular/geo2r/raw/
+molecular/**/*.gz
+molecular/**/*.tar
+molecular/**/*.zip
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.h5
+*.hdf5
+*.parquet
+*.ckpt
+*.pth
+*.onnx
+# Small trained heads (results/models/*.pt) and predictions ARE committed
+
+# Smoke-test outputs and leftover patches
+results/smoke/
+*.patch
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+build/
+dist/
+.venv/
+venv/
+env/
+.conda/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
