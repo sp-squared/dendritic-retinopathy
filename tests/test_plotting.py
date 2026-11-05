@@ -19,3 +19,8 @@ def test_human_count():
     assert _human_count(200000) == "200k"
     assert _human_count(1500000) == "1.5M"
     assert _human_count(500) == "500"
+
+
+def test_config_label_shows_nondefault_synapses():
+    assert config_label({"model": "dann-r", "somas": "[128]", "synapses": 128}) == "dANN (random), 128 somas, 128 synapses"
+    assert config_label({"model": "dann-r", "somas": "[128]", "synapses": 16.0}) == "dANN (random), 128 somas"

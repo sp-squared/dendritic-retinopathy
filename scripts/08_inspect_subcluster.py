@@ -118,9 +118,6 @@ def main():
                            np.where(in_box, "subcluster", "comparison"))
     n_sub, n_cmp = (df["group"] == "subcluster").sum(), (df["group"] == "comparison").sum()
     print(f"{run_id}: grade {args.grade} -> subcluster n={n_sub}, comparison n={n_cmp}")
-    if n_sub < 3:
-        raise SystemExit("fewer than 3 images in the box; adjust --pc1-*/--pc2-* using fig_pca_*.png")
-
     # PCA with the box highlighted, to confirm the selection matches the cluster you saw
     fig, ax = plt.subplots(figsize=(5, 4.2))
     colors = {"other_grade": "#cccccc", "comparison": "#3b528b", "subcluster": "#e6550d"}
@@ -131,12 +128,18 @@ def main():
         ax.scatter(df.loc[m, "pc1"], df.loc[m, "pc2"], s=10, alpha=0.8, color=colors[g], label=f"{labels[g]} (n={m.sum()})")
     ax.set_xlabel(f"PC1 ({var[0]:.0%} variance)")
     ax.set_ylabel(f"PC2 ({var[1]:.0%} variance)")
-    ax.set_title(f"{run_id}: subcluster selection", fontsize=8)
+    lo1 = max(args.pc1_min, df["pc1"].min()); hi1 = min(args.pc1_max, df["pc1"].max())
+    lo2 = max(args.pc2_min, df["pc2"].min()); hi2 = min(args.pc2_max, df["pc2"].max())
+    ax.add_patch(plt.Rectangle((lo1, lo2), hi1 - lo1, hi2 - lo2, fill=False, ls="--", lw=1, color="#e6550d"))
+    ax.set_title(f"{run_id}: subcluster selection (dashed box)", fontsize=8)
     ax.legend(fontsize=7)
     fig.tight_layout()
     fig.savefig(out_dir / "fig_subcluster_pca.png", dpi=200)
     plt.close(fig)
     print(f"wrote {out_dir / 'fig_subcluster_pca.png'}")
+    if n_sub < 3:
+        raise SystemExit("fewer than 3 images in the box: look at fig_subcluster_pca.png and adjust "
+                         "--pc1-min/--pc1-max/--pc2-min/--pc2-max")
 
     raw_dir, proc_dir = Path(args.raw_dir), Path(args.proc_dir)
     sel = df[df["group"] != "other_grade"].copy()

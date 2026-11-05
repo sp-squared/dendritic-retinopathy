@@ -49,7 +49,11 @@ def config_label(row) -> str:
         size = _first_int(row.get("hidden"))
         return f"{display_name(model)}, {size} hidden" if size else display_name(model)
     size = _first_int(row.get("somas"))
-    return f"{display_name(model)}, {size} somas" if size else display_name(model)
+    label = f"{display_name(model)}, {size} somas" if size else display_name(model)
+    syn = _first_int(row.get("synapses"))
+    if model == "dann-r" and syn and syn.replace(".0", "") != "16":
+        label += f", {syn.replace('.0', '')} synapses"
+    return label
 
 
 def _human_count(x: float) -> str:
