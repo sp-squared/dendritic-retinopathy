@@ -108,9 +108,15 @@ def metric_vs_params(df, metric, ylabel, out):
     ax.set_xlabel("Effective trainable parameters (log scale)")
     ax.set_ylabel(ylabel)
     ax.grid(alpha=0.3)
-    ax.legend(title=f"mean ± SD over {int(g['n'].max())} seeds", title_fontsize=8, fontsize=8, loc="best")
+    n_lines = len(ax.get_legend_handles_labels()[1])
+    title = f"mean ± SD over {int(g['n'].max())} seeds"
+    if n_lines > 3:  # many lines: legend below the axes so it never covers data
+        ax.legend(title=title, title_fontsize=8, fontsize=8, loc="upper center",
+                  bbox_to_anchor=(0.5, -0.17), ncol=2, frameon=False)
+    else:
+        ax.legend(title=title, title_fontsize=8, fontsize=8, loc="best")
     fig.tight_layout()
-    fig.savefig(out, dpi=200)
+    fig.savefig(out, dpi=200, bbox_inches="tight")
     plt.close(fig)
     print(f"wrote {out}")
     return g.drop(columns=["_syn", "_somas"])
