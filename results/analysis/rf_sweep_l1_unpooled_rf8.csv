@@ -1,0 +1,2 @@
+stage,stage_num,features,grid,rf_size,window_fraction_of_width,n_seeds,params,lrf_mean,lrf_sd,r_mean,r_sd,diff_mean,diff_median,wilcoxon_p,boot_diff,boot_ci_low,boot_ci_high,boot_p,wilcoxon_q,boot_q
+layer1,1,resnet18_224_spatial_l1,56,8,0.143,10,37637,0.7186669361384952,0.02313491624128911,0.713591949644027,0.016267209074772547,0.005074986494468159,0.006194652715278026,0.625,0.005074986494468248,-0.012153108191096102,0.022446561737016583,0.548,0.625,0.548
