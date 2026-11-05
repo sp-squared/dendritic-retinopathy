@@ -105,3 +105,17 @@ def test_compact_state_dict_roundtrip():
     load_compact_state_dict(b, sd)
     x = torch.randn(4, 16 * 25)
     assert torch.equal(a(x), b(x))
+
+
+def test_lrf_even_window_stays_inside_map():
+    import numpy as np
+    from dendritic_dr.masks import local_rf_dendrite_mask
+
+    for rf, (c, h, w) in [(2, (8, 7, 7)), (6, (4, 20, 20)), (4, (4, 14, 14))]:
+        m = local_rf_dendrite_mask((c, h, w), 8, 4, rf, np.random.default_rng(0), synapses=6)
+        assert m.shape == (32, c * h * w)
+        assert (m.sum(1) == 6).all()
+        # every dendrite's synapses fit in one rf x rf window
+        for row in m.reshape(32, c, h, w):
+            ys, xs = np.nonzero(row.any(0).numpy())
+            assert ys.max() - ys.min() < rf and xs.max() - xs.min() < rf

@@ -202,6 +202,16 @@ done
 python scripts/11_receptive_field_sweep.py     # layer4 runs from step 4b are reused
 ```
 
+*Window-size control.* A fixed 3 x 3 window covers 15% of the map width at layer1 but 43% at layer4, so
+depth and window size change together. Rerun dANN-LRF with the window scaled to ~30% of the width at every
+stage (6/20, 4/14, 3/10, 2/7). layer3 (rf 3) and all dANN-R runs are reused, so only 30 new runs are needed:
+```bash
+python scripts/04_train_heads.py --features resnet18_224_spatial_l1_g20 --model dann-lrf --somas 128 --rf-size 6 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/04_train_heads.py --features resnet18_224_spatial_l2_g14 --model dann-lrf --somas 128 --rf-size 4 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/04_train_heads.py --features resnet18_224_spatial       --model dann-lrf --somas 128 --rf-size 2 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/11_receptive_field_sweep.py --rf-sizes 6 4 3 2   # -> rf_sweep_scaled.csv, fig_rf_sweep_scaled.png
+```
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
@@ -254,6 +264,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/analysis/fig_subcluster_pca.png`, `fig_subcluster_contact.png` | selected PCA subcluster, and example images of it vs. the rest of the grade |
 | `results/analysis/subcluster_images.csv`, `subcluster_stats.csv` | per-image acquisition properties; Mann–Whitney tests with BH q-values |
 | `results/analysis/rf_sweep.csv`, `fig_rf_sweep.png` | step 4c: LRF − R difference per ResNet stage with Wilcoxon/bootstrap tests and the depth trend |
+| `results/analysis/rf_sweep_scaled.csv`, `fig_rf_sweep_scaled.png` | step 4c window-size control: same analysis with the window at ~30% of the map width at every stage |
 | `molecular/geo2r/de_results.tsv`, `de_significant.tsv` | PyDESeq2 results for all tested genes; DEGs passing padj and fold-change thresholds |
 | `molecular/geo2r/run_info.json`, `samples.csv` | design, thresholds, sample list (one per donor), DEG counts, software versions |
 | `molecular/geo2r/volcano.png` | volcano plot |
