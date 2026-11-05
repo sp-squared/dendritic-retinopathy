@@ -26,9 +26,11 @@ retinopathy (DR) from retinal fundus photographs, where the diagnostic signal is
 
 ## Requirements
 
-- Python 3.10+ (tested with 3.13)
+- Python 3.10+ (tested with 3.13 on Windows and 3.14 on Ubuntu 26.04)
 - PyTorch 2.2+ and torchvision (GPU optional; cached-feature heads train quickly on CPU)
-- Roughly 10 GB free disk for APTOS raw + processed images
+- Roughly 10 GB free disk for APTOS raw + processed images, plus a few GB for cached features
+  (spatial feature files are the largest; see `data/README.md`)
+- A clone is about 75 MB: the trained heads in `results/models/` are stored compactly (see below)
 
 ## Installation
 
@@ -36,8 +38,8 @@ PyTorch first: pick the right command for your OS/GPU at <https://pytorch.org/ge
 
 **Linux / macOS**
 ```bash
-git clone <your-repo-url> dendritic-dr
-cd dendritic-dr
+git clone https://github.com/sp-squared/dendritic-retinopathy.git
+cd dendritic-retinopathy
 python3 -m venv .venv
 source .venv/bin/activate
 pip install torch torchvision          # or the CUDA-specific command from pytorch.org
@@ -47,8 +49,8 @@ pytest                                 # should report all tests passing
 
 **Windows (PowerShell)**
 ```powershell
-git clone <your-repo-url> dendritic-dr
-cd dendritic-dr
+git clone https://github.com/sp-squared/dendritic-retinopathy.git
+cd dendritic-retinopathy
 py -m venv .venv
 .venv\Scripts\Activate.ps1             # if blocked: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 pip install torch torchvision          # or the CUDA-specific command from pytorch.org
@@ -67,35 +69,68 @@ See [`data/README.md`](data/README.md). In short, place the Kaggle APTOS 2019 fi
 ## Directory structure
 
 ```
-dendritic-dr/
+dendritic-retinopathy/
 ├── README.md
-├── pyproject.toml            package + dependencies
+├── LICENSE                   MIT
+├── pyproject.toml            package + dependencies (extras: [dev], [molecular])
 ├── requirements.txt
-├── data/                     (git-ignored except README) raw, processed, cached features
-├── results/                  CSV logs of every run; figures/ for report plots
-├── scripts/
+├── .gitattributes            LF line endings in the repo, binary figures
+├── .gitignore                credentials, raw data, caches, smoke outputs, *.patch
+├── data/                     git-ignored except README: APTOS raw/processed images, cached features
+│   └── README.md             download instructions (Kaggle) and generated folders
+├── scripts/                  numbered in the order they are run
 │   ├── 01_replicate_fmnist.py   dANN vs. vanilla on Fashion-MNIST
 │   ├── 02_prepare_aptos.py      crop/resize fundus images, stratified splits
-│   ├── 03_extract_features.py   frozen CNN backbone features -> .npz
-│   ├── 04_train_heads.py        dendritic / dense heads on features
-│   ├── 05_plot_results.py       report figures (QWK vs. params, confusion matrices)
+│   ├── 03_extract_features.py   frozen ResNet-18 features -> .npz (pooled, --spatial, --layer, --grid)
+│   ├── 04_train_heads.py        dendritic / dense heads on cached features
+│   ├── 05_plot_results.py       report figures (QWK vs. params, confusion matrices, summary table)
 │   ├── 06_activation_analysis.py  differential activation, clustering, PCA, selectivity
 │   ├── 07_stats.py              bootstrap CIs, paired Wilcoxon, FDR across comparisons
 │   ├── 08_inspect_subcluster.py exploratory: acquisition properties of a PCA subcluster
 │   ├── 09_differential_expression.py  PyDESeq2 on GSE160306 retina RNA-seq
 │   ├── 10_enrichment.py         g:Profiler GO/KEGG/Reactome enrichment, custom background
-│   └── 11_receptive_field_sweep.py  locality effect (LRF - random) across ResNet stages
-├── molecular/                GEO2R / STRING / enrichment exports + protocol (manual web-tool steps)
-├── src/dendritic_dr/
+│   ├── 11_receptive_field_sweep.py  locality effect (LRF - random) across ResNet stages
+│   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
+├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
-│   ├── models.py             MaskedLinear, DANN, VanillaMLP, effective_params
+│   ├── models.py             MaskedLinear, DANN, VanillaMLP, effective_params, compact checkpoints
 │   ├── metrics.py            QWK, ordinal (cumulative-link) loss
 │   ├── analysis.py           FDR, differential activation, selectivity, PCA, bootstrap
-│   ├── features.py           loading/standardising cached features
+│   ├── features.py           loading/standardising cached features (pooled and spatial)
 │   ├── data.py               fundus preprocessing, splits, Dataset
+│   ├── plotting.py           display names, colour-blind-safe styles, axis formatting
 │   └── utils.py              paths, seeding, device, CSV logging
-└── tests/                    unit tests (pytest)
+├── tests/                    unit tests (pytest): models/masks, analysis, plotting
+├── results/                  committed outputs of the real runs
+│   ├── fmnist.csv            one row per Fashion-MNIST run
+│   ├── aptos_heads.csv       one row per APTOS head run
+│   ├── figures/              report figures + aptos_summary.csv
+│   ├── analysis/             activation analysis, statistics, subcluster, sweep outputs
+│   │   └── units/            per-unit tables, one CSV per analysed run
+│   ├── models/               compact checkpoints, one .pt per run
+│   └── predictions/          per-image test predictions, one CSV per run
+└── molecular/                GEO -> DESeq2 -> STRING -> enrichment (protocol in molecular/README.md)
+    ├── geo2r/                DE results, volcano plot, STRING input and background gene lists
+    ├── string/               STRING ID mapping, network edges, PPI-enrichment statistics
+    └── enrichment/           g:Profiler tables, plots and run settings
 ```
+
+Outputs from `--smoke` runs go to `results/smoke/` (git-ignored), never into the folders above.
+
+### Run names
+
+Every run has an ID built from its settings, used for checkpoint, prediction and unit-table file names
+and in the `config` column of the CSVs:
+
+```
+<features>_<model>_s<somas>_d<dendrites>_y<synapses>[_rf<k>]_<loss>_seed<n>    dendritic heads
+<features>_vanilla_h<hidden>_<loss>_seed<n>                                   dense heads
+```
+
+For example `resnet18_224_spatial_dann-lrf_s128_d16_y16_rf3_ce_seed0` is a dANN-LRF head with 128 somas,
+16 dendrites per soma, 16 synapses per dendrite and a 3 x 3 receptive field, trained with cross-entropy on
+the layer4 spatial features. The ID without `_seed<n>` is the *configuration*, which is what the statistics
+and plotting scripts group by.
 
 ## Reproducing the analyses
 
@@ -208,14 +243,23 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/figures/aptos_qwk_vs_params.png` | test QWK vs. parameters (mean ± SD over seeds) |
 | `results/figures/aptos_confusion_<model>.png` | row-normalised confusion matrix, best config per model (selected by validation QWK) |
 | `results/figures/aptos_summary.csv` | per-configuration mean/SD table |
-| `results/models/<run_id>.pt` | best checkpoint (compact: only unmasked weights; masks regenerated from the seed), model config, feature standardisation stats |
+| `results/models/<run_id>.pt` | best checkpoint (compact: only unmasked weights plus a mask fingerprint; masks are regenerated from the seed when loading), model config, feature standardisation stats. Convert older dense checkpoints with `python scripts/compact_checkpoints.py` |
 | `results/predictions/<run_id>.csv` | per-image test predictions (`id_code`, `true`, `pred`) |
 | `results/analysis/activation_summary*.csv` | per run / per config: fraction of FDR-significant units, selectivity, progression score |
 | `results/analysis/units/<run_id>.csv` | per-unit "DE table": Kruskal–Wallis and Spearman p/q values, grade means, selectivity |
 | `results/analysis/fig_heatmap_<config>.png` | clustered heatmap of grade-associated units, images sorted by grade |
 | `results/analysis/fig_pca_<config>.png` | PCA of hidden activations coloured by grade, with progression score |
 | `results/analysis/fig_selectivity.png` | number of grades each unit responds to, dANN vs. dense |
-| `results/analysis/stats_*.csv` | bootstrap CIs per run, per-config seed CIs, paired comparisons with BH q-values |
+| `results/analysis/stats_runs.csv`, `stats_by_config.csv`, `stats_paired.csv` | bootstrap CIs per run, per-config seed CIs, paired comparisons with BH q-values |
+| `results/analysis/fig_subcluster_pca.png`, `fig_subcluster_contact.png` | selected PCA subcluster, and example images of it vs. the rest of the grade |
+| `results/analysis/subcluster_images.csv`, `subcluster_stats.csv` | per-image acquisition properties; Mann–Whitney tests with BH q-values |
+| `results/analysis/rf_sweep.csv`, `fig_rf_sweep.png` | step 4c: LRF − R difference per ResNet stage with Wilcoxon/bootstrap tests and the depth trend |
+| `molecular/geo2r/de_results.tsv`, `de_significant.tsv` | PyDESeq2 results for all tested genes; DEGs passing padj and fold-change thresholds |
+| `molecular/geo2r/run_info.json`, `samples.csv` | design, thresholds, sample list (one per donor), DEG counts, software versions |
+| `molecular/geo2r/volcano.png` | volcano plot |
+| `molecular/geo2r/string_input.txt`, `background.txt` | DEG symbols for STRING; all tested genes (enrichment background) |
+| `molecular/string/*.tsv` | STRING ID mapping, network edges, PPI-enrichment statistics (web-tool exports) |
+| `molecular/enrichment/enrichment_<set>.{tsv,png}`, `_info.json` | g:Profiler terms for `deg_both`, `deg_up`, `padj_both`, with the settings used |
 
 ## Methodological notes
 
