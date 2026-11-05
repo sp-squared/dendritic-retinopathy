@@ -177,3 +177,26 @@ def test_conv_dendrite_masks_and_matched_params():
     assert params == {"dend-lrf": 2320, "dend-r": 2320, "conv": 2320}
     out = build_cnn("dend-lrf")(torch.randn(2, 1, 64, 64))
     assert out.shape == (2, 5)
+
+
+def test_lesion_net_targets_match_numpy_grids():
+    import importlib.util
+
+    import numpy as np
+    import torch
+
+    from dendritic_dr.cnn import build_lesion_net
+    from dendritic_dr.idrid import cell_grids, smoke_idrid
+
+    spec = importlib.util.spec_from_file_location("tl", "scripts/18_train_lesions.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    net = build_lesion_net("dend-lrf", depth=0)
+    shape = tuple(net(torch.zeros(1, 1, 64, 64)).shape[-2:])
+    assert shape == (17, 17) and net.stem_params() == 2320
+    green, masks = next(iter(smoke_idrid(n=1).values()))
+    mk = np.stack([masks[t] for t in ["MA", "HE", "EX", "SE", "OD"]])
+    les, valid, _ = cell_grids(green, mk, shape)
+    y, v = m.torch_targets(torch.from_numpy(green)[None, None], torch.from_numpy(mk)[None], shape)
+    assert np.array_equal(y[0].numpy() > 0, les)  # GPU training targets = evaluation grids (no optic disc here)
+    assert v[0, 0].numpy().astype(bool).sum() >= valid.sum()

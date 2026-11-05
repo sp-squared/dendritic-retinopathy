@@ -96,6 +96,8 @@ dendritic-retinopathy/
 │   ├── 15_train_cnn.py          small CNN trained end to end at 512 px, dendritic or dense first layer
 │   ├── 16_cnn_comparison.py     paired comparison of the CNN first-layer variants
 │   ├── 17_idrid_lesions.py      do individual dendrites respond to individual lesions? (IDRiD masks)
+│   ├── 18_train_lesions.py      train first-layer variants on IDRiD lesion masks (dense lesion prediction)
+│   ├── 19_lesion_comparison.py  lesion AP per variant; lesion- vs. grade-trained unit selectivity
 │   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
 ├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -104,7 +106,8 @@ dendritic-retinopathy/
 │   ├── analysis.py           FDR, differential activation, selectivity, PCA, bootstrap
 │   ├── features.py           loading/standardising cached features (pooled and spatial)
 │   ├── data.py               fundus preprocessing, raw pixels, image properties, splits, Dataset
-│   ├── cnn.py                dendritic convolution (DendriticConv2d) and the small end-to-end CNN
+│   ├── cnn.py                dendritic convolution (DendriticConv2d), the end-to-end CNN, LesionNet
+│   ├── idrid.py              IDRiD loading/caching, lesion grids, unit selectivity (steps 17-19)
 │   ├── plotting.py           display names, colour-blind-safe styles, axis formatting
 │   └── utils.py              paths, seeding, device, CSV logging
 ├── tests/                    unit tests (pytest): models/masks, analysis, plotting
@@ -303,6 +306,24 @@ Download `A. Segmentation.zip` from <https://ieee-dataport.org/open-access/india
 python scripts/17_idrid_lesions.py   # -> idrid_unit_auc.csv, idrid_detection.csv, idrid_summary.csv, idrid_tests.csv, figures
 ```
 
+**4h. Lesion masks as labels: do dendrites become lesion detectors when the task requires it?**
+The same four first-layer variants are trained from scratch on IDRiD's lesion masks (official split: 54
+training images, 10 of them held out for early stopping, 27 test images), predicting which lesions each cell
+of the first layer's 4-px grid contains. `--depth 0` puts a linear readout directly on the 16 first-layer
+units, so they must become the lesion detectors; `--depth 3` adds three dilated 3 x 3 conv blocks first.
+Test metrics: average precision (AP) per lesion type, and the step-17 unit/dendrite AUCs, compared with the
+grade-trained CNNs of step 4f on the same test images.
+Prediction, stated before running: clustered dendrites become better small-lesion detectors than scattered
+ones (higher MA/HE AP at depth 0, more dendrites with AUC >= 0.75).
+```bash
+for d in 0 3; do
+  for st in "dend-lrf" "dend-r" "conv --kernel 12" "conv --kernel 5"; do
+    python scripts/18_train_lesions.py --stem $st --depth $d --seeds 0 1 2 3 4 5 6 7 8 9
+  done
+done
+python scripts/19_lesion_comparison.py   # -> lesion_by_config.csv, lesion_tests.csv, lesion_grade_reference.csv, fig_lesions.png
+```
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
@@ -363,6 +384,8 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/analysis/global_baseline.csv`, `global_unit_corr.csv` | step 4e: global-statistics baselines vs. the one-unit raw-pixel model; the unit's correlation with each property |
 | `results/analysis/cnn_by_config.csv`, `cnn_paired.csv`, `fig_cnn.png` | step 4f: QWK per first-layer variant; clustered vs. scattered dendrites and dendritic vs. dense, with Wilcoxon/bootstrap tests |
 | `results/analysis/idrid_summary.csv`, `idrid_tests.csv`, `fig_idrid.png`, `fig_idrid_example.png` | step 4g: lesion selectivity of first-layer somas, channels and dendrites on IDRiD; per-unit tables in `idrid_unit_auc.csv`, `idrid_detection.csv` |
+| `results/lesion_runs.csv` | step 4h: one row per lesion-trained run: test AP/AUC per lesion type, best unit/dendrite AUC, share of dendrites with AUC >= 0.75 |
+| `results/analysis/lesion_by_config.csv`, `lesion_tests.csv`, `lesion_grade_reference.csv`, `fig_lesions.png` | step 4h: per-variant means, paired tests, grade-trained reference, figure |
 | `molecular/geo2r/de_results.tsv`, `de_significant.tsv` | PyDESeq2 results for all tested genes; DEGs passing padj and fold-change thresholds |
 | `molecular/geo2r/run_info.json`, `samples.csv` | design, thresholds, sample list (one per donor), DEG counts, software versions |
 | `molecular/geo2r/volcano.png` | volcano plot |

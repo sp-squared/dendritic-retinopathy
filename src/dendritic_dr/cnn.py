@@ -134,3 +134,38 @@ def build_cnn(stem: str, in_ch: int = 1, somas: int = 16, dendrites: int = 8, sy
     else:
         raise ValueError(f"unknown stem {stem!r}; choose from {STEMS}")
     return SmallCNN(s, somas, dropout=dropout)
+
+
+class LesionNet(nn.Module):
+    """Dense lesion prediction on the first layer's stride-4 grid (one logit per lesion type
+    per cell). depth = 0: a 1 x 1 linear readout directly on the first-layer units, so those
+    units themselves must carry the lesion signal. depth > 0: that many 3 x 3 conv-BN-ReLU
+    blocks (dilations 1, 2, 4, ...: more context, same resolution) before the readout."""
+
+    def __init__(self, stem: nn.Module, stem_out: int, depth: int = 0, width: int = 32, n_out: int = 4):
+        super().__init__()
+        self.stem, self.depth = stem, depth
+        blocks, prev = [], stem_out
+        for i in range(depth):
+            d = 2 ** i
+            blocks += [nn.Conv2d(prev, width, 3, padding=d, dilation=d, bias=False), nn.BatchNorm2d(width), nn.ReLU()]
+            prev = width
+        self.body = nn.Sequential(*blocks)
+        self.head = nn.Conv2d(prev, n_out, 1)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.head(self.body(self.stem(x)))
+
+    def stem_params(self) -> int:
+        return self.stem.effective_params()
+
+    def effective_params(self) -> int:
+        return self.stem_params() + sum(p.numel() for n, p in self.named_parameters() if not n.startswith("stem."))
+
+
+def build_lesion_net(stem: str, depth: int = 0, in_ch: int = 1, somas: int = 16, dendrites: int = 8,
+                     synapses: int = 16, kernel: int = 12, cluster: int = 5, stride: int = 4, seed: int = 0,
+                     width: int = 32) -> LesionNet:
+    """Same first-layer variants as build_cnn, with a lesion readout instead of a grade head."""
+    s = build_cnn(stem, in_ch, somas, dendrites, synapses, kernel, cluster, stride, seed).stem
+    return LesionNet(s, somas, depth=depth, width=width)

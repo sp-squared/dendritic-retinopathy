@@ -40,6 +40,7 @@ molecular/**/*.zip
 results/models/resnet18_224_spatial_l1_dann-*
 # end-to-end CNN checkpoints (~1 MB each); their predictions are committed
 results/models/cnn*
+results/models/lesion*
 
 # Smoke-test outputs and leftover patches
 results/smoke/
