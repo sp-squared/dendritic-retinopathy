@@ -38,6 +38,8 @@ molecular/**/*.zip
 # Small trained heads (results/models/*.pt) and predictions ARE committed
 # except unpooled layer1 heads: their feature mean/SD (200k inputs) make each ~1.7 MB
 results/models/resnet18_224_spatial_l1_dann-*
+# end-to-end CNN checkpoints (~1 MB each); their predictions are committed
+results/models/cnn*
 
 # Smoke-test outputs and leftover patches
 results/smoke/

@@ -158,3 +158,22 @@ def test_indexed_layer_used_above_threshold_and_roundtrips(monkeypatch):
     x = torch.randn(3, 4 * 81)
     assert torch.allclose(m(x), m2(x))
     assert models.effective_params(m) == 8 * 4 * 6 + 32 + 32 + 8 + 8 * 5 + 5
+
+
+def test_conv_dendrite_masks_and_matched_params():
+    import numpy as np
+    import torch
+
+    from dendritic_dr.cnn import build_cnn, conv_dendrite_mask
+
+    rng = np.random.default_rng(0)
+    m = conv_dendrite_mask(40, 1, 12, 16, rng, cluster=5)
+    assert (m.flatten(1).sum(1) == 16).all()
+    for k in m:  # clustered: every dendrite's synapses fit in a 5 x 5 window
+        ys, xs = np.nonzero(k[0].numpy())
+        assert ys.max() - ys.min() < 5 and xs.max() - xs.min() < 5
+    assert (conv_dendrite_mask(40, 1, 12, 16, rng).flatten(1).sum(1) == 16).all()
+    params = {s: build_cnn(s, kernel=12).stem_params() for s in ["dend-lrf", "dend-r", "conv"]}
+    assert params == {"dend-lrf": 2320, "dend-r": 2320, "conv": 2320}
+    out = build_cnn("dend-lrf")(torch.randn(2, 1, 64, 64))
+    assert out.shape == (2, 5)

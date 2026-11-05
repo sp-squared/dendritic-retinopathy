@@ -93,6 +93,8 @@ dendritic-retinopathy/
 │   ├── 12_extract_pixels.py     downsampled raw fundus pixels (no CNN) -> .npz, same format as features
 │   ├── 13_pixel_comparison.py   dendritic vs. dense heads on raw pixels: LRF vs. random, dANN vs. dense
 │   ├── 14_global_baseline.py    global image statistics vs. the one-unit raw-pixel model
+│   ├── 15_train_cnn.py          small CNN trained end to end at 512 px, dendritic or dense first layer
+│   ├── 16_cnn_comparison.py     paired comparison of the CNN first-layer variants
 │   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
 ├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -101,6 +103,7 @@ dendritic-retinopathy/
 │   ├── analysis.py           FDR, differential activation, selectivity, PCA, bootstrap
 │   ├── features.py           loading/standardising cached features (pooled and spatial)
 │   ├── data.py               fundus preprocessing, raw pixels, image properties, splits, Dataset
+│   ├── cnn.py                dendritic convolution (DendriticConv2d) and the small end-to-end CNN
 │   ├── plotting.py           display names, colour-blind-safe styles, axis formatting
 │   └── utils.py              paths, seeding, device, CSV logging
 ├── tests/                    unit tests (pytest): models/masks, analysis, plotting
@@ -263,6 +266,27 @@ plus the hidden unit's Spearman correlation with each property.
 python scripts/14_global_baseline.py     # -> image_properties.csv, global_baseline.csv, global_unit_corr.csv
 ```
 
+**4f. End to end at 512 px: a dendritic first layer where lesions span several pixels.**
+Every earlier test put the dendrites where a microaneurysm is at most one input wide. Here a small CNN is
+trained from scratch on 512 px green-channel images. Its first layer is applied as a convolution (stride 4),
+so lesions are found wherever they are, and comes in four variants; the rest of the network is identical:
+- `dend-lrf`: 16 output channels = somas, each with 8 dendrites; every dendrite samples 16 pixels clustered
+  in a random 5 x 5 sub-window of the soma's 12 x 12 field, ReLU per dendrite, the soma sums them, ReLU
+- `dend-r`: the same, with each dendrite's 16 pixels scattered over the whole 12 x 12 field
+- `conv --kernel 12`: dense 12 x 12 convolution, the same 2,320 first-layer parameters
+- `conv --kernel 5`: a conventional dense 5 x 5 convolution (416 parameters)
+Prediction, stated before running: `dend-lrf` beats `dend-r` and the parameter-matched dense 12 x 12 layer.
+With a GPU each run takes minutes (mixed precision on by default); 40 runs is an overnight job.
+```bash
+python scripts/12_extract_pixels.py --size 512        # data/features/pixels_green_512.npz (~1 GB in memory)
+for st in "dend-lrf" "dend-r" "conv --kernel 12" "conv --kernel 5"; do
+  python scripts/15_train_cnn.py --stem $st --seeds 0 1 2 3 4 5 6 7 8 9
+done
+python scripts/16_cnn_comparison.py                   # -> cnn_by_config.csv, cnn_paired.csv, fig_cnn.png
+```
+Quick offline check: `python scripts/15_train_cnn.py --smoke --stem dend-lrf --seeds 0 1`, then
+`python scripts/16_cnn_comparison.py --smoke`.
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
@@ -298,6 +322,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 
 | File | Contents |
 |---|---|
+| `results/cnn_runs.csv` | step 4f: one row per end-to-end CNN run: first-layer variant, parameters, best epoch, val/test QWK, confusion matrix |
 | `results/fmnist.csv` | one row per run: model, config, effective params, train/test accuracy and loss |
 | `results/aptos_heads.csv` | one row per run: config, effective params, best epoch, val/test QWK, test accuracy, test confusion matrix (JSON) |
 | `results/figures/fmnist_acc_vs_params.png` | test accuracy vs. parameters (mean ± SD over seeds) |
@@ -320,6 +345,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 | `results/analysis/pixels_by_config.csv`, `pixels_paired.csv`, `fig_pixels.png` | step 4d: raw-pixel heads; QWK vs. parameters, LRF − random and dANN − nearest-dense differences with Wilcoxon/bootstrap tests |
 | `results/analysis/image_properties.csv` | per-image brightness, contrast, sharpness, green mean/SD, original resolution and file size |
 | `results/analysis/global_baseline.csv`, `global_unit_corr.csv` | step 4e: global-statistics baselines vs. the one-unit raw-pixel model; the unit's correlation with each property |
+| `results/analysis/cnn_by_config.csv`, `cnn_paired.csv`, `fig_cnn.png` | step 4f: QWK per first-layer variant; clustered vs. scattered dendrites and dendritic vs. dense, with Wilcoxon/bootstrap tests |
 | `molecular/geo2r/de_results.tsv`, `de_significant.tsv` | PyDESeq2 results for all tested genes; DEGs passing padj and fold-change thresholds |
 | `molecular/geo2r/run_info.json`, `samples.csv` | design, thresholds, sample list (one per donor), DEG counts, software versions |
 | `molecular/geo2r/volcano.png` | volcano plot |
