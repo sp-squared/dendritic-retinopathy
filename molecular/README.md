@@ -45,18 +45,18 @@ molecular/
 - Number of DEGs: up [TODO] / down [TODO] (from `run_info.json`)
 
 ### 3. PPI network (STRING, https://string-db.org)
-- STRING version: [TODO]   Species: Homo sapiens
+- STRING version: 12.5   Species: Homo sapiens
 - Input: DEGs from step 2   Minimum interaction score: [0.7, high confidence]
 - Evidence channels used: [TODO]
 - Hub genes: top 10 by degree (optionally confirm with Cytoscape cytoHubba MCC)
 - Saved: `string/edges.tsv`, `string/network.png`, `string/hubs.tsv`
 
-### 4. Functional enrichment
-- Tool + version: [TODO: STRING enrichment tab or Enrichr]
-- Libraries: GO Biological Process, KEGG, [Reactome]
-- Background: [TODO: whole genome or all genes on the array; state which]
-- Significance: FDR < 0.05
-- Saved: `enrichment/go_bp.tsv`, `enrichment/kegg.tsv`
+### 4. Functional enrichment (scripted: `scripts/10_enrichment.py`)
+- Tool: g:Profiler via `gprofiler-official` (record the data version from the g:Profiler website)
+- Sources: GO Biological Process, KEGG, Reactome
+- Background: custom = the 23,256 genes tested by DESeq2 (`domain_scope="custom"`)
+- Significance: Benjamini-Hochberg FDR < 0.05
+- Saved: `enrichment/enrichment_deg_both.tsv`, `.png`, `_info.json`
 
 ### 5. Lesion → process table
 Fill `lesion_process_table.md`: for each grade-defining lesion, the biological process, the
