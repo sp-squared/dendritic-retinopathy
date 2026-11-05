@@ -64,3 +64,16 @@ def test_paired_bootstrap_identical_models():
     pred = np.stack([y, y])
     diff, lo, hi, p = paired_bootstrap_diff(y, pred, pred, n_boot=200)
     assert diff == 0 and lo == 0 and hi == 0
+
+
+def test_append_result_handles_new_columns(tmp_path):
+    import pandas as pd
+    from dendritic_dr.utils import append_result
+
+    p = tmp_path / "r.csv"
+    append_result(p, {"a": 1, "b": [1, 2]})
+    append_result(p, {"a": 2, "c": "x", "b": [3]})   # new column c
+    append_result(p, {"a": 3, "b": []})               # back to old columns
+    d = pd.read_csv(p)
+    assert list(d.columns) == ["a", "b", "c"] and len(d) == 3
+    assert d["c"].isna().tolist() == [True, False, True]

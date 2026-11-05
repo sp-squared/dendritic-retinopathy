@@ -48,12 +48,27 @@ def default_num_workers() -> int:
 
 def append_result(csv_path: Path, row: dict) -> None:
     """Append one row to a CSV, writing the header if the file is new.
-    Nested values (lists/dicts) are stored as JSON strings."""
+    Nested values (lists/dicts) are stored as JSON strings. If the row has columns
+    the file does not have yet (e.g. a new option was added), the file is rewritten
+    with the new columns appended to the header and left empty for older rows."""
     csv_path.parent.mkdir(parents=True, exist_ok=True)
     flat = {k: (json.dumps(v) if isinstance(v, (list, dict)) else v) for k, v in row.items()}
-    new = not csv_path.exists()
-    with csv_path.open("a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(flat.keys()))
-        if new:
+    if not csv_path.exists():
+        with csv_path.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=list(flat.keys()))
             writer.writeheader()
-        writer.writerow(flat)
+            writer.writerow(flat)
+        return
+    with csv_path.open(newline="", encoding="utf-8") as f:
+        header = next(csv.reader(f), [])
+    missing = [k for k in flat if k not in header]
+    if missing:
+        with csv_path.open(newline="", encoding="utf-8") as f:
+            old_rows = list(csv.DictReader(f))
+        header = header + missing
+        with csv_path.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=header, restval="")
+            writer.writeheader()
+            writer.writerows(old_rows)
+    with csv_path.open("a", newline="", encoding="utf-8") as f:
+        csv.DictWriter(f, fieldnames=header, restval="").writerow(flat)
