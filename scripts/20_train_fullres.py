@@ -46,6 +46,15 @@ from dendritic_dr.idrid import LESIONS, cell_grids
 from dendritic_dr.utils import DATA_DIR, append_result, get_device, results_root, set_seed
 
 
+def nested_subset(keys: list[str], n: int, seed: int = 2026) -> list[str]:
+    """The first n keys of one fixed random order of all training keys: subsets are nested
+    (the 25-image set contains the 10-image set) and do not depend on the model or seed."""
+    if not 1 <= n <= len(keys):
+        raise SystemExit(f"--n-train must be between 1 and {len(keys)}")
+    order = np.random.default_rng(seed).permutation(len(keys))
+    return [keys[i] for i in sorted(order[:n])]
+
+
 @torch.no_grad()
 def evaluate(model, store, keys, mean, sd, device, amp, shape, grids=None):
     """Cell-level AP / AUC and FROC per lesion type over full images."""
@@ -87,6 +96,9 @@ def main():
     p.add_argument("--synapses", type=int, default=16)
     p.add_argument("--seeds", type=int, nargs="+", default=[0])
     p.add_argument("--train-on", nargs="+", choices=["idrid", "ddr"], default=["idrid", "ddr"])
+    p.add_argument("--n-train", type=int, default=None,
+                   help="use only this many training images (extension study 1: learning curve); the subsets "
+                        "are nested and identical for every first layer and seed")
     p.add_argument("--size", type=int, default=2048, help="fundus diameter in px after resizing")
     p.add_argument("--patch", type=int, default=384, help="training patch size in px (multiple of 4)")
     p.add_argument("--lesion-frac", type=float, default=0.5, help="share of patches centred near a lesion")
@@ -125,9 +137,12 @@ def main():
     if missing := set(args.train_on) - have:
         raise SystemExit(f"no {', '.join(sorted(missing))} images found; see data/README.md")
     train_keys = store.keys("train", args.train_on)
+    n_full = len(train_keys)
+    if args.n_train is not None:
+        train_keys = nested_subset(train_keys, args.n_train)
     val_keys = store.keys("val", args.train_on)
     test_sets = {ds: store.keys("test", [ds]) for ds in ["idrid", "ddr"] if ds in have}
-    print(f"train {len(train_keys)} images ({' + '.join(args.train_on)}), val {len(val_keys)}, test " +
+    print(f"train {len(train_keys)}" + (f" of {n_full}" if len(train_keys) < n_full else "") + f" images ({' + '.join(args.train_on)}), val {len(val_keys)}, test " +
           ", ".join(f"{ds} {len(k)}" for ds, k in test_sets.items()) +
           f"; {args.size} px, {args.patch} px patches; device {device}{' (mixed precision)' if amp else ''}")
 
@@ -194,11 +209,14 @@ def main():
         model.load_state_dict(best_state)
 
         tag = f"fullres{args.size}_p{args.patch}_{train_name}_{args.loss}_{args.stem}_k{args.kernel}_depth{args.depth}"
+        if args.n_train is not None:
+            tag = tag.replace(f"_{train_name}_", f"_{train_name}_n{len(train_keys)}_")
         if args.stem.startswith("dend"):
             tag += f"_s{args.somas}_d{args.dendrites}_y{args.synapses}" + (f"_c{args.cluster}" if args.stem == "dend-lrf" else "")
         row = {"run_id": f"{tag}_seed{seed}", "config": tag, "stem": args.stem, "kernel": args.kernel,
                "cluster": args.cluster if args.stem == "dend-lrf" else None,
                "depth": args.depth, "train_on": train_name, "loss": args.loss, "size": args.size, "seed": seed,
+               "n_train": len(train_keys), "n_train_idrid": sum(k.startswith("idrid/") for k in train_keys),
                "stem_params": model.stem_params(), "total_params": model.effective_params(),
                "best_epoch": best_epoch, "epochs_run": epoch, "val_mfroc": best}
         for ds, keys in test_sets.items():

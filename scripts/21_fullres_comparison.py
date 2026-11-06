@@ -147,6 +147,7 @@ def main():
     args = p.parse_args()
     root = results_root(args.smoke)
     runs = add_keys(pd.read_csv(root / "fullres_runs.csv").drop_duplicates("run_id", keep="last"))
+    runs = runs[~runs["config"].str.contains(r"_n\d+_", regex=True)]  # learning-curve subsets: script 22
     test_sets = [ds for ds in ["idrid", "ddr"] if f"{ds}_mfroc" in runs]
     out = root / "analysis"
     out.mkdir(parents=True, exist_ok=True)

@@ -100,6 +100,9 @@ dendritic-retinopathy/
 │   ├── 19_lesion_comparison.py  lesion AP per variant; lesion- vs. grade-trained unit selectivity
 │   ├── 20_train_fullres.py      lesion detection at 2048 px on IDRiD + DDR patches, Tversky loss, FROC
 │   ├── 21_fullres_comparison.py FROC / AP per variant on the IDRiD and DDR test sets
+│   ├── 22_learning_curve.py     extension 1: microaneurysm detection vs. training-set size, crossover
+│   ├── 23_pathway_dann.py       extension 2: Reactome-wired dANN vs. controls on GSE160306 expression
+│   ├── 24_pathway_comparison.py extension 2: AUC comparisons, influential pathway dendrites
 │   └── compact_checkpoints.py   one-off utility: convert old dense checkpoints to the compact format
 ├── src/dendritic_dr/         importable package (pip install -e .)
 │   ├── masks.py              dendritic connectivity masks (random, local receptive field, soma)
@@ -111,9 +114,10 @@ dendritic-retinopathy/
 │   ├── cnn.py                dendritic convolution (DendriticConv2d), the end-to-end CNN, LesionNet
 │   ├── idrid.py              IDRiD loading/caching, lesion grids, unit selectivity (steps 17-19)
 │   ├── fullres.py            DDR finder, 2048 px cache, patch sampler, Tversky loss, FROC (steps 20-21)
+│   ├── pathway.py            Reactome masks, pathway-wired dANN, controls (extension 2)
 │   ├── plotting.py           display names, colour-blind-safe styles, axis formatting
 │   └── utils.py              paths, seeding, device, CSV logging
-├── tests/                    unit tests (pytest): models/masks, analysis, plotting, FROC/Tversky
+├── tests/                    unit tests (pytest): models/masks, analysis, plotting, FROC/Tversky, extension
 ├── results/                  committed outputs of the real runs
 │   ├── fmnist.csv            one row per Fashion-MNIST run
 │   ├── aptos_heads.csv       one row per APTOS head run
@@ -361,6 +365,42 @@ python scripts/20_train_fullres.py --stem dend-r --kernel 24 --seeds 0 1 2 3 4 5
 python scripts/21_fullres_comparison.py   # adds family "window" to fullres_tests.csv and fig_fullres_window.png
 ```
 
+## Extension (independent study, outside the course)
+
+Two follow-ups to the course project's main reading, that fixed dendritic wiring acts as a prior that helps
+only when data are scarce. Write-up: the separate extension report.
+
+**E1. Learning curve: where does the dendritic advantage flip?** Resolution fixed at 2048 px; only the number of
+training images changes (`--n-train`: nested random subsets of the 427 IDRiD + DDR images, identical for every layer
+and seed; same validation and test images). Full-data runs (427) come from steps 4i/4j.
+Prediction, stated before running: dendritic layers beat dense 12 x 12 at the smallest sizes and lose at 427; the
+crossover lies between ~25 and ~200 images.
+```bash
+for n in 10 25 50 100 200; do
+  for a in "dend-lrf" "dend-lrf --cluster 8" "dend-r" "conv --kernel 12"; do
+    python scripts/20_train_fullres.py --stem $a --n-train $n --seeds 0 1 2 3 4 5 6 7 8 9
+  done
+done
+python scripts/22_learning_curve.py   # -> learning_curve_by_n.csv, _tests.csv, _crossover.csv, fig_learning_curve.png
+```
+
+**E2. Pathway-wired dANN on retinal gene expression (GSE160306).** Each dendrite is a Reactome pathway (only its
+genes), each soma a top-level Reactome category. Controls: the same network wired to random genes (identical
+parameters), a parameter-matched dense MLP, logistic regression on all genes, and logistic regression on pathway
+scores. Stratified 5-fold CV grouped by donor, repeated 10 times; z-scores from training samples only.
+Prediction, stated before running: pathway dANN > random-gene dANN (AUC), >= the matched dense MLP, and its most
+influential dendrites are immune, extracellular-matrix and TGF-beta/BMP pathways.
+Needs the GSE160306 files from step 8 (`molecular/geo2r/raw/`).
+```bash
+python scripts/23_pathway_dann.py --download-reactome    # once: Reactome GMT + hierarchy -> molecular/reactome/
+python scripts/23_pathway_dann.py                        # any DR vs. non-diabetic control (both retinal sites)
+python scripts/24_pathway_comparison.py                  # -> auc_by_model.csv, auc_tests.csv, top_pathways.csv, fig_pathway.png
+python scripts/23_pathway_dann.py --control Diabetic --name dr_vs_diabetic   # harder: DR vs. diabetes without DR
+python scripts/24_pathway_comparison.py --name dr_vs_diabetic
+```
+Quick offline checks: `python scripts/22_learning_curve.py --smoke` (after smoke runs of script 20 with `--n-train`),
+`python scripts/23_pathway_dann.py --smoke` then `python scripts/24_pathway_comparison.py --smoke`.
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
@@ -396,6 +436,7 @@ Download instructions and the STRING web-tool step: [`molecular/README.md`](mole
 
 | File | Contents |
 |---|---|
+| `results/pathway/<name>/` | extension 2: out-of-fold predictions per model and CV repeat (`oof.csv`), pathway dendrite contributions with rank stability, AUC tables, figure |
 | `results/fullres_runs.csv` | step 4i: one row per near-native-resolution lesion run: variant, training set, loss, best epoch, FROC / sensitivity at 1 FP / AP / AUC per lesion type on the IDRiD and DDR test sets |
 | `results/cnn_runs.csv` | step 4f: one row per end-to-end CNN run: first-layer variant, parameters, best epoch, val/test QWK, confusion matrix |
 | `results/fmnist.csv` | one row per run: model, config, effective params, train/test accuracy and loss |

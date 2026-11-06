@@ -20,6 +20,7 @@ id_ed25519*
 data/*
 !data/README.md
 molecular/geo2r/raw/
+molecular/reactome/
 molecular/**/*.gz
 molecular/**/*.tar
 molecular/**/*.zip

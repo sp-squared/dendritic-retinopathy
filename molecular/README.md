@@ -97,3 +97,15 @@ grades shows up visually as small or as large lesions.
 ## Tools to cite
 GEO (Barrett et al., 2013), DESeq2 (Love et al., 2014) / PyDESeq2 (Muzellec et al., 2023), STRING (Szklarczyk et al., 2023; version 12.5),
 g:Profiler (Kolberg et al., 2023).
+
+## Extension 2: pathway-wired dANN (independent study)
+
+`scripts/23_pathway_dann.py` reuses the GSE160306 files above but, unlike the course analysis, the expression data
+here **do** feed a model: a dANN whose dendrites follow Reactome pathways (see the main README, section
+"Extension"). Reactome files (CC BY 4.0) go in `molecular/reactome/` (git-ignored):
+
+- `ReactomePathways.gmt.zip`: pathway name, stable id and member gene symbols
+- `ReactomePathwaysRelation.txt`: parent -> child pathway ids (the hierarchy; human ids start with R-HSA-)
+
+`python scripts/23_pathway_dann.py --download-reactome` fetches both from https://reactome.org/download-data;
+record the Reactome release (shown on that page) here: Release: [TODO]
