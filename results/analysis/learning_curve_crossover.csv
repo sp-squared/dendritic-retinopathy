@@ -1,0 +1,7 @@
+test_set,layer,vs,sizes,crossover_n,ci_low,ci_high,share_no_crossover,share_always_ahead,share_always_behind
+idrid,"dendritic, clustered (k 12, c 5)",dense 12x12,10 25 50 100 200 427,,,,1.0,0.0,0.9675
+idrid,"dendritic, clustered (k 12, c 8)",dense 12x12,10 25 50 100 200 427,,,,1.0,0.0,0.586
+idrid,"dendritic, scattered (k 12)",dense 12x12,10 25 50 100 200 427,,,,1.0,0.0,0.933
+ddr,"dendritic, clustered (k 12, c 5)",dense 12x12,10 25 50 100 200 427,,10.442910272569966,11.180945617994809,0.998,0.0,0.832
+ddr,"dendritic, clustered (k 12, c 8)",dense 12x12,10 25 50 100 200 427,,11.311627497272621,38.26796179619086,0.993,0.0,0.382
+ddr,"dendritic, scattered (k 12)",dense 12x12,10 25 50 100 200 427,,25.51734856435625,39.189622027807914,0.999,0.0,0.204
