@@ -72,7 +72,13 @@ def download_reactome():
     for url in (REACTOME_GMT_URL, REACTOME_REL_URL):
         dest = REACTOME / url.rsplit("/", 1)[1]
         print(f"downloading {url} -> {dest}")
-        urllib.request.urlretrieve(url, dest)
+        try:
+            urllib.request.urlretrieve(url, dest)
+        except Exception as e:
+            dest.unlink(missing_ok=True)
+            raise SystemExit(f"download failed ({e}). Download the two files in a browser from "
+                             f"https://reactome.org/download-data (ReactomePathways.gmt.zip and "
+                             f"ReactomePathwaysRelation.txt) and save them in {REACTOME}/")
 
 
 def load_real(args):
