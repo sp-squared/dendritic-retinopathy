@@ -122,14 +122,17 @@ def load_real(args):
     sel["y"] = sel[args.group_col].astype(str).isin(args.case).astype(int)
     sel = sel[sel["title"].isin(counts.columns)]
     counts = counts[sel["title"]]
-    # Ensembl id -> symbol: the counts file's own column, else the course project's DE table
+    # Ensembl id -> symbol: the counts file's own column if it has one, else MyGene.info for every
+    # gene, cached in gene_symbols_all.tsv (the course project's DE table only has symbols for the
+    # ~95 genes it annotated, which left 35 genes and 5 pathways in the first run)
     ids = counts.index.astype(str).str.replace(r"\.\d+$", "", regex=True)
     if symbols is not None:
         sym = pd.Series(symbols.values, index=ids)
     else:
-        table = pd.read_csv(GEO / "de_results.tsv", sep="\t", usecols=["gene_id", "symbol"])
-        table["gene_id"] = table["gene_id"].astype(str).str.replace(r"\.\d+$", "", regex=True)
-        sym = table.dropna().drop_duplicates("gene_id").set_index("gene_id")["symbol"]
+        sym = pd.Series(de.annotate_symbols(ids, GEO / "gene_symbols_all.tsv").values, index=ids)
+    sym = sym[sym.notna() & (sym.astype(str) != "nan")]
+    sym = sym[~sym.index.duplicated()]
+    print(f"gene symbols: {len(sym):,} of {len(ids):,} Ensembl ids")
     counts.index = ids
     counts = counts[counts.index.isin(sym.index)]
     counts.index = sym.reindex(counts.index).values
@@ -201,6 +204,9 @@ def main():
     masks = build_masks(universe, gmt, parents or {}, args.min_size, args.max_size)
     universe = [g for g, used in zip(universe, masks["M1"].any(0)) if used]  # genes on some dendrite
     masks = build_masks(universe, gmt, parents or {}, args.min_size, args.max_size)
+    if not args.smoke and (len(universe) < 2000 or masks["M1"].shape[0] < 100):
+        raise SystemExit(f"only {len(universe)} genes and {masks['M1'].shape[0]} pathways matched the gene sets; "
+                         "gene symbols are probably missing (is mygene installed: pip install -e '.[molecular]'?)")
     soma_source = "reactome-hierarchy"
     if parents is None:  # no hierarchy: somas = gene-overlap groups of the kept pathways (no labels used)
         parents, gnames = overlap_groups(masks["pathways"], masks["pathway_names"], masks["M1"], args.soma_groups)

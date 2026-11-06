@@ -114,4 +114,6 @@ If reactome.org is unreachable, `--download-enrichr` saves Enrichr's copy of the
 (library `Reactome_2022`, https://maayanlab.cloud/Enrichr/) as `molecular/reactome/Reactome_2022.gmt`.
 Enrichr has no hierarchy file, so the somas are then 25 groups of pathways with overlapping genes
 (average-linkage clustering on Jaccard distance; `--soma-groups`), which uses no labels.
+Gene symbols for all Ensembl ids come from MyGene.info once and are cached in
+`geo2r/gene_symbols_all.tsv` (committed, so later runs are offline).
 `run_info.json` records which soma source a run used (`soma_source`). Record here which was used: [TODO]
