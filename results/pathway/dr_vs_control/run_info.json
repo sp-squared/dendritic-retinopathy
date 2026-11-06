@@ -1,0 +1,50 @@
+{
+  "name": "dr_vs_control",
+  "group_col": "disease_group_detailed",
+  "case": [
+    "NPDR",
+    "NPDR + DME",
+    "PDR + DME"
+  ],
+  "control": [
+    "Control"
+  ],
+  "site": "both",
+  "repeats": 10,
+  "folds": 5,
+  "epochs": 300,
+  "lr": 0.003,
+  "weight_decay": 0.01,
+  "dropout": 0.2,
+  "min_size": 10,
+  "max_size": 300,
+  "models": [
+    "pathway-dann",
+    "random-dann",
+    "dense-mlp",
+    "logreg",
+    "pathway-score"
+  ],
+  "stable_top": 25,
+  "matrix": "/home/sps/github/dendritic-retinopathy/molecular/geo2r/raw/GSE160306_series_matrix.txt.gz",
+  "counts": "/home/sps/github/dendritic-retinopathy/molecular/geo2r/raw/GSE160306_human_retina_DR_totalRNA_counts.txt.gz",
+  "download_reactome": false,
+  "download_enrichr": false,
+  "enrichr_library": "Reactome_2022",
+  "gmt": null,
+  "relations": null,
+  "soma_groups": 25,
+  "smoke": false,
+  "n_samples": 59,
+  "n_donors": 31,
+  "n_case": 39,
+  "n_genes": 35,
+  "n_pathways": 5,
+  "n_categories": 5,
+  "dann_params": 83,
+  "dense_hidden": [
+    2,
+    5
+  ],
+  "soma_source": "gene-overlap-25"
+}

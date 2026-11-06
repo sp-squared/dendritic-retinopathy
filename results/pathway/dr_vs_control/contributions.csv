@@ -1,0 +1,6 @@
+pathway,name,size,categories,mean_abs_contribution,case_minus_control,top25_share
+R-HSA-162582,Signal Transduction,11,group 2: Signal Transduction (+0),0.5141646690666676,0.7486924114637077,1.0
+R-HSA-168256,Immune System,16,group 5: Immune System (+0),0.4819176706217103,0.7149689495563507,1.0
+R-HSA-168249,Innate Immune System,11,group 4: Innate Immune System (+0),0.3824380995863575,0.5860216686874629,1.0
+R-HSA-1430728,Metabolism,10,group 1: Metabolism (+0),0.3146014640644445,0.3682694603689015,1.0
+R-HSA-1643685,Disease,14,group 3: Disease (+0),0.29678911238403644,0.40810149639844895,1.0
