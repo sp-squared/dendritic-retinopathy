@@ -180,7 +180,7 @@ def main():
                 scaler.scale(loss).backward()
                 scaler.step(opt)
                 scaler.update()
-                losses.append(float(loss))
+                losses.append(loss.item())
             sched.step()
             vm = evaluate(model, store, val_keys, mean, sd, device, amp, fshape, val_grids)
             if vm["mfroc"] > best:
@@ -197,6 +197,7 @@ def main():
         if args.stem.startswith("dend"):
             tag += f"_s{args.somas}_d{args.dendrites}_y{args.synapses}" + (f"_c{args.cluster}" if args.stem == "dend-lrf" else "")
         row = {"run_id": f"{tag}_seed{seed}", "config": tag, "stem": args.stem, "kernel": args.kernel,
+               "cluster": args.cluster if args.stem == "dend-lrf" else None,
                "depth": args.depth, "train_on": train_name, "loss": args.loss, "size": args.size, "seed": seed,
                "stem_params": model.stem_params(), "total_params": model.effective_params(),
                "best_epoch": best_epoch, "epochs_run": epoch, "val_mfroc": best}

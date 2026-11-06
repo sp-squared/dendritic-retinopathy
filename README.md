@@ -345,6 +345,22 @@ python scripts/21_fullres_comparison.py   # -> fullres_by_config.csv, fullres_te
 # optional ablations: does DDR help? (--train-on idrid); step 4h's loss (--loss bce); dense 12 x 12 (--stem conv)
 ```
 
+**4j. Scaled cluster window (optional, ~2 GPU hours)**
+In step 4i the clustered layer (5 x 5 clusters) lost its step-4h microaneurysm advantage. At 2048 px a
+microaneurysm is ~4-12 px wide, larger than a 5 x 5 cluster, so each clustered dendrite sees only part of it.
+This sweep varies the cluster size with the receptive field fixed (12 x 12: clusters 8 and 10; 5 and the
+scattered layer exist from step 4i) and with a larger field (24 x 24: clusters 10 and 20, and scattered). Every
+variant keeps 16 synapses per dendrite, so all dendritic layers have the same 2,320 first-layer parameters.
+Prediction, stated before running: if the step-4h advantage came from matching the cluster to the lesion size,
+microaneurysm FROC peaks at a cluster of ~8-10 px, above both the 5 x 5 clusters and the scattered layer.
+```bash
+for a in "--cluster 8" "--cluster 10" "--kernel 24 --cluster 10" "--kernel 24 --cluster 20"; do
+  python scripts/20_train_fullres.py --stem dend-lrf $a --seeds 0 1 2 3 4 5 6 7 8 9
+done
+python scripts/20_train_fullres.py --stem dend-r --kernel 24 --seeds 0 1 2 3 4 5 6 7 8 9
+python scripts/21_fullres_comparison.py   # adds family "window" to fullres_tests.csv and fig_fullres_window.png
+```
+
 **5. Figures**
 ```bash
 python scripts/05_plot_results.py
