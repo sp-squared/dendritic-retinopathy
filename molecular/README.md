@@ -109,3 +109,9 @@ here **do** feed a model: a dANN whose dendrites follow Reactome pathways (see t
 
 `python scripts/23_pathway_dann.py --download-reactome` fetches both from https://reactome.org/download-data;
 record the Reactome release (shown on that page) here: Release: [TODO]
+
+If reactome.org is unreachable, `--download-enrichr` saves Enrichr's copy of the same gene sets
+(library `Reactome_2022`, https://maayanlab.cloud/Enrichr/) as `molecular/reactome/Reactome_2022.gmt`.
+Enrichr has no hierarchy file, so the somas are then 25 groups of pathways with overlapping genes
+(average-linkage clustering on Jaccard distance; `--soma-groups`), which uses no labels.
+`run_info.json` records which soma source a run used (`soma_source`). Record here which was used: [TODO]

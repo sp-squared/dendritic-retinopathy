@@ -50,8 +50,8 @@ import torch
 from sklearn.linear_model import LogisticRegressionCV
 from sklearn.model_selection import GroupKFold, StratifiedGroupKFold
 
-from dendritic_dr.pathway import (REACTOME_GMT_URL, REACTOME_REL_URL, DenseMLP, PathwayDANN, build_masks,
-                                  dendrite_contributions, expressed, log_cpm, matched_dense, predict, random_like,
+from dendritic_dr.pathway import (ENRICHR_URL, REACTOME_GMT_URL, REACTOME_REL_URL, DenseMLP, PathwayDANN, build_masks,
+                                  dendrite_contributions, expressed, log_cpm, matched_dense, overlap_groups, predict, random_like,
                                   read_gmt, read_relations, smoke_expression, train_torch)
 from dendritic_dr.utils import REPO_ROOT, results_root
 
@@ -78,7 +78,34 @@ def download_reactome():
             dest.unlink(missing_ok=True)
             raise SystemExit(f"download failed ({e}). Download the two files in a browser from "
                              f"https://reactome.org/download-data (ReactomePathways.gmt.zip and "
-                             f"ReactomePathwaysRelation.txt) and save them in {REACTOME}/")
+                             f"ReactomePathwaysRelation.txt) and save them in {REACTOME}/, or use the "
+                             f"Enrichr copy: --download-enrichr")
+
+
+def download_enrichr(library: str):
+    """Reactome gene sets from Enrichr's server (no hierarchy file there: somas then come from
+    gene-overlap groups, see --soma-groups)."""
+    REACTOME.mkdir(parents=True, exist_ok=True)
+    url, dest = ENRICHR_URL.format(library), REACTOME / f"{library}.gmt"
+    print(f"downloading {url} -> {dest}")
+    try:
+        urllib.request.urlretrieve(url, dest)
+    except Exception as e:
+        dest.unlink(missing_ok=True)
+        raise SystemExit(f"download failed ({e}). Open {url} in a browser and save the page as {dest}")
+    n = sum(1 for line in dest.read_text().splitlines() if line.strip())
+    print(f"{n:,} gene sets")
+
+
+def find_gene_sets(arg: str | None) -> Path:
+    if arg:
+        return Path(arg)
+    for pattern in ("ReactomePathways.gmt*", "Reactome*.gmt", "Reactome*.txt"):
+        hits = sorted(p for p in REACTOME.glob(pattern) if "Relation" not in p.name)
+        if hits:
+            return hits[-1]
+    raise SystemExit(f"no Reactome gene sets in {REACTOME}/: run --download-reactome or --download-enrichr "
+                     "(see molecular/README.md)")
 
 
 def load_real(args):
@@ -107,8 +134,13 @@ def load_real(args):
     counts = counts[counts.index.isin(sym.index)]
     counts.index = sym.reindex(counts.index).values
     counts = counts.groupby(level=0).sum()  # several ids for one symbol -> summed
-    gmt = read_gmt(next(REACTOME.glob("ReactomePathways.gmt*")))
-    parents = read_relations(REACTOME / "ReactomePathwaysRelation.txt")
+    src = find_gene_sets(args.gmt)
+    gmt = read_gmt(src)
+    rel = Path(args.relations) if args.relations and args.relations != "none" else REACTOME / "ReactomePathwaysRelation.txt"
+    parents = read_relations(rel) if rel.exists() and args.relations != "none" else None
+    print(f"gene sets: {src.name} ({len(gmt):,}); somas: " +
+          (f"Reactome top-level categories ({rel.name})" if parents is not None else
+           f"{args.soma_groups} gene-overlap groups (no hierarchy file)"))
     return counts, sel[["title", "donor", "y"]].reset_index(drop=True), gmt, parents
 
 
@@ -140,25 +172,40 @@ def main():
     p.add_argument("--matrix", default=str(GEO / "raw" / "GSE160306_series_matrix.txt.gz"))
     p.add_argument("--counts", default=str(GEO / "raw" / "GSE160306_human_retina_DR_totalRNA_counts.txt.gz"))
     p.add_argument("--download-reactome", action="store_true", help="fetch the Reactome files, then stop")
+    p.add_argument("--download-enrichr", action="store_true",
+                   help="fetch Enrichr's copy of the Reactome gene sets (if reactome.org is unreachable), then stop")
+    p.add_argument("--enrichr-library", default="Reactome_2022")
+    p.add_argument("--gmt", default=None, help="gene-set file (default: the Reactome file in molecular/reactome/)")
+    p.add_argument("--relations", default=None, help="Reactome hierarchy file (default: molecular/reactome/...); 'none' = use gene-overlap somas")
+    p.add_argument("--soma-groups", type=int, default=25,
+                   help="without the hierarchy file: number of gene-overlap groups used as somas")
     p.add_argument("--smoke", action="store_true")
     args = p.parse_args()
 
     if args.download_reactome:
         download_reactome()
         return
+    if args.download_enrichr:
+        download_enrichr(args.enrichr_library)
+        return
     if args.smoke:
         counts, meta, gmt, parents = smoke_expression()
+        if args.relations == "none":
+            parents = None
         args.repeats, args.epochs, args.name = min(args.repeats, 3), min(args.epochs, 150), "smoke"
     else:
-        if not list(REACTOME.glob("ReactomePathways.gmt*")):
-            raise SystemExit("Reactome files missing: run with --download-reactome first (see molecular/README.md)")
         counts, meta, gmt, parents = load_real(args)
 
     genes = expressed(counts)
     universe = sorted(set(genes) & set().union(*(m for _, m in gmt.values())))
-    masks = build_masks(universe, gmt, parents, args.min_size, args.max_size)
+    masks = build_masks(universe, gmt, parents or {}, args.min_size, args.max_size)
     universe = [g for g, used in zip(universe, masks["M1"].any(0)) if used]  # genes on some dendrite
-    masks = build_masks(universe, gmt, parents, args.min_size, args.max_size)
+    masks = build_masks(universe, gmt, parents or {}, args.min_size, args.max_size)
+    soma_source = "reactome-hierarchy"
+    if parents is None:  # no hierarchy: somas = gene-overlap groups of the kept pathways (no labels used)
+        parents, gnames = overlap_groups(masks["pathways"], masks["pathway_names"], masks["M1"], args.soma_groups)
+        masks = build_masks(universe, gmt, parents, args.min_size, args.max_size, extra_names=gnames)
+        soma_source = f"gene-overlap-{args.soma_groups}"
     X_all = log_cpm(counts).loc[universe, meta["title"]].T.to_numpy(np.float64)
     y, groups = meta["y"].to_numpy(), meta["donor"].astype(str).to_numpy()
     M1, M2 = masks["M1"], masks["M2"]
@@ -230,7 +277,7 @@ def main():
     json.dump({k: v for k, v in vars(args).items()} | {
         "n_samples": int(len(meta)), "n_donors": int(len(np.unique(groups))), "n_case": int(y.sum()),
         "n_genes": len(universe), "n_pathways": int(M1.shape[0]), "n_categories": int(M2.shape[0]),
-        "dann_params": n_params, "dense_hidden": [h1, h2]}, open(out / "run_info.json", "w"), indent=2)
+        "dann_params": n_params, "dense_hidden": [h1, h2], "soma_source": soma_source}, open(out / "run_info.json", "w"), indent=2)
     print(f"wrote {out / 'oof.csv'}, {out / 'contributions.csv'}, {out / 'masks.json'}, {out / 'run_info.json'}")
 
 

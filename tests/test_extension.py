@@ -5,7 +5,8 @@ import numpy as np
 import torch
 
 from dendritic_dr.pathway import (DenseMLP, PathwayDANN, build_masks, dendrite_contributions, expressed, log_cpm,
-                                  matched_dense, random_like, smoke_expression, top_levels, train_torch)
+                                  matched_dense, overlap_groups, random_like, read_gmt, smoke_expression, top_levels,
+                                  train_torch)
 
 
 def load(path, name):
@@ -77,3 +78,19 @@ def test_pathway_dann_learns_planted_signal_and_attributes_it():
     with torch.no_grad():
         acc = ((model(torch.as_tensor(X, dtype=torch.float32)) > 0).numpy() == y).mean()
     assert acc > 0.9
+
+
+def test_enrichr_gmt_and_overlap_somas(tmp_path):
+    f = tmp_path / "Reactome_2022.gmt"
+    f.write_text("Collagen Formation R-HSA-1474290\t\tCOL1A1\tCOL1A2,1.0\tCOL3A1\n"
+                 "Interleukin-6 Signaling R-HSA-1059683\t\tIL6\tIL6R\n")
+    gmt = read_gmt(f)
+    assert gmt["R-HSA-1474290"] == ("Collagen Formation", {"COL1A1", "COL1A2", "COL3A1"})
+    assert "R-HSA-1059683" in gmt
+    # two families of overlapping pathways -> two gene-overlap groups
+    M1 = np.zeros((4, 30), bool)
+    M1[0, 0:10] = M1[1, 2:12] = True
+    M1[2, 15:25] = M1[3, 17:27] = True
+    parents, names = overlap_groups(["a", "b", "c", "d"], ["A", "B", "C", "D"], M1, k=2)
+    assert parents["a"] == parents["b"] != parents["c"] == parents["d"]
+    assert len(names) == 2

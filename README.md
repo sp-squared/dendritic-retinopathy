@@ -393,6 +393,8 @@ influential dendrites are immune, extracellular-matrix and TGF-beta/BMP pathways
 Needs the GSE160306 files from step 8 (`molecular/geo2r/raw/`).
 ```bash
 python scripts/23_pathway_dann.py --download-reactome    # once: Reactome GMT + hierarchy -> molecular/reactome/
+#   if reactome.org is unreachable: Enrichr's copy of the gene sets; somas become gene-overlap groups
+#   python scripts/23_pathway_dann.py --download-enrichr
 python scripts/23_pathway_dann.py                        # any DR vs. non-diabetic control (both retinal sites)
 python scripts/24_pathway_comparison.py                  # -> auc_by_model.csv, auc_tests.csv, top_pathways.csv, fig_pathway.png
 python scripts/23_pathway_dann.py --control Diabetic --name dr_vs_diabetic   # harder: DR vs. diabetes without DR

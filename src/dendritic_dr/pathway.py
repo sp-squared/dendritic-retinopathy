@@ -13,6 +13,7 @@ Masks come from two Reactome files (https://reactome.org/download-data):
 from __future__ import annotations
 
 import io
+import re
 import zipfile
 from pathlib import Path
 
@@ -26,6 +27,8 @@ from .models import MaskedLinear
 
 REACTOME_GMT_URL = "https://reactome.org/download/current/ReactomePathways.gmt.zip"
 REACTOME_REL_URL = "https://reactome.org/download/current/ReactomePathwaysRelation.txt"
+# Enrichr (Ma'ayan Lab) serves the same Reactome gene sets from its own server; no hierarchy
+ENRICHR_URL = "https://maayanlab.cloud/Enrichr/geneSetLibrary?mode=text&libraryName={}"
 
 
 # ----------------------------------------------------------------------------- Reactome
@@ -41,9 +44,39 @@ def read_gmt(path: Path) -> dict[str, tuple[str, set[str]]]:
     out = {}
     for line in io.StringIO(text):
         parts = line.rstrip("\n").split("\t")
-        if len(parts) >= 3:
-            out[parts[1]] = (parts[0], {g for g in parts[2:] if g})
+        if len(parts) < 3:
+            continue
+        name, ident = parts[0].strip(), parts[1].strip()
+        if not ident:  # Enrichr format: "Name R-HSA-123", empty second column
+            m = re.search(r"R-HSA-\d+", name)
+            ident = m.group(0) if m else name
+            name = re.sub(r"\s*R-HSA-\d+\s*$", "", name)
+        genes = {g.split(",")[0].strip() for g in parts[2:] if g.strip()}  # Enrichr may add ",weight"
+        out[ident] = (name, genes)
     return out
+
+
+def overlap_groups(pathways: list[str], names: list[str], M1: np.ndarray, k: int = 25) -> tuple[dict, dict]:
+    """Stand-in for the Reactome hierarchy when it is unavailable: group pathways into k somas by
+    average-linkage clustering on the Jaccard distance between their gene sets (uses no labels).
+    Returns ({pathway: {group id}}, {group id: readable name})."""
+    from scipy.cluster.hierarchy import fcluster, linkage
+    from scipy.spatial.distance import pdist
+
+    if len(pathways) <= k:
+        labels = np.arange(1, len(pathways) + 1)
+    else:
+        labels = fcluster(linkage(pdist(M1.astype(bool), "jaccard"), "average"), k, criterion="maxclust")
+    sizes = M1.sum(1)
+    parents, gnames = {}, {}
+    for g in np.unique(labels):
+        members = np.flatnonzero(labels == g)
+        lead = members[np.argmax(sizes[members])]
+        gid = f"GROUP-{g:02d}"
+        gnames[gid] = f"group {g}: {names[lead]} (+{len(members) - 1})"
+        for i in members:
+            parents[pathways[i]] = {gid}
+    return parents, gnames
 
 
 def read_relations(path: Path, prefix: str = "R-HSA-") -> dict[str, set[str]]:
@@ -71,7 +104,8 @@ def top_levels(pid: str, parents: dict[str, set[str]]) -> set[str]:
     return roots
 
 
-def build_masks(genes: list[str], gmt: dict, parents: dict, min_size: int = 10, max_size: int = 300):
+def build_masks(genes: list[str], gmt: dict, parents: dict, min_size: int = 10, max_size: int = 300,
+                extra_names: dict | None = None):
     """Pathway (dendrite) and category (soma) masks over the given genes.
 
     Pathways keep only genes present in `genes` and are kept if min_size <= size <= max_size.
@@ -96,7 +130,8 @@ def build_masks(genes: list[str], gmt: dict, parents: dict, min_size: int = 10, 
     for j, ts in enumerate(tops):
         for t in ts:
             M2[cidx[t], j] = True
-    name = {pid: gmt[pid][0] if pid in gmt else pid for pid in set(pids) | set(cats)}
+    extra = extra_names or {}
+    name = {pid: gmt[pid][0] if pid in gmt else extra.get(pid, pid) for pid in set(pids) | set(cats)}
     return {"pathways": pids, "pathway_names": [name[p] for p in pids], "categories": cats,
             "category_names": [name[c] for c in cats], "M1": M1, "M2": M2}
 
