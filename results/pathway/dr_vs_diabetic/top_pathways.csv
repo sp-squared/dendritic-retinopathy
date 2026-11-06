@@ -1,0 +1,26 @@
+pathway,name,size,categories,mean_abs_contribution,case_minus_control,top25_share,theme
+R-HSA-425407,SLC-mediated Transmembrane Transport,182,group 9: SLC-mediated Transmembrane Transport (+25),0.1744342160284898,0.01719982222188264,1.0,False
+R-HSA-446203,Asparagine N-linked Glycosylation,265,group 10: Asparagine N-linked Glycosylation (+25),0.150615333008059,-0.011316395737230778,0.7,False
+R-HSA-1483257,Phospholipid Metabolism,182,group 5: Phospholipid Metabolism (+17),0.1333289073180344,0.010016165263950825,0.6,False
+R-HSA-71387,Metabolism Of Carbohydrates,248,group 15: Metabolism Of Carbohydrates (+98),0.1255804600730791,0.013050498766824603,0.7,False
+R-HSA-5668914,Diseases Of Metabolism,200,group 15: Metabolism Of Carbohydrates (+98),0.12548898150039425,0.02767150250263512,0.8,False
+R-HSA-202733,Cell Surface Interactions At Vascular Wall,92,group 9: SLC-mediated Transmembrane Transport (+25),0.11335128439685045,0.02321517146192491,0.6,False
+R-HSA-6811442,Intra-Golgi And Retrograde Golgi-to-ER Traffic,173,group 10: Asparagine N-linked Glycosylation (+25),0.11196806936572164,0.0030381471291184427,0.5,False
+R-HSA-9007101,Rab Regulation Of Trafficking,118,group 10: Asparagine N-linked Glycosylation (+25),0.1076358926892912,-0.004783797380514443,0.5,False
+R-HSA-500792,GPCR Ligand Binding,223,group 8: Transmission Across Chemical Synapses (+131),0.10587919311503233,0.016633321195840836,0.5,False
+R-HSA-9658195,Leishmania Infection,169,group 8: Transmission Across Chemical Synapses (+131),0.10332086282008786,0.03137211512774229,0.5,False
+R-HSA-9659379,Sensory Processing Of Sound,66,group 9: SLC-mediated Transmembrane Transport (+25),0.10194886910050349,-0.00725693300832063,0.6,False
+R-HSA-381119,Unfolded Protein Response (UPR),85,group 12: Unfolded Protein Response (UPR) (+23),0.10151400650709362,0.03415967946872115,0.6,False
+R-HSA-1474244,Extracellular Matrix Organization,228,group 15: Metabolism Of Carbohydrates (+98),0.09766173538597996,-0.036354785906733016,0.4,True
+R-HSA-199977,ER To Golgi Anterograde Transport,127,group 10: Asparagine N-linked Glycosylation (+25),0.09716457756141485,-0.009575239140540362,0.4,False
+R-HSA-1428517,Citric Acid (TCA) Cycle And Respiratory Electron Transport,158,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+89),0.09553489999301037,0.014739961001323536,0.5,False
+R-HSA-76002,"Platelet Activation, Signaling And Aggregation",213,group 15: Metabolism Of Carbohydrates (+98),0.09460829318958824,0.043211776427924634,0.5,False
+R-HSA-2132295,MHC Class II Antigen Presentation,94,group 10: Asparagine N-linked Glycosylation (+25),0.09350156442467439,-0.006122388280928135,0.4,True
+R-HSA-1483206,Glycerophospholipid Biosynthesis,111,group 5: Phospholipid Metabolism (+17),0.09332697860722951,0.0037037938472349197,0.4,False
+R-HSA-425393,Transport Of Inorganic Cations/Anions And Amino Acids/Oligopeptides,83,group 9: SLC-mediated Transmembrane Transport (+25),0.09320828647873665,0.013155061206780373,0.5,False
+R-HSA-948021,Transport To Golgi And Subsequent Modification,153,group 10: Asparagine N-linked Glycosylation (+25),0.09246329785782402,0.010387599887326359,0.4,False
+R-HSA-373076,Class A/1 (Rhodopsin-like Receptors),143,group 8: Transmission Across Chemical Synapses (+131),0.08818217925095963,0.0021999595500528813,0.4,False
+R-HSA-9609507,Protein Localization,154,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+89),0.08816724931347673,0.004650680585764348,0.3,False
+R-HSA-8856688,Golgi-to-ER Retrograde Transport,107,group 10: Asparagine N-linked Glycosylation (+25),0.08749874565529368,0.021443357907701285,0.3,False
+R-HSA-198933,Immunoregulatory Interactions Between A Lymphoid And A non-Lymphoid Cell,55,group 11: Interferon Gamma Signaling (+11),0.08677518496731833,-0.007045683151809499,0.4,True
+R-HSA-418594,G Alpha (I) Signaling Events,193,group 8: Transmission Across Chemical Synapses (+131),0.08628736337867834,-0.008879343774169683,0.3,False

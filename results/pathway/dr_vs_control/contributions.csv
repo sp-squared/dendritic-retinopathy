@@ -1,6 +1,1301 @@
 pathway,name,size,categories,mean_abs_contribution,case_minus_control,top25_share
-R-HSA-162582,Signal Transduction,11,group 2: Signal Transduction (+0),0.5141646690666676,0.7486924114637077,1.0
-R-HSA-168256,Immune System,16,group 5: Immune System (+0),0.4819176706217103,0.7149689495563507,1.0
-R-HSA-168249,Innate Immune System,11,group 4: Innate Immune System (+0),0.3824380995863575,0.5860216686874629,1.0
-R-HSA-1430728,Metabolism,10,group 1: Metabolism (+0),0.3146014640644445,0.3682694603689015,1.0
-R-HSA-1643685,Disease,14,group 3: Disease (+0),0.29678911238403644,0.40810149639844895,1.0
+R-HSA-446203,Asparagine N-linked Glycosylation,264,group 12: Asparagine N-linked Glycosylation (+22),0.19634659157087236,0.21630372665822506,0.8
+R-HSA-1483257,Phospholipid Metabolism,181,group 5: Phospholipid Metabolism (+17),0.15277299853949414,0.12861254964314867,0.9
+R-HSA-6811442,Intra-Golgi And Retrograde Golgi-to-ER Traffic,172,group 12: Asparagine N-linked Glycosylation (+22),0.14891319647470835,0.09587683401128742,0.7
+R-HSA-948021,Transport To Golgi And Subsequent Modification,152,group 12: Asparagine N-linked Glycosylation (+22),0.13754394122604596,0.07741889053955674,0.5
+R-HSA-5668914,Diseases Of Metabolism,199,group 15: Extracellular Matrix Organization (+95),0.12343079418701641,0.11231230983510614,0.7
+R-HSA-909733,Interferon Alpha/Beta Signaling,52,group 10: Interferon Gamma Signaling (+8),0.11444164971678944,0.048812237503007054,0.4
+R-HSA-1474244,Extracellular Matrix Organization,223,group 15: Extracellular Matrix Organization (+95),0.11233680925758208,0.10783930606208741,0.8
+R-HSA-9609507,Protein Localization,154,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.1121772107178882,0.07319436001358554,0.8
+R-HSA-76002,"Platelet Activation, Signaling And Aggregation",214,group 15: Extracellular Matrix Organization (+95),0.11149263187485225,0.10035711659118533,0.6
+R-HSA-1500931,Cell-Cell Communication,102,group 7: Cell-Cell Communication (+12),0.11112734840598779,0.06741715552983805,0.5
+R-HSA-199977,ER To Golgi Anterograde Transport,126,group 12: Asparagine N-linked Glycosylation (+22),0.10943179649569221,0.06885442689526826,0.6
+R-HSA-1483206,Glycerophospholipid Biosynthesis,110,group 5: Phospholipid Metabolism (+17),0.10505727107194647,0.09561761169577948,0.4
+R-HSA-983231,Factors Involved In Megakaryocyte Development And Platelet Production,105,group 12: Asparagine N-linked Glycosylation (+22),0.10470281239930478,0.04961692492244765,0.5
+R-HSA-9007101,Rab Regulation Of Trafficking,118,group 12: Asparagine N-linked Glycosylation (+22),0.10395706496753936,0.06272210861090571,0.5
+R-HSA-8856688,Golgi-to-ER Retrograde Transport,106,group 12: Asparagine N-linked Glycosylation (+22),0.10383465633553973,0.05214784884825349,0.3
+R-HSA-1428517,Citric Acid (TCA) Cycle And Respiratory Electron Transport,158,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.09989994628260196,0.06693864029832185,0.5
+R-HSA-6811434,COPI-dependent Golgi-to-ER Retrograde Traffic,73,group 12: Asparagine N-linked Glycosylation (+22),0.09843582228867936,0.08770764708518981,0.4
+R-HSA-418594,G Alpha (I) Signaling Events,192,group 9: Transmission Across Chemical Synapses (+160),0.09819605588218418,0.07071387419011443,0.5
+R-HSA-877300,Interferon Gamma Signaling,73,group 10: Interferon Gamma Signaling (+8),0.09702522748039435,0.04630722968373448,0.4
+R-HSA-6782315,tRNA Modification In Nucleus And Cytosol,41,group 3: tRNA Aminoacylation (+3),0.09681781660883798,0.0337574378127465,0.5
+R-HSA-2132295,MHC Class II Antigen Presentation,94,group 12: Asparagine N-linked Glycosylation (+22),0.09400299293131141,-0.01273160134907812,0.3
+R-HSA-211859,Biological Oxidations,131,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.09168285783222418,0.05689588008215651,0.3
+R-HSA-163125,Post-translational Modification: Synthesis Of GPI-anchored Proteins,55,group 14: Post-translational Modification: Synthesis Of GPI-anchored Proteins (+2),0.09084736419154994,0.0515950220200466,0.3
+R-HSA-198933,Immunoregulatory Interactions Between A Lymphoid And A non-Lymphoid Cell,55,group 10: Interferon Gamma Signaling (+8),0.09053049059249303,0.032882012224872595,0.2
+R-HSA-3214842,HDMs Demethylate Histones,24,group 18: HDMs Demethylate Histones (+0),0.08766506717587678,0.047289400286972524,0.4
+R-HSA-425407,SLC-mediated Transmembrane Transport,182,group 9: Transmission Across Chemical Synapses (+160),0.08757134788369729,0.05327908283099532,0.3
+R-HSA-75153,Apoptotic Execution Phase,46,group 7: Cell-Cell Communication (+12),0.08681582535096144,0.034465090986341235,0.5
+R-HSA-9658195,Leishmania Infection,168,group 9: Transmission Across Chemical Synapses (+160),0.08608414114184551,0.033460421103518455,0.3
+R-HSA-379726,Mitochondrial tRNA Aminoacylation,21,group 3: tRNA Aminoacylation (+3),0.08602226160652146,0.038657660436001606,0.4
+R-HSA-6807878,COPI-mediated Anterograde Transport,76,group 12: Asparagine N-linked Glycosylation (+22),0.08577345722686436,0.018516855398193,0.3
+R-HSA-1483249,Inositol Phosphate Metabolism,46,group 5: Phospholipid Metabolism (+17),0.08544624437581969,0.03438885072682751,0.3
+R-HSA-8978868,Fatty Acid Metabolism,134,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.08525547908019211,0.05593643268570304,0.2
+R-HSA-9709957,Sensory Perception,195,group 15: Extracellular Matrix Organization (+95),0.08459979626586882,0.05376191707327962,0.2
+R-HSA-379724,tRNA Aminoacylation,42,group 3: tRNA Aminoacylation (+3),0.08458351735420272,0.08643214871874079,0.3
+R-HSA-446728,Cell Junction Organization,71,group 7: Cell-Cell Communication (+12),0.08038907831266397,0.042995717979501934,0.4
+R-HSA-189200,Cellular Hexose Transport,12,group 23: Cellular Hexose Transport (+0),0.08006648335416439,0.02398811310529709,0.4
+R-HSA-8876198,RAB GEFs Exchange GTP For GDP On RABs,88,group 12: Asparagine N-linked Glycosylation (+22),0.07916174926242586,0.03575745547190309,0.2
+R-HSA-3781865,Diseases Of Glycosylation,121,group 15: Extracellular Matrix Organization (+95),0.07900644792085987,0.04417502068914473,0.3
+R-HSA-112315,Transmission Across Chemical Synapses,226,group 9: Transmission Across Chemical Synapses (+160),0.07738530813889988,0.047131781056523325,0.2
+R-HSA-196854,Metabolism Of Vitamins And Cofactors,159,group 15: Extracellular Matrix Organization (+95),0.07734758169469187,0.06158655224367976,0.3
+R-HSA-70263,Gluconeogenesis,25,group 20: Gluconeogenesis (+13),0.07471669987946555,0.025800142634034275,0.2
+R-HSA-6811438,Intra-Golgi Traffic,40,group 12: Asparagine N-linked Glycosylation (+22),0.07406267477041584,0.016502428613603116,0.3
+R-HSA-163200,"Respiratory Electron Transport, ATP Synthesis By Chemiosmotic Coupling, Heat Production By Uncoupling Proteins",110,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.07178774157823142,0.04625228058546781,0.2
+R-HSA-5602358,Diseases Associated With TLR Signaling Cascade,23,group 20: Gluconeogenesis (+13),0.07147119692368907,0.030961511266650633,0.1
+R-HSA-500792,GPCR Ligand Binding,221,group 9: Transmission Across Chemical Synapses (+160),0.07091509465570167,0.046214384427294135,0.1
+R-HSA-611105,Respiratory Electron Transport,89,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.0702369237823759,0.05667071736417711,0.1
+R-HSA-622323,Presynaptic Nicotinic Acetylcholine Receptors,10,group 1: Acetylcholine Binding And Downstream Events (+1),0.06879410523614428,0.017381278303655563,0.3
+R-HSA-8873719,RAB Geranylgeranylation,59,group 12: Asparagine N-linked Glycosylation (+22),0.0680740657625562,0.02581387643702328,0.2
+R-HSA-5660526,Response To Metal Ions,11,group 25: Response To Metal Ions (+0),0.06712912527718029,0.053981167294550686,0.2
+R-HSA-196849,Metabolism Of Water-Soluble Vitamins And Cofactors,105,group 15: Extracellular Matrix Organization (+95),0.06688420389920978,0.055372530240565536,0.1
+R-HSA-114608,Platelet Degranulation,103,group 15: Extracellular Matrix Organization (+95),0.06621118541175532,0.03528269724920392,0.2
+R-HSA-3371497,HSP90 Chaperone Cycle For Steroid Hormone Receptors (SHR) In Presence Of Ligand,36,group 12: Asparagine N-linked Glycosylation (+22),0.06618616784749143,0.013562056585215032,0.2
+R-HSA-421270,Cell-cell Junction Organization,47,group 7: Cell-Cell Communication (+12),0.06609783772758003,0.029411687436513602,0.2
+R-HSA-983189,Kinesins,38,group 12: Asparagine N-linked Glycosylation (+22),0.06606946687324572,0.005598673443309963,0.1
+R-HSA-1989781,PPARA Activates Gene Expression,101,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.06548068575813609,0.051958846638444814,0.2
+R-HSA-8854214,TBC/RABGAPs,42,group 12: Asparagine N-linked Glycosylation (+22),0.06533384054141529,0.04216644560307031,0.2
+R-HSA-1660499,Synthesis Of PIPs At Plasma Membrane,47,group 5: Phospholipid Metabolism (+17),0.06493939920565335,0.03748651767615229,0.2
+R-HSA-15869,Metabolism Of Nucleotides,81,group 19: Metabolism Of Nucleotides (+6),0.06424139051903355,0.02630482809152454,0.2
+R-HSA-2028269,Signaling By Hippo,20,group 7: Cell-Cell Communication (+12),0.0642139347435875,0.0069686735258437695,0.1
+R-HSA-3270619,IRF3-mediated Induction Of Type I IFN,11,group 10: Interferon Gamma Signaling (+8),0.0639531849173166,-0.0042457319831009956,0.1
+R-HSA-6811440,Retrograde Transport At Trans-Golgi-Network,46,group 12: Asparagine N-linked Glycosylation (+22),0.06314986370645968,0.028329401748487727,0.1
+R-HSA-420029,Tight Junction Interactions,21,group 7: Cell-Cell Communication (+12),0.0630633538245555,-0.00215351180115249,0.1
+R-HSA-1482788,Acyl Chain Remodelling Of PC,18,group 5: Phospholipid Metabolism (+17),0.06288918484026029,0.053628179864026605,0.3
+R-HSA-6805567,Keratinization,24,group 7: Cell-Cell Communication (+12),0.06285428620220786,-0.012206613745802316,0.2
+R-HSA-1483255,PI Metabolism,72,group 5: Phospholipid Metabolism (+17),0.0626408538361814,0.008958410470950185,0.1
+R-HSA-1834941,STING Mediated Induction Of Host Immune Responses,13,group 10: Interferon Gamma Signaling (+8),0.060467014735529075,0.016005497728619957,0.2
+R-HSA-162592,Integration Of Provirus,10,group 10: Interferon Gamma Signaling (+8),0.0603128831833601,0.01995376294478774,0.1
+R-HSA-111465,Apoptotic Cleavage Of Cellular Proteins,32,group 7: Cell-Cell Communication (+12),0.05952904096694063,0.004289891216903925,0.0
+R-HSA-8957322,Metabolism Of Steroids,122,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.05935350561798629,0.021330993575975298,0.1
+R-HSA-373076,Class A/1 (Rhodopsin-like Receptors),142,group 9: Transmission Across Chemical Synapses (+160),0.059282032049939794,0.04164718663785607,0.1
+R-HSA-204005,COPII-mediated Vesicle Transport,63,group 12: Asparagine N-linked Glycosylation (+22),0.058914406944887115,0.016726689282804727,0.0
+R-HSA-416476,G Alpha (Q) Signaling Events,132,group 9: Transmission Across Chemical Synapses (+160),0.05876965340921434,0.024231030847877266,0.0
+R-HSA-381426,Regulation Of IGF Transport And Uptake By IGFBPs,90,group 15: Extracellular Matrix Organization (+95),0.057273326157513314,0.04082129254005849,0.0
+R-HSA-983712,Ion Channel Transport,144,group 9: Transmission Across Chemical Synapses (+160),0.056953016775896995,0.025154267130419614,0.0
+R-HSA-112314,Neurotransmitter Receptors And Postsynaptic Signal Transmission,166,group 9: Transmission Across Chemical Synapses (+160),0.05641421759974653,0.03349342637229711,0.0
+R-HSA-983170,"Antigen Presentation: Folding, Assembly, Peptide Loading Of Class I MHC",27,group 10: Interferon Gamma Signaling (+8),0.055871365819957185,-0.005053247438077051,0.1
+R-HSA-76005,Response To Elevated Platelet Cytosolic Ca2+,108,group 15: Extracellular Matrix Organization (+95),0.05541624412950823,0.030275095999240876,0.1
+R-HSA-499943,Interconversion Of Nucleotide Di- And Triphosphates,27,group 19: Metabolism Of Nucleotides (+6),0.05469058337113307,0.02124331326391257,0.1
+R-HSA-1483191,Synthesis Of PC,26,group 5: Phospholipid Metabolism (+17),0.05376401155692786,0.02546879862071364,0.1
+R-HSA-379716,Cytosolic tRNA Aminoacylation,24,group 3: tRNA Aminoacylation (+3),0.05356467857451762,0.03281358078122139,0.1
+R-HSA-6809371,Formation Of Cornified Envelope,17,group 7: Cell-Cell Communication (+12),0.053481232352018106,-0.009861572298686951,0.0
+R-HSA-381340,Transcriptional Regulation Of White Adipocyte Differentiation,78,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.05292467526105919,0.03160612509193015,0.0
+R-HSA-202733,Cell Surface Interactions At Vascular Wall,91,group 9: Transmission Across Chemical Synapses (+160),0.05286666231064158,0.023842166238755454,0.0
+R-HSA-3238698,WNT Ligand Biogenesis And Trafficking,15,group 22: WNT Ligand Biogenesis And Trafficking (+0),0.052848519040745195,0.027328187429811805,0.1
+R-HSA-400253,Circadian Clock,66,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.05269908732655695,0.024617318217642604,0.0
+R-HSA-400206,Regulation Of Lipid Metabolism By PPARalpha,103,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.0523703552466833,0.03636766545474529,0.0
+R-HSA-5576891,Cardiac Conduction,103,group 9: Transmission Across Chemical Synapses (+160),0.05205742622260991,0.03620112770899141,0.0
+R-HSA-73817,Purine Ribonucleoside Monophosphate Biosynthesis,10,group 19: Metabolism Of Nucleotides (+6),0.05196408076227595,0.014411996871931478,0.1
+R-HSA-5223345,Miscellaneous Transport And Binding Events,21,group 7: Cell-Cell Communication (+12),0.05194015066549813,0.019525455018738286,0.0
+R-HSA-1793185,Chondroitin Sulfate/Dermatan Sulfate Metabolism,48,group 15: Extracellular Matrix Organization (+95),0.051727534333338675,0.03354655382689089,0.1
+R-HSA-1630316,Glycosaminoglycan Metabolism,105,group 15: Extracellular Matrix Organization (+95),0.05161178308712729,0.027596462187357246,0.1
+R-HSA-446193,Biosynthesis Of N-glycan Precursor (Dolichol LLO) And Transfer To Protein,73,group 15: Extracellular Matrix Organization (+95),0.05144817012093835,0.020335515346378088,0.1
+R-HSA-8956319,Nucleotide Catabolism,28,group 19: Metabolism Of Nucleotides (+6),0.051172888051260704,0.03808043321711011,0.0
+R-HSA-1855204,Synthesis Of IP3 And IP4 In Cytosol,25,group 5: Phospholipid Metabolism (+17),0.05113391522199736,0.01726865460339468,0.0
+R-HSA-162594,Early Phase Of HIV Life Cycle,14,group 10: Interferon Gamma Signaling (+8),0.05087426395581688,0.005619195501785725,0.1
+R-HSA-8986944,Transcriptional Regulation By MECP2,55,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.05037069147042299,0.01502696211449802,0.0
+R-HSA-211945,Phase I - Functionalization Of Compounds,63,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.05008836719049614,0.037304621814982966,0.0
+R-HSA-264870,Caspase-mediated Cleavage Of Cytoskeletal Proteins,12,group 7: Cell-Cell Communication (+12),0.0497826278975265,0.01757014875067398,0.0
+R-HSA-9662851,Anti-inflammatory Response Favoring Leishmania Infection,99,group 9: Transmission Across Chemical Synapses (+160),0.0492885755785441,0.014753363635390997,0.0
+R-HSA-397014,Muscle Contraction,152,group 9: Transmission Across Chemical Synapses (+160),0.04891792805234002,0.02002867220900953,0.0
+R-HSA-1236977,Endosomal/Vacuolar Pathway,10,group 10: Interferon Gamma Signaling (+8),0.04881954230743034,-0.013505378864356316,0.1
+R-HSA-8957275,Post-translational Protein Phosphorylation,80,group 15: Extracellular Matrix Organization (+95),0.04870642742844519,0.013002481198636815,0.0
+R-HSA-1855183,"Synthesis Of IP2, IP, And Ins In Cytosol",13,group 5: Phospholipid Metabolism (+17),0.048022863864346205,0.01971896556962747,0.0
+R-HSA-1482801,Acyl Chain Remodelling Of PS,15,group 5: Phospholipid Metabolism (+17),0.04797014829197551,0.01404634679609444,0.0
+R-HSA-622312,Inflammasomes,16,group 20: Gluconeogenesis (+13),0.04774365193170833,0.008301593693431641,0.1
+R-HSA-1660514,Synthesis Of PIPs At Golgi Membrane,14,group 5: Phospholipid Metabolism (+17),0.047730040727617315,-0.0016861712958780117,0.0
+R-HSA-1614635,Sulfur Amino Acid Metabolism,23,group 20: Gluconeogenesis (+13),0.04739044486560812,0.0023209185036830605,0.1
+R-HSA-1483166,Synthesis Of PA,29,group 5: Phospholipid Metabolism (+17),0.04738759946749423,0.013062335065442313,0.0
+R-HSA-2187338,Visual Phototransduction,83,group 15: Extracellular Matrix Organization (+95),0.047218792367789704,0.017445473517291248,0.0
+R-HSA-6811436,COPI-independent Golgi-to-ER Retrograde Traffic,33,group 12: Asparagine N-linked Glycosylation (+22),0.04679092536562012,0.026539767822032444,0.1
+R-HSA-5635838,Activation Of SMO,15,group 12: Asparagine N-linked Glycosylation (+22),0.04640220008095947,0.0028605770517606288,0.1
+R-HSA-1474228,Degradation Of Extracellular Matrix,74,group 15: Extracellular Matrix Organization (+95),0.04638326719908391,0.02790247977245599,0.0
+R-HSA-74259,Purine Catabolism,14,group 19: Metabolism Of Nucleotides (+6),0.04612125118689264,0.036185544089821636,0.0
+R-HSA-418990,Adherens Junctions Interactions,24,group 7: Cell-Cell Communication (+12),0.046094665968774866,0.01627102302387357,0.0
+R-HSA-9619665,EGR2 And SOX10-mediated Initiation Of Schwann Cell Myelination,27,group 8: EGR2 And SOX10-mediated Initiation Of Schwann Cell Myelination (+3),0.045993932770659864,0.026771034034900366,0.0
+R-HSA-428157,Sphingolipid Metabolism,78,group 15: Extracellular Matrix Organization (+95),0.04588298063796266,0.0343766490946291,0.0
+R-HSA-5620924,Intraflagellar Transport,35,group 12: Asparagine N-linked Glycosylation (+22),0.04588106181788242,0.016848312043584883,0.0
+R-HSA-5694530,Cargo Concentration In ER,28,group 12: Asparagine N-linked Glycosylation (+22),0.04557600965944387,0.02304978406522423,0.0
+R-HSA-9754560,SARS-CoV-2 Modulates Autophagy,11,group 13: SARS-CoV-2 Modulates Autophagy (+0),0.045574013160352235,-0.01400303102505859,0.1
+R-HSA-6806834,Signaling By MET,61,group 15: Extracellular Matrix Organization (+95),0.04453006295834557,0.012908019786700607,0.0
+R-HSA-446219,Synthesis Of Substrates In N-glycan Biosythesis,59,group 15: Extracellular Matrix Organization (+95),0.04420728892585168,0.029770042275777085,0.0
+R-HSA-1592230,Mitochondrial Biogenesis,87,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.0440733743547383,0.011834086561575531,0.1
+R-HSA-1268020,Mitochondrial Protein Import,62,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.0439691638151752,0.024763916880474426,0.0
+R-HSA-1482839,Acyl Chain Remodelling Of PE,19,group 5: Phospholipid Metabolism (+17),0.043771245447776705,0.026204754132777452,0.0
+R-HSA-383280,Nuclear Receptor Transcription Pathway,43,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.043768233067150844,0.03460501849884167,0.0
+R-HSA-5578768,Physiological Factors,10,group 8: EGR2 And SOX10-mediated Initiation Of Schwann Cell Myelination (+3),0.043688220335012774,0.0031300973985344174,0.1
+R-HSA-5603041,IRAK4 Deficiency (TLR2/4),11,group 20: Gluconeogenesis (+13),0.04354121404447419,0.01198851345689036,0.0
+R-HSA-216083,Integrin Cell Surface Interactions,55,group 15: Extracellular Matrix Organization (+95),0.04346500262618065,0.027739838426932693,0.0
+R-HSA-446353,Cell-extracellular Matrix Interactions,16,group 7: Cell-Cell Communication (+12),0.043414795630408246,0.0017420433285587932,0.1
+R-HSA-211897,Cytochrome P450 - Arranged By Substrate Type,36,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.04334977922361281,0.023748641782440245,0.1
+R-HSA-5602498,MyD88 Deficiency (TLR2/4),10,group 20: Gluconeogenesis (+13),0.0432408581341822,0.02793901076714974,0.1
+R-HSA-1660516,Synthesis Of PIPs At Early Endosome Membrane,16,group 5: Phospholipid Metabolism (+17),0.04304090979335419,-0.006004940213169902,0.0
+R-HSA-8864260,Transcriptional Regulation By AP-2 (TFAP2) Family Of Transcription Factors,33,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.0430035656254928,0.028935042675584555,0.0
+R-HSA-181431,Acetylcholine Binding And Downstream Events,11,group 1: Acetylcholine Binding And Downstream Events (+1),0.0429585468606092,0.033863748353978734,0.0
+R-HSA-3906995,Diseases Associated With O-glycosylation Of Proteins,53,group 15: Extracellular Matrix Organization (+95),0.04294969573601196,0.020957966515561567,0.0
+R-HSA-156580,Phase II - Conjugation Of Compounds,63,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.04286344425626478,0.007714066442567855,0.1
+R-HSA-1638091,Heparan Sulfate/Heparin (HS-GAG) Metabolism,50,group 15: Extracellular Matrix Organization (+95),0.04285460168306353,0.017566302479244768,0.0
+R-HSA-1655829,Regulation Of Cholesterol Biosynthesis By SREBP (SREBF),54,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.042705811490699394,0.009724104893393815,0.0
+R-HSA-1482925,Acyl Chain Remodelling Of PG,10,group 5: Phospholipid Metabolism (+17),0.04257176392080294,0.014847360389539972,0.0
+R-HSA-9609523,Insertion Of Tail-Anchored Proteins Into Endoplasmic Reticulum Membrane,21,group 20: Gluconeogenesis (+13),0.042229934150384646,0.012753186118789017,0.0
+R-HSA-5609975,Diseases Associated With Glycosylation Precursor Biosynthesis,14,group 14: Post-translational Modification: Synthesis Of GPI-anchored Proteins (+2),0.042202462909261745,-0.008924662613644614,0.0
+R-HSA-8956321,Nucleotide Salvage,16,group 19: Metabolism Of Nucleotides (+6),0.041985887701039094,-0.002469425783492625,0.0
+R-HSA-163685,Integration Of Energy Metabolism,93,group 9: Transmission Across Chemical Synapses (+160),0.04170420561419895,0.018882828932837582,0.0
+R-HSA-391251,Protein Folding,84,group 9: Transmission Across Chemical Synapses (+160),0.04158421929420556,0.02237712393514812,0.0
+R-HSA-9664424,Cell Recruitment (Pro-Inflammatory Response),18,group 20: Gluconeogenesis (+13),0.04077303999387738,-0.005762167108478025,0.0
+R-HSA-975634,Retinoid Metabolism And Transport,33,group 15: Extracellular Matrix Organization (+95),0.04062173455259052,0.0016282773204147815,0.0
+R-HSA-71406,Pyruvate Metabolism And Citric Acid (TCA) Cycle,51,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.04058206968514596,0.013800536766648292,0.0
+R-HSA-375276,Peptide Ligand-Binding Receptors,76,group 9: Transmission Across Chemical Synapses (+160),0.040392614118123456,0.01243594859726727,0.0
+R-HSA-5173105,O-linked Glycosylation,79,group 15: Extracellular Matrix Organization (+95),0.03992527845804974,0.022116231275722386,0.0
+R-HSA-9029569,NR1H3 And NR1H2 Regulate Gene Expression Linked To Cholesterol Transport And Efflux,31,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03991155146415961,0.030393229331821203,0.0
+R-HSA-9748784,Drug ADME,48,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03975848475534279,0.03012389030540362,0.0
+R-HSA-6803157,Antimicrobial Peptides,18,group 20: Gluconeogenesis (+13),0.039406985874777124,0.01366744673345238,0.0
+R-HSA-3560782,Diseases Associated With Glycosaminoglycan Metabolism,36,group 15: Extracellular Matrix Organization (+95),0.03937308179033068,0.026537402778922116,0.0
+R-HSA-936837,Ion Transport By P-type ATPases,46,group 9: Transmission Across Chemical Synapses (+160),0.039276066880231185,0.02269138926640153,0.0
+R-HSA-1660517,Synthesis Of PIPs At Late Endosome Membrane,11,group 5: Phospholipid Metabolism (+17),0.039229435983540145,-0.01309954473254038,0.0
+R-HSA-189451,Heme Biosynthesis,12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.0388793080587382,0.0054763391718734055,0.1
+R-HSA-71336,Pentose Phosphate Pathway,12,group 21: Pentose Phosphate Pathway (+0),0.03877241018354514,0.02042711151065305,0.1
+R-HSA-1483213,Synthesis Of PE,13,group 5: Phospholipid Metabolism (+17),0.038669815684779216,0.013454785593785346,0.0
+R-HSA-162710,Synthesis Of Glycosylphosphatidylinositol (GPI),17,group 14: Post-translational Modification: Synthesis Of GPI-anchored Proteins (+2),0.03859439459589894,0.00264831448730547,0.0
+R-HSA-389661,Glyoxylate Metabolism And Glycine Degradation,27,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03859412118445261,0.02318933072150685,0.0
+R-HSA-75876,Synthesis Of Very Long-Chain Fatty acyl-CoAs,20,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03824155022650642,0.040797821331652814,0.0
+R-HSA-209776,Metabolism Of Amine-Derived Hormones,10,group 6: Metabolism Of Amine-Derived Hormones (+0),0.038159442881627356,-0.004309875100152567,0.1
+R-HSA-8963693,Aspartate And Asparagine Metabolism,10,group 20: Gluconeogenesis (+13),0.03810142533897059,-0.00650296692721895,0.0
+R-HSA-390466,Chaperonin-mediated Protein Folding,79,group 9: Transmission Across Chemical Synapses (+160),0.038045290158272294,0.031308415518142285,0.0
+R-HSA-111885,Opioid Signaling,81,group 9: Transmission Across Chemical Synapses (+160),0.03786713783392462,0.02418820613529533,0.0
+R-HSA-1474290,Collagen Formation,74,group 15: Extracellular Matrix Organization (+95),0.03784095614564494,0.02874046371143777,0.0
+R-HSA-9660821,ADORA2B Mediated Anti-Inflammatory Cytokine Production,72,group 9: Transmission Across Chemical Synapses (+160),0.0378250436077952,0.013464706693193875,0.0
+R-HSA-5683826,Surfactant Metabolism,18,group 12: Asparagine N-linked Glycosylation (+22),0.03778840818746268,0.012458441476919688,0.0
+R-HSA-1614558,Degradation Of Cysteine And Homocysteine,13,group 20: Gluconeogenesis (+13),0.03776696695555475,-0.003041159517597407,0.0
+R-HSA-8964539,Glutamate And Glutamine Metabolism,13,group 20: Gluconeogenesis (+13),0.03773048651025836,0.018349662236869336,0.0
+R-HSA-6799198,Complex I Biogenesis,51,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03760574110862562,0.009576661130995489,0.0
+R-HSA-3000171,Non-integrin membrane-ECM Interactions,39,group 15: Extracellular Matrix Organization (+95),0.03718004514052833,0.01540506491670385,0.0
+R-HSA-8868766,rRNA Processing In Mitochondrion,10,group 24: rRNA Processing In Mitochondrion (+0),0.03701610033700274,0.012608354033436625,0.1
+R-HSA-419408,Lysosphingolipid And LPA Receptors,11,group 8: EGR2 And SOX10-mediated Initiation Of Schwann Cell Myelination (+3),0.03677548530360613,-0.0069391444015491285,0.1
+R-HSA-1296071,Potassium Channels,83,group 9: Transmission Across Chemical Synapses (+160),0.03672994842784384,0.008235186599195003,0.0
+R-HSA-9772572,Early SARS-CoV-2 Infection Events,31,group 15: Extracellular Matrix Organization (+95),0.03657084867689695,0.00977669934349251,0.0
+R-HSA-1660661,Sphingolipid De Novo Biosynthesis,41,group 15: Extracellular Matrix Organization (+95),0.03644715585919508,0.01759827462490648,0.0
+R-HSA-192105,Synthesis Of Bile Acids And Bile Salts,28,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.036095595515088445,0.011106453188476735,0.0
+R-HSA-2022090,Assembly Of Collagen Fibrils And Other Multimeric Structures,46,group 15: Extracellular Matrix Organization (+95),0.03609301999874287,-0.0021416710410267115,0.0
+R-HSA-5083635,Defective B3GALTL Causes PpS,36,group 15: Extracellular Matrix Organization (+95),0.03602756038781697,0.015158849426079542,0.0
+R-HSA-68884,Mitotic Telophase/Cytokinesis,12,group 4: Mitotic Telophase/Cytokinesis (+2),0.03580054940213844,-0.0007735097850672901,0.0
+R-HSA-4090294,SUMOylation Of Intracellular Receptors,25,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03565896650681556,0.004725749527569861,0.0
+R-HSA-8949664,Processing Of SMDT1,16,group 2: Mitochondrial Calcium Ion Transport (+1),0.03564156259930992,0.0053824284533038735,0.0
+R-HSA-166658,Complement Cascade,30,group 15: Extracellular Matrix Organization (+95),0.03552177899479629,0.022840977485466284,0.0
+R-HSA-5686938,Regulation Of TLR By Endogenous Ligand,10,group 20: Gluconeogenesis (+13),0.035339669430218004,0.004439090933301486,0.0
+R-HSA-75105,Fatty acyl-CoA Biosynthesis,31,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.035260248011356944,0.01964946123654954,0.0
+R-HSA-9033241,Peroxisomal Protein Import,57,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03521408419108997,0.011486159029300325,0.0
+R-HSA-844456,NLRP3 Inflammasome,12,group 20: Gluconeogenesis (+13),0.03518267710090386,0.0009022081268994953,0.0
+R-HSA-6794362,Protein-protein Interactions At Synapses,88,group 9: Transmission Across Chemical Synapses (+160),0.035159743282059994,0.02511816661572084,0.0
+R-HSA-1855167,Synthesis Of Pyrophosphates In Cytosol,10,group 5: Phospholipid Metabolism (+17),0.03507680853994532,-0.002372767051856499,0.0
+R-HSA-9707616,Heme Signaling,38,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03500072478742923,0.014462032306473702,0.0
+R-HSA-9659379,Sensory Processing Of Sound,66,group 9: Transmission Across Chemical Synapses (+160),0.03481567871078091,0.005127520771202399,0.0
+R-HSA-3000178,ECM Proteoglycans,42,group 15: Extracellular Matrix Organization (+95),0.03470573830003929,0.02137707381712971,0.0
+R-HSA-418555,G Alpha (S) Signaling Events,94,group 9: Transmission Across Chemical Synapses (+160),0.03460281798458201,0.024387310054153205,0.0
+R-HSA-9662360,Sensory Processing Of Sound By Inner Hair Cells Of Cochlea,59,group 9: Transmission Across Chemical Synapses (+160),0.03457277394452338,0.011464091325178742,0.0
+R-HSA-9772573,Late SARS-CoV-2 Infection Events,55,group 15: Extracellular Matrix Organization (+95),0.034454405367753266,0.021480288784950972,0.0
+R-HSA-2470946,Cohesin Loading Onto Chromatin,10,group 4: Mitotic Telophase/Cytokinesis (+2),0.03435997365928507,-0.008575455842365045,0.0
+R-HSA-71403,Citric Acid Cycle (TCA Cycle),21,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.034128332852338586,0.006518218277487903,0.0
+R-HSA-163841,"Gamma Carboxylation, Hypusine Formation And Arylsulfatase Activation",35,group 15: Extracellular Matrix Organization (+95),0.03390499734363155,0.01850462236237945,0.0
+R-HSA-422356,Regulation Of Insulin Secretion,68,group 9: Transmission Across Chemical Synapses (+160),0.033583262493297204,0.017216093887109308,0.0
+R-HSA-8949215,Mitochondrial Calcium Ion Transport,22,group 2: Mitochondrial Calcium Ion Transport (+1),0.03351495240939877,0.01607272285288104,0.0
+R-HSA-5362517,Signaling By Retinoic Acid,36,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.033355202289077186,0.012578366766683757,0.0
+R-HSA-3560801,Defective B3GAT3 Causes JDSSDHD,20,group 15: Extracellular Matrix Organization (+95),0.03328942307253798,0.012529736870310443,0.0
+R-HSA-5173214,O-glycosylation Of TSR Domain-Containing Proteins,37,group 15: Extracellular Matrix Organization (+95),0.033237952375011294,0.013594104329404217,0.0
+R-HSA-8956320,Nucleotide Biosynthesis,12,group 19: Metabolism Of Nucleotides (+6),0.033157545516772545,0.0008220454212278128,0.0
+R-HSA-6806667,Metabolism Of Fat-Soluble Vitamins,37,group 15: Extracellular Matrix Organization (+95),0.03295558794417371,0.012953412792412564,0.0
+R-HSA-1650814,Collagen Biosynthesis And Modifying Enzymes,56,group 15: Extracellular Matrix Organization (+95),0.0329477155235817,0.009128369808604476,0.0
+R-HSA-977443,GABA Receptor Activation,54,group 9: Transmission Across Chemical Synapses (+160),0.03272973139202064,0.017946403202367945,0.0
+R-HSA-425393,Transport Of Inorganic Cations/Anions And Amino Acids/Oligopeptides,83,group 9: Transmission Across Chemical Synapses (+160),0.03269895610352189,0.009706419170834124,0.0
+R-HSA-8866910,TFAP2 (AP-2) Family Regulates Transcription Of Growth Factors And Their Receptors,12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03252830361410723,0.02250872042030096,0.0
+R-HSA-9603798,Class I Peroxisomal Membrane Protein Import,20,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.032431279771598216,0.02695889333146624,0.0
+R-HSA-2672351,Stimuli-sensing Channels,79,group 9: Transmission Across Chemical Synapses (+160),0.032240736228808506,0.0027700837748125197,0.0
+R-HSA-390918,Peroxisomal Lipid Metabolism,25,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03203075821353596,0.007994078105548396,0.0
+R-HSA-9707564,Cytoprotection By HMOX1,52,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03201244194218415,0.010975386124337093,0.0
+R-HSA-1660662,Glycosphingolipid Metabolism,37,group 15: Extracellular Matrix Organization (+95),0.03196839970315538,0.011971469039999648,0.0
+R-HSA-4085001,Sialic Acid Metabolism,30,group 15: Extracellular Matrix Organization (+95),0.03177586973534297,0.008118130179354921,0.0
+R-HSA-140837,Intrinsic Pathway Of Fibrin Clot Formation,14,group 15: Extracellular Matrix Organization (+95),0.03174165363060468,0.01957479461154435,0.0
+R-HSA-3000170,Syndecan Interactions,19,group 15: Extracellular Matrix Organization (+95),0.031712531308856616,0.021460717460431624,0.0
+R-HSA-2426168,Activation Of Gene Expression By SREBF (SREBP),41,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03151675228550399,0.02258225976023823,0.0
+R-HSA-2980736,Peptide Hormone Metabolism,59,group 9: Transmission Across Chemical Synapses (+160),0.031240046081938228,0.01724625431234017,0.0
+R-HSA-2032785,YAP1- And WWTR1 (TAZ)-stimulated Gene Expression,11,group 8: EGR2 And SOX10-mediated Initiation Of Schwann Cell Myelination (+3),0.031209161711888294,-0.011276991232298314,0.0
+R-HSA-3000157,Laminin Interactions,21,group 15: Extracellular Matrix Organization (+95),0.031167025537120103,0.021225310759990634,0.0
+R-HSA-5579029,Metabolic Disorders Of Biological Oxidation Enzymes,24,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.031054368823514145,0.017474614386446773,0.0
+R-HSA-1369062,ABC Transporters In Lipid Homeostasis,15,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.031036433514397024,0.01328011923469603,0.0
+R-HSA-8949613,Cristae Formation,29,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.03073444297641784,-0.00022260615325649268,0.0
+R-HSA-9024446,NR1H2 And NR1H3-mediated Signaling,38,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.030698119173363105,0.00751740850508213,0.0
+R-HSA-1566948,Elastic Fibre Formation,34,group 15: Extracellular Matrix Organization (+95),0.030686729300325198,0.011197940378915519,0.0
+R-HSA-112040,G-protein Mediated Events,48,group 9: Transmission Across Chemical Synapses (+160),0.030662304537875926,0.004973704310832545,0.0
+R-HSA-70895,Branched-chain Amino Acid Catabolism,21,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.030542496156531495,0.01746723896008916,0.0
+R-HSA-373080,Class B/2 (Secretin Family Receptors),56,group 9: Transmission Across Chemical Synapses (+160),0.030322246191139192,0.016924798308173193,0.0
+R-HSA-418346,Platelet Homeostasis,75,group 9: Transmission Across Chemical Synapses (+160),0.030056390628786917,0.00946503579383716,0.0
+R-HSA-445717,Aquaporin-mediated Transport,40,group 9: Transmission Across Chemical Synapses (+160),0.029985198682426648,0.009938516897382215,0.0
+R-HSA-4755510,SUMOylation Of Immune Response Proteins,11,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.029819054052705275,0.00022098423454735894,0.0
+R-HSA-3296469,Defects In Cobalamin (B12) Metabolism,12,group 15: Extracellular Matrix Organization (+95),0.02975543201190688,0.0037449064711108804,0.0
+R-HSA-210500,Glutamate Neurotransmitter Release Cycle,23,group 9: Transmission Across Chemical Synapses (+160),0.029730170734731828,0.01734008631436154,0.0
+R-HSA-2151201,Transcriptional Activation Of Mitochondrial Biogenesis,51,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.029690790910400073,0.005704571802634745,0.0
+R-HSA-2468052,Establishment Of Sister Chromatid Cohesion,11,group 4: Mitotic Telophase/Cytokinesis (+2),0.029609880569786567,0.011539041141186318,0.0
+R-HSA-2024096,HS-GAG Degradation,19,group 15: Extracellular Matrix Organization (+95),0.029609082785229814,0.01123138764174655,0.0
+R-HSA-3232118,SUMOylation Of Transcription Factors,17,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.029367520672790075,0.009607486942550168,0.0
+R-HSA-3371571,HSF1-dependent Transactivation,33,group 9: Transmission Across Chemical Synapses (+160),0.029216014840087647,0.006515943384729325,0.0
+R-HSA-975577,N-Glycan Antennae Elongation,14,group 15: Extracellular Matrix Organization (+95),0.02903094398946959,0.0008014532970264554,0.0
+R-HSA-2142753,Arachidonic Acid Metabolism,35,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02900129548921171,0.0167942931514699,0.0
+R-HSA-194068,Bile Acid And Bile Salt Metabolism,31,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.028939983712793407,0.005144519777968526,0.0
+R-HSA-9662361,Sensory Processing Of Sound By Outer Hair Cells Of Cochlea,46,group 9: Transmission Across Chemical Synapses (+160),0.0289248976351346,0.013991145375184715,0.0
+R-HSA-3781860,Diseases Associated With N-glycosylation Of Proteins,19,group 15: Extracellular Matrix Organization (+95),0.02889121268891682,0.006162000251933932,0.0
+R-HSA-9664323,FCGR3A-mediated IL10 Synthesis,33,group 9: Transmission Across Chemical Synapses (+160),0.028774924440530397,0.010708371317014099,0.0
+R-HSA-2046104,Alpha-Linolenic (Omega3) And Linoleic (Omega6) Acid Metabolism,11,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.028483516503504273,0.022127669547917322,0.0
+R-HSA-375165,NCAM Signaling For Neurite Out-Growth,51,group 15: Extracellular Matrix Organization (+95),0.02846513516506401,0.006577493501827121,0.0
+R-HSA-9651496,Defects Of Contact Activation System (CAS) And Kallikrein/Kinin System (KKS),11,group 15: Extracellular Matrix Organization (+95),0.02841211063254593,0.00892125398677308,0.0
+R-HSA-2453902,Canonical Retinoid Cycle In Rods (Twilight Vision),22,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.028203616926241352,0.0007379059521190356,0.0
+R-HSA-77289,Mitochondrial Fatty Acid Beta-Oxidation,32,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.028180478179582663,0.008729382215824444,0.0
+R-HSA-1971475,GAG Synthesis Requires Tetrasaccharide Linker Sequence,26,group 15: Extracellular Matrix Organization (+95),0.028173475680178254,0.011728165630484,0.0
+R-HSA-211976,Endogenous Sterols,20,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02794909756503638,0.019881755783444532,0.0
+R-HSA-8934593,Regulation Of RUNX1 Expression And Activity,17,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02772244566230703,0.0028416746272705495,0.0
+R-HSA-9678108,SARS-CoV-1 Infection,46,group 15: Extracellular Matrix Organization (+95),0.02768082461098872,0.008930260120832827,0.0
+R-HSA-4420332,Defective B3GALT6 Causes EDSP2 And SEMDJL1,20,group 15: Extracellular Matrix Organization (+95),0.02767770166303647,0.00744144840631634,0.0
+R-HSA-975576,N-glycan Antennae Elongation In medial/trans-Golgi,22,group 15: Extracellular Matrix Organization (+95),0.027667142200615193,0.006201802098657936,0.0
+R-HSA-3000480,Scavenging By Class A Receptors,12,group 15: Extracellular Matrix Organization (+95),0.027560902266936787,0.023430710467218886,0.0
+R-HSA-196807,Nicotinate Metabolism,27,group 15: Extracellular Matrix Organization (+95),0.02755747281835746,0.011596462014131248,0.0
+R-HSA-1638074,Keratan Sulfate/Keratin Metabolism,28,group 15: Extracellular Matrix Organization (+95),0.02755315601825714,0.006039405721239745,0.0
+R-HSA-977606,Regulation Of Complement Cascade,28,group 15: Extracellular Matrix Organization (+95),0.02750985175943381,0.0176075755796046,0.0
+R-HSA-112310,Neurotransmitter Release Cycle,49,group 9: Transmission Across Chemical Synapses (+160),0.027408451305197205,0.00593059457562049,0.0
+R-HSA-196791,Vitamin D (Calciferol) Metabolism,10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02737853286977289,0.013995342677808366,0.0
+R-HSA-425366,"Transport Of Bile Salts And Organic Acids, Metal Ions And Amine Compounds",59,group 9: Transmission Across Chemical Synapses (+160),0.02716940838085898,0.022399695621570574,0.0
+R-HSA-2129379,Molecules Associated With Elastic Fibres,24,group 15: Extracellular Matrix Organization (+95),0.0270754351020175,0.01852724706521258,0.0
+R-HSA-8874081,MET Activates PTK2 Signaling,16,group 15: Extracellular Matrix Organization (+95),0.02701760076373121,0.01075292196474038,0.0
+R-HSA-442755,Activation Of NMDA Receptors And Postsynaptic Events,71,group 9: Transmission Across Chemical Synapses (+160),0.026933208458575466,0.011047513716330287,0.0
+R-HSA-9675151,Disorders Of Developmental Biology,12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02666417699271687,0.010187680854578503,0.0
+R-HSA-432040,Vasopressin Regulates Renal Water Homeostasis Via Aquaporins,38,group 9: Transmission Across Chemical Synapses (+160),0.026619998285136486,0.005110991619003471,0.0
+R-HSA-390471,Association Of TriC/CCT With Target Proteins During Biosynthesis,36,group 9: Transmission Across Chemical Synapses (+160),0.026562408657776097,0.015853395856684074,0.0
+R-HSA-1368108,"BMAL1:CLOCK,NPAS2 Activates Circadian Gene Expression",27,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.026435506214477492,0.0039066357297633655,0.0
+R-HSA-193368,Synthesis Of Bile Acids And Bile Salts Via 7Alpha-Hydroxycholesterol,18,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.026274492332151445,0.01322776443703333,0.0
+R-HSA-2022854,Keratan Sulfate Biosynthesis,23,group 15: Extracellular Matrix Organization (+95),0.026256158322853558,0.009486534986644984,0.0
+R-HSA-196741,"Cobalamin (Cbl, Vitamin B12) Transport And Metabolism",15,group 15: Extracellular Matrix Organization (+95),0.02623874298060092,0.009929919427959248,0.0
+R-HSA-2206281,Mucopolysaccharidoses,10,group 15: Extracellular Matrix Organization (+95),0.02622951760540827,0.010150140793994069,0.0
+R-HSA-2022928,HS-GAG Biosynthesis,29,group 15: Extracellular Matrix Organization (+95),0.026099254819564523,0.004073651272337883,0.0
+R-HSA-73894,DNA Repair,284,group 11: Neutrophil Degranulation (+840),0.026093729505694267,0.018728348425356672,0.0
+R-HSA-991365,Activation Of GABAB Receptors,38,group 9: Transmission Across Chemical Synapses (+160),0.02609236721359825,0.005693358106072992,0.0
+R-HSA-5365859,RA Biosynthesis Pathway,18,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.025943234623251956,0.009017387621570378,0.0
+R-HSA-1912420,Pre-NOTCH Processing In Golgi,18,group 15: Extracellular Matrix Organization (+95),0.025810591903341524,0.009529706747853197,0.0
+R-HSA-140875,Common Pathway Of Fibrin Clot Formation,11,group 15: Extracellular Matrix Organization (+95),0.025797174470962848,0.004878896564914612,0.0
+R-HSA-163210,Formation Of ATP By Chemiosmotic Coupling,16,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.025652753411776433,0.019002788178040644,0.0
+R-HSA-1368082,RORA Activates Gene Expression,18,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02553808026931296,0.004252862494831788,0.0
+R-HSA-174403,Glutathione Synthesis And Recycling,11,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.025534551399681023,0.0033597830282815267,0.0
+R-HSA-2173782,Binding And Uptake Of Ligands By Scavenger Receptors,25,group 15: Extracellular Matrix Organization (+95),0.02551415571627223,0.003930653422139585,0.0
+R-HSA-196071,Metabolism Of Steroid Hormones,23,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.025454410481250894,0.014678476490080356,0.0
+R-HSA-9018678,Biosynthesis Of Specialized Proresolving Mediators (SPMs),11,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02544172127431227,0.002794724602717906,0.0
+R-HSA-8866907,Activation Of TFAP2 (AP-2) Family Of Transcription Factors,12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.025408847939017844,0.01424513357167598,0.0
+R-HSA-2474795,Diseases Associated With Visual Transduction,12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.025378661372272644,0.00568163826392265,0.0
+R-HSA-500657,Presynaptic Function Of Kainate Receptors,20,group 9: Transmission Across Chemical Synapses (+160),0.02532299470345853,0.0021083835582248866,0.0
+R-HSA-2243919,Crosslinking Of Collagen Fibrils,10,group 15: Extracellular Matrix Organization (+95),0.025290080641348987,0.00013386385748162866,0.0
+R-HSA-156590,Glutathione Conjugation,28,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02515926309387689,-0.0005455661588348448,0.0
+R-HSA-9022692,Regulation Of MECP2 Expression And Activity,29,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02515265947440639,0.004768049342965241,0.0
+R-HSA-375280,Amine Ligand-Binding Receptors,25,group 9: Transmission Across Chemical Synapses (+160),0.025047263293921696,0.010199614122975618,0.0
+R-HSA-9706574,RHOBTB GTPase Cycle,35,group 9: Transmission Across Chemical Synapses (+160),0.024999066565375205,0.005929987716954201,0.0
+R-HSA-2022870,Chondroitin Sulfate Biosynthesis,19,group 15: Extracellular Matrix Organization (+95),0.024960168422657556,0.015167497219517828,0.0
+R-HSA-9634597,GPER1 Signaling,40,group 9: Transmission Across Chemical Synapses (+160),0.024956067042204284,0.009894720152951777,0.0
+R-HSA-425397,"Transport Of Vitamins, Nucleosides, And Related Molecules",32,group 9: Transmission Across Chemical Synapses (+160),0.024844455294374186,0.007450880222022533,0.0
+R-HSA-392451,G Beta:Gamma Signaling Thru PI3Kgamma,23,group 9: Transmission Across Chemical Synapses (+160),0.024809318127000105,0.010143277057213709,0.0
+R-HSA-5578775,Ion Homeostasis,46,group 9: Transmission Across Chemical Synapses (+160),0.02463981384427239,0.013320689353859052,0.0
+R-HSA-9013422,RHOBTB1 GTPase Cycle,23,group 9: Transmission Across Chemical Synapses (+160),0.02455130095970501,0.0022170801424363164,0.0
+R-HSA-390247,Beta-oxidation Of Very Long Chain Fatty Acids,10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.024511449467153997,-0.0029995144327403978,0.0
+R-HSA-2162123,Synthesis Of Prostaglandins (PG) And Thromboxanes (TX),12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.024401524022095285,0.01675347374752164,0.0
+R-HSA-1442490,Collagen Degradation,24,group 15: Extracellular Matrix Organization (+95),0.024290061039629125,-0.001235222079558298,0.0
+R-HSA-389977,Post-chaperonin Tubulin Folding Pathway,17,group 9: Transmission Across Chemical Synapses (+160),0.024221041037748425,0.008880142112029716,0.0
+R-HSA-2022923,Dermatan Sulfate Biosynthesis,11,group 15: Extracellular Matrix Organization (+95),0.024165511394898264,0.016232629686128347,0.0
+R-HSA-8948700,Competing Endogenous RNAs (ceRNAs) Regulate PTEN Translation,10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.024063642714488305,-0.001252696355804801,0.0
+R-HSA-71291,Metabolism Of Amino Acids And Derivatives,275,group 11: Neutrophil Degranulation (+840),0.02404097552742746,0.023950863589998334,0.0
+R-HSA-114508,Effects Of PIP2 Hydrolysis,26,group 9: Transmission Across Chemical Synapses (+160),0.02403294343690751,0.011965890226420015,0.0
+R-HSA-166663,Initial Triggering Of Complement,11,group 15: Extracellular Matrix Organization (+95),0.02390388577734515,-0.008006240449612961,0.0
+R-HSA-3560783,"Defective B4GALT7 Causes EDS, Progeroid Type",20,group 15: Extracellular Matrix Organization (+95),0.02388232461713507,0.006894354133692104,0.0
+R-HSA-419037,NCAM1 Interactions,31,group 15: Extracellular Matrix Organization (+95),0.023823871690645752,0.002074379208497703,0.0
+R-HSA-420092,Glucagon-type Ligand Receptors,24,group 9: Transmission Across Chemical Synapses (+160),0.02368248294608794,0.0015787560600438156,0.0
+R-HSA-389957,Prefoldin Mediated Transfer Of Substrate To CCT/TriC,25,group 9: Transmission Across Chemical Synapses (+160),0.023669457396663037,0.013087016299341486,0.0
+R-HSA-1187000,Fertilization,11,group 16: Fertilization (+0),0.02366077008704513,0.01820989727275446,0.0
+R-HSA-9753281,Paracetamol ADME,18,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.023651312843115085,0.004579731988196727,0.0
+R-HSA-9683610,Maturation Of Nucleoprotein,11,group 15: Extracellular Matrix Organization (+95),0.02363436661001642,0.0068163634045049545,0.0
+R-HSA-111996,Ca-dependent Events,34,group 9: Transmission Across Chemical Synapses (+160),0.02362928715360872,0.004502009735442698,0.0
+R-HSA-6794361,Neurexins And Neuroligins,57,group 9: Transmission Across Chemical Synapses (+160),0.02352000522048418,0.007900714345742016,0.0
+R-HSA-9022699,MECP2 Regulates Neuronal Receptors And Channels,17,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.023519674772436147,0.011122288157639559,0.0
+R-HSA-212676,Dopamine Neurotransmitter Release Cycle,23,group 9: Transmission Across Chemical Synapses (+160),0.023328387421127646,0.0008285015512228711,0.0
+R-HSA-400042,"Adrenaline,noradrenaline Inhibits Insulin Secretion",27,group 9: Transmission Across Chemical Synapses (+160),0.02331650058217978,0.010526653744746,0.0
+R-HSA-72766,Translation,274,group 11: Neutrophil Degranulation (+840),0.023267555318899073,0.019706417727284133,0.0
+R-HSA-456926,Thrombin Signaling Thru Proteinase Activated Receptors (PARs),28,group 9: Transmission Across Chemical Synapses (+160),0.023127339452789244,0.008936417738441378,0.0
+R-HSA-6814122,Cooperation Of PDCL (PhLP1) And TRiC/CCT In G-protein Beta Folding,34,group 9: Transmission Across Chemical Synapses (+160),0.023080670197446973,0.005601488021202385,0.0
+R-HSA-983695,Antigen Activates B Cell Receptor Leading To Second Messenger Generation,22,group 9: Transmission Across Chemical Synapses (+160),0.02306644309546909,0.005529504537553294,0.0
+R-HSA-442720,CREB1 Phosphorylation Thru Activation Of Adenylate Cyclase,11,group 9: Transmission Across Chemical Synapses (+160),0.023035646174734428,0.0012214026600122453,0.0
+R-HSA-438064,Post NMDA Receptor Activation Events,59,group 9: Transmission Across Chemical Synapses (+160),0.022916977039451506,0.007868622246314771,0.0
+R-HSA-2871809,FCERI Mediated Ca+2 Mobilization,26,group 9: Transmission Across Chemical Synapses (+160),0.022913550743359632,0.009469350209692494,0.0
+R-HSA-71064,Lysine Catabolism,12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.022880657088264065,0.0045777446939609945,0.0
+R-HSA-202040,G-protein Activation,19,group 9: Transmission Across Chemical Synapses (+160),0.022862699024884376,0.0068943479462177494,0.0
+R-HSA-111997,CaM Pathway,32,group 9: Transmission Across Chemical Synapses (+160),0.022858164172374913,0.011246751475264318,0.0
+R-HSA-9683701,Translation Of Structural Proteins,28,group 15: Extracellular Matrix Organization (+95),0.022826229243428777,0.01028579235135112,0.0
+R-HSA-8955332,Carboxyterminal Post-Translational Modifications Of Tubulin,31,group 9: Transmission Across Chemical Synapses (+160),0.02278571761434235,0.014836958113592117,0.0
+R-HSA-5620920,Cargo Trafficking To Periciliary Membrane,49,group 9: Transmission Across Chemical Synapses (+160),0.022784510574064817,0.00476370114573001,0.0
+R-HSA-3656253,"Defective EXT1 Causes Exostoses 1, TRPS2 And CHDS",13,group 15: Extracellular Matrix Organization (+95),0.02277954351788355,0.005829926943406462,0.0
+R-HSA-9679504,Translation Of Replicase And Assembly Of Replication Transcription Complex,10,group 15: Extracellular Matrix Organization (+95),0.022764430187792534,0.0027595901554741432,0.0
+R-HSA-3296482,Defects In Vitamin And Cofactor Metabolism,18,group 15: Extracellular Matrix Organization (+95),0.022707908364778415,-0.005339216806169134,0.0
+R-HSA-1679131,Trafficking And Processing Of Endosomal TLR,11,group 15: Extracellular Matrix Organization (+95),0.022702472674723525,0.0050917675846721975,0.0
+R-HSA-112043,PLC Beta Mediated Events,44,group 9: Transmission Across Chemical Synapses (+160),0.022621433174442814,0.013341528474120424,0.0
+R-HSA-193807,Synthesis Of Bile Acids And Bile Salts Via 27-Hydroxycholesterol,10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.022610756210288255,0.0025060211669187993,0.0
+R-HSA-2142691,Synthesis Of Leukotrienes (LT) And Eoxins (EX),10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.022546723147487204,-0.004432560143613955,0.0
+R-HSA-189445,Metabolism Of Porphyrins,20,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02254531279766648,0.0019423796248156577,0.0
+R-HSA-8943723,Regulation Of PTEN mRNA Translation,11,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.022524651267834133,0.007190806353464723,0.0
+R-HSA-9033658,Blood Group Systems Biosynthesis,15,group 15: Extracellular Matrix Organization (+95),0.02250828205058312,-0.0016013637919968459,0.0
+R-HSA-1489509,DAG And IP3 Signaling,38,group 9: Transmission Across Chemical Synapses (+160),0.02250750721984748,0.006224370443960652,0.0
+R-HSA-5620916,VxPx Cargo-Targeting To Cilium,20,group 9: Transmission Across Chemical Synapses (+160),0.02244787819474399,-0.0016264109178155196,0.0
+R-HSA-2024101,CS/DS Degradation,13,group 15: Extracellular Matrix Organization (+95),0.02242029833023326,0.010013007435481995,0.0
+R-HSA-9694516,SARS-CoV-2 Infection,252,group 11: Neutrophil Degranulation (+840),0.022390561422601468,0.015035022288793698,0.0
+R-HSA-418597,G Alpha (Z) Signaling Events,43,group 9: Transmission Across Chemical Synapses (+160),0.02233759712238433,0.007491333703510464,0.0
+R-HSA-8875878,MET Promotes Cell Motility,26,group 15: Extracellular Matrix Organization (+95),0.022333926541762333,0.00643396339728497,0.0
+R-HSA-418890,Role Of Second Messengers In Netrin-1 Signaling,10,group 9: Transmission Across Chemical Synapses (+160),0.022238091804024022,0.003950713443191489,0.0
+R-HSA-140877,Formation Of Fibrin Clot (Clotting Cascade),21,group 15: Extracellular Matrix Organization (+95),0.022230224150343467,0.007287064166739583,0.0
+R-HSA-5576892,Phase 0 - Rapid Depolarisation,28,group 9: Transmission Across Chemical Synapses (+160),0.022219390617052123,0.0021613894891925156,0.0
+R-HSA-156581,Methylation,10,group 15: Extracellular Matrix Organization (+95),0.02220435024365404,-0.004065607390366495,0.0
+R-HSA-9717207,"Sensory Perception Of Sweet, Bitter, And Umami (Glutamate) Taste",27,group 9: Transmission Across Chemical Synapses (+160),0.022074537016293506,-0.0033899123506853355,0.0
+R-HSA-1362409,Mitochondrial Iron-Sulfur Cluster Biogenesis,12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.02202437289169658,0.0024688035930739718,0.0
+R-HSA-420499,Class C/3 (Metabotropic Glutamate/Pheromone Receptors),23,group 9: Transmission Across Chemical Synapses (+160),0.02192218780391297,0.0003764884709380567,0.0
+R-HSA-977068,Termination Of O-glycan Biosynthesis,10,group 15: Extracellular Matrix Organization (+95),0.021896161327446352,-0.0004549850453622639,0.0
+R-HSA-70268,Pyruvate Metabolism,28,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.021840702684327834,-0.0004901323601370677,0.0
+R-HSA-8948216,Collagen Chain Trimerization,35,group 15: Extracellular Matrix Organization (+95),0.021719256034357693,0.01479026484885253,0.0
+R-HSA-5620971,Pyroptosis,17,group 15: Extracellular Matrix Organization (+95),0.02157009948608347,0.006922371150067192,0.0
+R-HSA-442742,CREB1 Phosphorylation Thru NMDA Receptor-Mediated Activation Of RAS Signaling,27,group 9: Transmission Across Chemical Synapses (+160),0.021460730701653382,0.0067264933267142625,0.0
+R-HSA-8866904,Negative Regulation Of Activity Of TFAP2 (AP-2) Family Transcription Factors,10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.021455406522283615,0.009105741861276329,0.0
+R-HSA-388844,Receptor-type Tyrosine-Protein Phosphatases,20,group 9: Transmission Across Chemical Synapses (+160),0.02143006359179646,0.005578714238945395,0.0
+R-HSA-425410,Metal Ion SLC Transporters,23,group 9: Transmission Across Chemical Synapses (+160),0.021399534201659895,0.0048873252386692915,0.0
+R-HSA-210991,Basigin Interactions,23,group 9: Transmission Across Chemical Synapses (+160),0.021324265588636836,0.009574055685318399,0.0
+R-HSA-381753,Olfactory Signaling Pathway,22,group 9: Transmission Across Chemical Synapses (+160),0.02127128529157174,0.0037806627387180925,0.0
+R-HSA-196757,Metabolism Of Folate And Pterines,16,group 15: Extracellular Matrix Organization (+95),0.021249579832893085,0.003975949680025224,0.0
+R-HSA-5607763,CLEC7A (Dectin-1) Induces NFAT Activation,11,group 9: Transmission Across Chemical Synapses (+160),0.021219182989986266,0.014184231427498162,0.0
+R-HSA-9752946,Expression And Translocation Of Olfactory Receptors,15,group 9: Transmission Across Chemical Synapses (+160),0.021169402859552558,0.0009659964655293152,0.0
+R-HSA-400508,"Incretin Synthesis, Secretion, And Inactivation",16,group 9: Transmission Across Chemical Synapses (+160),0.021152368532414784,0.004629633096046745,0.0
+R-HSA-2514859,"Inactivation, Recovery And Regulation Of Phototransduction Cascade",30,group 9: Transmission Across Chemical Synapses (+160),0.02113348251027134,0.010164848823042121,0.0
+R-HSA-888590,"GABA Synthesis, Release, Reuptake And Degradation",19,group 9: Transmission Across Chemical Synapses (+160),0.021065529229877106,0.004831892428919673,0.0
+R-HSA-8978934,Metabolism Of Cofactors,19,group 9: Transmission Across Chemical Synapses (+160),0.020994649567814955,0.0172103744384367,0.0
+R-HSA-380108,Chemokine Receptors Bind Chemokines,13,group 9: Transmission Across Chemical Synapses (+160),0.02092572181422453,0.010659745881566778,0.0
+R-HSA-392518,Signal Amplification,27,group 9: Transmission Across Chemical Synapses (+160),0.0209073561861676,0.012887404478788085,0.0
+R-HSA-1234158,Regulation Of Gene Expression By Hypoxia-inducible Factor,10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.020900649176436966,0.017140268931398167,0.0
+R-HSA-1296041,Activation Of G Protein Gated Potassium Channels,26,group 9: Transmission Across Chemical Synapses (+160),0.020898189944199334,0.0008049740048591047,0.0
+R-HSA-1296072,Voltage Gated Potassium Channels,37,group 9: Transmission Across Chemical Synapses (+160),0.020810694433748722,0.005300226514227688,0.0
+R-HSA-983168,Antigen Processing: Ubiquitination And Proteasome Degradation,284,group 11: Neutrophil Degranulation (+840),0.02074949746099064,0.011771348943002522,0.0
+R-HSA-2514856,Phototransduction Cascade,31,group 9: Transmission Across Chemical Synapses (+160),0.020744444333091853,0.014767806328309234,0.0
+R-HSA-445095,Interaction Between L1 And Ankyrins,26,group 9: Transmission Across Chemical Synapses (+160),0.02071291451242267,-0.0005113560243626125,0.0
+R-HSA-8951664,Neddylation,216,group 11: Neutrophil Degranulation (+840),0.020626915996041842,0.014639000113820657,0.0
+R-HSA-5620922,BBSome-mediated Cargo-Targeting To Cilium,23,group 9: Transmission Across Chemical Synapses (+160),0.02056428184653869,0.0008389132178854197,0.0
+R-HSA-9013418,RHOBTB2 GTPase Cycle,23,group 9: Transmission Across Chemical Synapses (+160),0.02053491087408166,0.0060111299028721985,0.0
+R-HSA-9037629,Lewis Blood Group Biosynthesis,12,group 15: Extracellular Matrix Organization (+95),0.020475766693155074,0.003396016498445533,0.0
+R-HSA-2142845,Hyaluronan Metabolism,11,group 15: Extracellular Matrix Organization (+95),0.02046901650073932,-0.0015621285691668164,0.0
+R-HSA-5423646,Aflatoxin Activation And Detoxification,12,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.020402153519029586,0.0007728253270033747,0.0
+R-HSA-202131,Metabolism Of Nitric Oxide: NOS3 Activation And Regulation,15,group 9: Transmission Across Chemical Synapses (+160),0.020185932870095957,0.005425941566063557,0.0
+R-HSA-5683057,MAPK Family Signaling Cascades,271,group 11: Neutrophil Degranulation (+840),0.020115329356769383,0.016002560993656517,0.0
+R-HSA-8964616,G Beta:Gamma Signaling Thru CDC42,19,group 9: Transmission Across Chemical Synapses (+160),0.019997083202351707,0.006805719683761709,0.0
+R-HSA-164378,PKA Activation In Glucagon Signaling,15,group 9: Transmission Across Chemical Synapses (+160),0.01997429033252016,-0.001640644638100639,0.0
+R-HSA-196108,Pregnenolone Biosynthesis,10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.0198792924323135,0.014858568793861195,0.0
+R-HSA-3295583,TRP Channels,19,group 9: Transmission Across Chemical Synapses (+160),0.01968071711076013,0.0016179395047947764,0.0
+R-HSA-9748787,Azathioprine ADME,17,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.01966255023459888,-0.0007797149010002613,0.0
+R-HSA-428930,Thromboxane Signaling Thru TP Receptor,20,group 9: Transmission Across Chemical Synapses (+160),0.019639810430176034,0.010699084305306314,0.0
+R-HSA-418592,ADP Signaling Thru P2Y Purinoceptor 1,22,group 9: Transmission Across Chemical Synapses (+160),0.019634366698831444,0.00477132571333641,0.0
+R-HSA-418360,Platelet Calcium Homeostasis,23,group 9: Transmission Across Chemical Synapses (+160),0.019621257232581027,0.00864534595515579,0.0
+R-HSA-264876,Insulin Processing,25,group 9: Transmission Across Chemical Synapses (+160),0.019601946800093313,0.009265923487473628,0.0
+R-HSA-197264,Nicotinamide Salvaging,18,group 15: Extracellular Matrix Organization (+95),0.019560931261502584,0.00483932085102424,0.0
+R-HSA-204174,Regulation Of Pyruvate Dehydrogenase (PDH) Complex,15,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.019547101973666478,0.0010014999774284662,0.0
+R-HSA-9749641,Aspirin ADME,15,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.019402200618504263,0.004065735344483983,0.0
+R-HSA-5218921,VEGFR2 Mediated Cell Proliferation,18,group 9: Transmission Across Chemical Synapses (+160),0.019343622405105666,0.009377795143227558,0.0
+R-HSA-418457,cGMP Effects,14,group 9: Transmission Across Chemical Synapses (+160),0.019332659585496126,0.005649806103901938,0.0
+R-HSA-352230,Amino Acid Transport Across Plasma Membrane,27,group 9: Transmission Across Chemical Synapses (+160),0.019252056516391242,0.005466355297248811,0.0
+R-HSA-191273,Cholesterol Biosynthesis,24,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.019213206197679737,0.00778077227252652,0.0
+R-HSA-1296065,Inwardly Rectifying K+ Channels,31,group 9: Transmission Across Chemical Synapses (+160),0.019164229074682473,0.004155665849102661,0.0
+R-HSA-3247509,Chromatin Modifying Enzymes,216,group 11: Neutrophil Degranulation (+840),0.01915790046934212,0.01497774080351519,0.0
+R-HSA-8964315,G Beta:Gamma Signaling Thru BTK,16,group 9: Transmission Across Chemical Synapses (+160),0.019044787260127587,-0.004158932493883185,0.0
+R-HSA-163359,Glucagon Signaling In Metabolic Regulation,28,group 9: Transmission Across Chemical Synapses (+160),0.01901601728138719,0.00889227981941076,0.0
+R-HSA-5673001,RAF/MAP Kinase Cascade,228,group 11: Neutrophil Degranulation (+840),0.01899066800725157,0.009924678651150315,0.0
+R-HSA-9711097,Cellular Response To Starvation,146,group 11: Neutrophil Degranulation (+840),0.01891190449897618,0.015380290682332997,0.0
+R-HSA-397795,G-protein Beta:Gamma Signaling,29,group 9: Transmission Across Chemical Synapses (+160),0.01889082491476783,0.009751838969532401,0.0
+R-HSA-442660,Na+/Cl- Dependent Neurotransmitter Transporters,10,group 9: Transmission Across Chemical Synapses (+160),0.01888293259208864,0.004358455049805343,0.0
+R-HSA-8876725,Protein Methylation,17,group 9: Transmission Across Chemical Synapses (+160),0.018862527128115644,-0.0012865951437379408,0.0
+R-HSA-381771,"Synthesis, Secretion, And Inactivation Of Glucagon-like Peptide-1 (GLP-1)",14,group 9: Transmission Across Chemical Synapses (+160),0.01884829104578091,0.006251746269408613,0.0
+R-HSA-390522,Striated Muscle Contraction,18,group 9: Transmission Across Chemical Synapses (+160),0.018721085681157754,0.002404830892883183,0.0
+R-HSA-400511,"Synthesis, Secretion, And Inactivation Of Glucose-dependent Insulinotropic Polypeptide (GIP)",11,group 9: Transmission Across Chemical Synapses (+160),0.018682590752476986,0.013417506341065746,0.0
+R-HSA-9668328,Sealing Of Nuclear Envelope (NE) By ESCRT-III,22,group 9: Transmission Across Chemical Synapses (+160),0.01854068449800992,0.005092842159210704,0.0
+R-HSA-8868773,rRNA Processing In Nucleus And Cytosol,185,group 11: Neutrophil Degranulation (+840),0.018538473579653745,0.018477422255964483,0.0
+R-HSA-69620,Cell Cycle Checkpoints,232,group 11: Neutrophil Degranulation (+840),0.018463630383928953,0.010365535526070745,0.0
+R-HSA-9717189,Sensory Perception Of Taste,29,group 9: Transmission Across Chemical Synapses (+160),0.01845684888204402,-0.0040958221652545035,0.0
+R-HSA-392154,Nitric Oxide Stimulates Guanylate Cyclase,19,group 9: Transmission Across Chemical Synapses (+160),0.018371125193652145,0.009605422863096465,0.0
+R-HSA-5576893,Phase 2 - Plateau Phase,12,group 9: Transmission Across Chemical Synapses (+160),0.01830776157449552,0.010181156203907448,0.0
+R-HSA-264642,Acetylcholine Neurotransmitter Release Cycle,17,group 9: Transmission Across Chemical Synapses (+160),0.018259090927855697,-0.0001899755297927186,0.0
+R-HSA-435354,Zinc Transporters,14,group 9: Transmission Across Chemical Synapses (+160),0.018237130685662063,0.001249221215257421,0.0
+R-HSA-913709,O-linked Glycosylation Of Mucins,32,group 15: Extracellular Matrix Organization (+95),0.018234957745140893,0.003554955800063908,0.0
+R-HSA-389960,Formation Of Tubulin Folding Intermediates By CCT/TriC,21,group 9: Transmission Across Chemical Synapses (+160),0.018222137360628377,0.009597748031956144,0.0
+R-HSA-418217,G Beta:Gamma Signaling Thru PLC Beta,19,group 9: Transmission Across Chemical Synapses (+160),0.018186587671417807,1.2578286696225405e-05,0.0
+R-HSA-72312,rRNA Processing,195,group 11: Neutrophil Degranulation (+840),0.018121844637839092,0.01221137601067312,0.0
+R-HSA-9620244,Long-term Potentiation,23,group 9: Transmission Across Chemical Synapses (+160),0.018112974599698337,0.006387023680726998,0.0
+R-HSA-389958,Cooperation Of Prefoldin And TriC/CCT In Actin And Tubulin Folding,27,group 9: Transmission Across Chemical Synapses (+160),0.018102692015926843,0.008398422384634613,0.0
+R-HSA-1474151,"Tetrahydrobiopterin (BH4) Synthesis, Recycling, Salvage And Regulation",10,group 9: Transmission Across Chemical Synapses (+160),0.018035796997719445,0.004802231846115319,0.0
+R-HSA-156584,Cytosolic Sulfonation Of Small Molecules,16,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.01801239517912016,0.006493518819333985,0.0
+R-HSA-392851,Prostacyclin Signaling Thru Prostacyclin Receptor,17,group 9: Transmission Across Chemical Synapses (+160),0.017956668542997944,0.0064329945214558395,0.0
+R-HSA-2029485,Role Of Phospholipids In Phagocytosis,21,group 9: Transmission Across Chemical Synapses (+160),0.01790076064223393,-0.0023849540166247605,0.0
+R-HSA-451326,Activation Of Kainate Receptors Upon Glutamate Binding,28,group 9: Transmission Across Chemical Synapses (+160),0.017883251750581777,0.0041060895905866346,0.0
+R-HSA-438066,"Unblocking Of NMDA Receptors, Glutamate Binding And Activation",21,group 9: Transmission Across Chemical Synapses (+160),0.017861506770368886,-0.0007661209540674463,0.0
+R-HSA-1663150,Activation Of Arylsulfatases,10,group 15: Extracellular Matrix Organization (+95),0.01785474402861575,0.00016007296508178115,0.0
+R-HSA-449836,Other Interleukin Signaling,20,group 9: Transmission Across Chemical Synapses (+160),0.017851420438264386,-0.00034926394931972027,0.0
+R-HSA-139853,Elevation Of Cytosolic Ca2+ Levels,12,group 9: Transmission Across Chemical Synapses (+160),0.01782158390161092,0.004052956544328481,0.0
+R-HSA-3371568,Attenuation Phase,23,group 9: Transmission Across Chemical Synapses (+160),0.017716150702928368,-0.002571067027456593,0.0
+R-HSA-6791226,Major Pathway Of rRNA Processing In Nucleolus And Cytosol,175,group 11: Neutrophil Degranulation (+840),0.01771118308385929,0.012257830745656974,0.0
+R-HSA-9609736,Assembly And Cell Surface Presentation Of NMDA Receptors,24,group 9: Transmission Across Chemical Synapses (+160),0.017674036663786755,0.006760612219295581,0.0
+R-HSA-8849932,Synaptic Adhesion-Like Molecules,21,group 9: Transmission Across Chemical Synapses (+160),0.017668813499779897,0.005047253844095394,0.0
+R-HSA-3371511,HSF1 Activation,26,group 9: Transmission Across Chemical Synapses (+160),0.017624281264715276,0.0035560804954729974,0.0
+R-HSA-381676,Glucagon-like Peptide-1 (GLP1) Regulates Insulin Secretion,38,group 9: Transmission Across Chemical Synapses (+160),0.017545022582635284,-0.00017349574249237777,0.0
+R-HSA-5339562,Uptake And Actions Of Bacterial Toxins,27,group 9: Transmission Across Chemical Synapses (+160),0.01746963311728658,0.0023428577720187604,0.0
+R-HSA-418359,Reduction Of Cytosolic Ca++ Levels,11,group 9: Transmission Across Chemical Synapses (+160),0.01745744348361583,0.006545532296877354,0.0
+R-HSA-157118,Signaling By NOTCH,185,group 11: Neutrophil Degranulation (+840),0.01745024357470526,0.012401476402155822,0.0
+R-HSA-72737,Cap-dependent Translation Initiation,113,group 11: Neutrophil Degranulation (+840),0.017449712692720467,0.014579944311117287,0.0
+R-HSA-392170,ADP Signaling Thru P2Y Purinoceptor 12,19,group 9: Transmission Across Chemical Synapses (+160),0.017320784607554898,-0.00017098676122259348,0.0
+R-HSA-211981,Xenobiotics,10,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.01727876468064358,0.006281240924145095,0.0
+R-HSA-181430,Norepinephrine Neurotransmitter Release Cycle,17,group 9: Transmission Across Chemical Synapses (+160),0.017240298052034263,0.002769461428979412,0.0
+R-HSA-203615,eNOS Activation,11,group 9: Transmission Across Chemical Synapses (+160),0.01722657492900291,0.007875777819135692,0.0
+R-HSA-1592389,Activation Of Matrix Metalloproteinases,15,group 15: Extracellular Matrix Organization (+95),0.017224042954207475,0.001716365204192698,0.0
+R-HSA-72203,Processing Of Capped Intron-Containing Pre-mRNA,238,group 11: Neutrophil Degranulation (+840),0.017163261655181394,0.013054997863837342,0.0
+R-HSA-71387,Metabolism Of Carbohydrates,247,group 11: Neutrophil Degranulation (+840),0.017034118908844195,0.008203662613523193,0.0
+R-HSA-6798695,Neutrophil Degranulation,298,group 11: Neutrophil Degranulation (+840),0.016641525320209193,0.00973441563165636,0.0
+R-HSA-9648002,RAS Processing,17,group 9: Transmission Across Chemical Synapses (+160),0.016621229649616123,0.002037961095193168,0.0
+R-HSA-195721,Signaling By WNT,253,group 11: Neutrophil Degranulation (+840),0.016615012062366232,0.006288691580994055,0.0
+R-HSA-2555396,Mitotic Metaphase And Anaphase,201,group 11: Neutrophil Degranulation (+840),0.01645933737094372,0.013616451899288222,0.0
+R-HSA-5684996,MAPK1/MAPK3 Signaling,234,group 11: Neutrophil Degranulation (+840),0.01635844837242769,0.005665593229932711,0.0
+R-HSA-69275,G2/M Transition,173,group 11: Neutrophil Degranulation (+840),0.016017427089450472,0.012366293792729266,0.0
+R-HSA-376176,Signaling By ROBO Receptors,199,group 11: Neutrophil Degranulation (+840),0.015866601156954794,0.017529048373689876,0.0
+R-HSA-422085,"Synthesis, Secretion, And Deacylation Of Ghrelin",13,group 9: Transmission Across Chemical Synapses (+160),0.01582761595550514,0.004014514450973366,0.0
+R-HSA-1852241,Organelle Biogenesis And Maintenance,265,group 11: Neutrophil Degranulation (+840),0.01570979485604458,0.012256991304657277,0.0
+R-HSA-5210891,Uptake And Function Of Anthrax Toxins,11,group 9: Transmission Across Chemical Synapses (+160),0.01568257600716236,0.0074942680093226955,0.0
+R-HSA-5688426,Deubiquitination,238,group 11: Neutrophil Degranulation (+840),0.01562090753498724,0.011434016064740718,0.0
+R-HSA-9617324,Negative Regulation Of NMDA Receptor-Mediated Neuronal Transmission,21,group 9: Transmission Across Chemical Synapses (+160),0.01559182736485944,0.0002793687646044418,0.0
+R-HSA-68882,Mitotic Anaphase,200,group 11: Neutrophil Degranulation (+840),0.015469409145959416,0.010396349202492274,0.0
+R-HSA-193775,Synthesis Of Bile Acids And Bile Salts Via 24-Hydroxycholesterol,11,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.015381333710215354,-0.002030998806003481,0.0
+R-HSA-199220,Vitamin B5 (Pantothenate) Metabolism,15,group 9: Transmission Across Chemical Synapses (+160),0.015321619529277086,0.00541074815322645,0.0
+R-HSA-181429,Serotonin Neurotransmitter Release Cycle,18,group 9: Transmission Across Chemical Synapses (+160),0.015273321477964646,0.006481196926324628,0.0
+R-HSA-162906,HIV Infection,215,group 11: Neutrophil Degranulation (+840),0.015249947935413823,0.0028590976010309534,0.0
+R-HSA-442982,Ras Activation Upon Ca2+ Influx Thru NMDA Receptor,19,group 9: Transmission Across Chemical Synapses (+160),0.015136298630386591,0.0060663390858098866,0.0
+R-HSA-9010553,Regulation Of Expression Of SLITs And ROBOs,160,group 11: Neutrophil Degranulation (+840),0.014983080607894177,0.015677378335094545,0.0
+R-HSA-9006931,Signaling By Nuclear Receptors,218,group 11: Neutrophil Degranulation (+840),0.014968899818200428,0.01210223785485141,0.0
+R-HSA-975957,Nonsense Mediated Decay (NMD) Enhanced By Exon Junction Complex (EJC),109,group 11: Neutrophil Degranulation (+840),0.014883337499794818,0.01337696631788276,0.0
+R-HSA-162587,HIV Life Cycle,142,group 11: Neutrophil Degranulation (+840),0.01480330352482023,0.0071231462003197524,0.0
+R-HSA-69306,DNA Replication,135,group 11: Neutrophil Degranulation (+840),0.014797806054732557,0.008510989164933562,0.0
+R-HSA-5576886,Phase 4 - Resting Membrane Potential,10,group 9: Transmission Across Chemical Synapses (+160),0.01474702702677351,0.0004865977412555367,0.0
+R-HSA-72689,Formation Of A Pool Of Free 40S Subunits,95,group 11: Neutrophil Degranulation (+840),0.014709912591329697,0.008973879670375027,0.0
+R-HSA-453274,Mitotic G2-G2/M Phases,175,group 11: Neutrophil Degranulation (+840),0.014707508647293484,0.012316381582204486,0.0
+R-HSA-5617833,Cilium Assembly,178,group 11: Neutrophil Degranulation (+840),0.014672703367373826,0.011651983524789102,0.0
+R-HSA-163615,PKA Activation,16,group 9: Transmission Across Chemical Synapses (+160),0.01462738132459443,-0.00034342425817158074,0.0
+R-HSA-9006925,Intracellular Signaling By Second Messengers,269,group 11: Neutrophil Degranulation (+840),0.014513965437220314,0.009090374070219696,0.0
+R-HSA-69002,DNA Replication Pre-Initiation,109,group 11: Neutrophil Degranulation (+840),0.014458915434325887,0.011126198534766445,0.0
+R-HSA-5357801,Programmed Cell Death,182,group 11: Neutrophil Degranulation (+840),0.014408247464068108,0.011914394680934493,0.0
+R-HSA-168799,Neurotoxicity Of Clostridium Toxins,10,group 9: Transmission Across Chemical Synapses (+160),0.014360343139239793,0.0023109547980129717,0.0
+R-HSA-72706,GTP Hydrolysis And Joining Of 60S Ribosomal Subunit,106,group 11: Neutrophil Degranulation (+840),0.01434852525762527,0.011821600067196413,0.0
+R-HSA-156827,L13a-mediated Translational Silencing Of Ceruloplasmin Expression,105,group 11: Neutrophil Degranulation (+840),0.014222300974888948,0.012612245421041734,0.0
+R-HSA-2559583,Cellular Senescence,142,group 11: Neutrophil Degranulation (+840),0.014193803804898951,0.008979933330847416,0.0
+R-HSA-192823,Viral mRNA Translation,87,group 11: Neutrophil Degranulation (+840),0.014155371184855447,0.014183277649863157,0.0
+R-HSA-168898,Toll-like Receptor Cascades,139,group 11: Neutrophil Degranulation (+840),0.01393794441128039,0.0077319723475375215,0.0
+R-HSA-2408557,Selenocysteine Synthesis,87,group 11: Neutrophil Degranulation (+840),0.013847972796263047,0.012521091422531754,0.0
+R-HSA-2485179,Activation Of Phototransduction Cascade,11,group 9: Transmission Across Chemical Synapses (+160),0.013653438537129027,-0.0007441852783085779,0.0
+R-HSA-168255,Influenza Infection,152,group 11: Neutrophil Degranulation (+840),0.013606733268349318,0.009239207692389754,0.0
+R-HSA-5693532,DNA Double-Strand Break Repair,134,group 11: Neutrophil Degranulation (+840),0.013562473168565055,0.007766575552523136,0.0
+R-HSA-5689880,Ub-specific Processing Proteases,164,group 11: Neutrophil Degranulation (+840),0.013546467589814279,0.01848913868132513,0.0
+R-HSA-211000,Gene Silencing By RNA,90,group 11: Neutrophil Degranulation (+840),0.013531802861430383,0.010657849110430107,0.0
+R-HSA-170670,Adenylate Cyclase Inhibitory Pathway,12,group 9: Transmission Across Chemical Synapses (+160),0.013451235115496537,0.001856253903824836,0.0
+R-HSA-111931,PKA-mediated Phosphorylation Of CREB,18,group 9: Transmission Across Chemical Synapses (+160),0.013403652480831054,0.006309641529369401,0.0
+R-HSA-69618,Mitotic Spindle Checkpoint,93,group 11: Neutrophil Degranulation (+840),0.013312034273048532,0.009999476080556633,0.0
+R-HSA-3108232,SUMO E3 Ligases SUMOylate Target Proteins,155,group 11: Neutrophil Degranulation (+840),0.013254361082326178,0.007010901884641498,0.0
+R-HSA-5619115,Disorders Of Transmembrane Transporters,140,group 11: Neutrophil Degranulation (+840),0.013137911668921226,0.012763759844343667,0.0
+R-HSA-9711123,Cellular Response To Chemical Stress,164,group 11: Neutrophil Degranulation (+840),0.013003947498213689,0.006409273417666554,0.0
+R-HSA-73887,Death Receptor Signaling,130,group 11: Neutrophil Degranulation (+840),0.012959054321094053,0.007922858134261333,0.0
+R-HSA-195258,RHO GTPase Effectors,222,group 11: Neutrophil Degranulation (+840),0.012858290112009113,0.013767700766329653,0.0
+R-HSA-2467813,Separation Of Sister Chromatids,148,group 11: Neutrophil Degranulation (+840),0.012857935515674367,0.00891186806402402,0.0
+R-HSA-162599,Late Phase Of HIV Life Cycle,130,group 11: Neutrophil Degranulation (+840),0.012842232747998885,0.007749230812114547,0.0
+R-HSA-913531,Interferon Signaling,165,group 11: Neutrophil Degranulation (+840),0.012830226993093552,0.006425553367007524,0.0
+R-HSA-69242,S Phase,154,group 11: Neutrophil Degranulation (+840),0.012804068231134344,0.005813140213722363,0.0
+R-HSA-975956,Nonsense Mediated Decay (NMD) Independent Of Exon Junction Complex (EJC),89,group 11: Neutrophil Degranulation (+840),0.012701689872113293,0.009465625008742791,0.0
+R-HSA-1799339,SRP-dependent Cotranslational Protein Targeting To Membrane,105,group 11: Neutrophil Degranulation (+840),0.01268963234388601,0.009689602116122843,0.0
+R-HSA-3858494,Beta-catenin Independent WNT Signaling,135,group 11: Neutrophil Degranulation (+840),0.012630648423337488,0.007070928964531049,0.0
+R-HSA-5633007,Regulation Of TP53 Activity,148,group 11: Neutrophil Degranulation (+840),0.012628188206798445,0.003784672233450692,0.0
+R-HSA-9013149,RAC1 GTPase Cycle,165,group 11: Neutrophil Degranulation (+840),0.012621027459706164,0.006174134936300106,0.0
+R-HSA-5682910,LGI-ADAM Interactions,14,group 9: Transmission Across Chemical Synapses (+160),0.012286445143893045,0.005776901811768767,0.0
+R-HSA-201681,TCF Dependent Signaling In Response To WNT,165,group 11: Neutrophil Degranulation (+840),0.01226892902997275,0.005287018507369794,0.0
+R-HSA-68877,Mitotic Prometaphase,168,group 11: Neutrophil Degranulation (+840),0.012235657618996703,0.008964056015247478,0.0
+R-HSA-72172,mRNA Splicing,188,group 11: Neutrophil Degranulation (+840),0.01223474981586875,0.004027199753618333,0.0
+R-HSA-111932,CaMK IV-mediated Phosphorylation Of CREB,10,group 9: Transmission Across Chemical Synapses (+160),0.012219105667624054,0.0062363677838584404,0.0
+R-HSA-112308,Presynaptic Depolarization And Calcium Channel Opening,12,group 9: Transmission Across Chemical Synapses (+160),0.012160586240348123,-0.002196449667644629,0.0
+R-HSA-109581,Apoptosis,161,group 11: Neutrophil Degranulation (+840),0.012077145557455971,0.010458130286242522,0.0
+R-HSA-446652,Interleukin-1 Family Signaling,125,group 11: Neutrophil Degranulation (+840),0.012072494345365913,0.009440056054445449,0.0
+R-HSA-2408522,Selenoamino Acid Metabolism,108,group 11: Neutrophil Degranulation (+840),0.012033408587222318,0.013408748867514078,0.0
+R-HSA-72764,Eukaryotic Translation Termination,86,group 11: Neutrophil Degranulation (+840),0.012030102472635917,0.008730226637781016,0.0
+R-HSA-442380,Zinc Influx Into Cells By SLC39 Gene Family,10,group 9: Transmission Across Chemical Synapses (+160),0.01194976641287459,-0.002461340431618737,0.0
+R-HSA-9705683,SARS-CoV-2-host Interactions,172,group 11: Neutrophil Degranulation (+840),0.011824960605699127,0.00339864841196686,0.0
+R-HSA-8878171,Transcriptional Regulation By RUNX1,168,group 11: Neutrophil Degranulation (+840),0.011821800120908893,0.007307427072373684,0.0
+R-HSA-2990846,SUMOylation,161,group 11: Neutrophil Degranulation (+840),0.011816196148658677,0.007398169810330728,0.0
+R-HSA-8856828,Clathrin-mediated Endocytosis,130,group 11: Neutrophil Degranulation (+840),0.01179572718091688,0.006489907666109502,0.0
+R-HSA-72306,tRNA Processing,98,group 11: Neutrophil Degranulation (+840),0.011774831076184192,0.00454308078653412,0.0
+R-HSA-168273,Influenza Viral RNA Transcription And Replication,133,group 11: Neutrophil Degranulation (+840),0.011563822983219525,0.009601318212517071,0.0
+R-HSA-8939211,ESR-mediated Signaling,159,group 11: Neutrophil Degranulation (+840),0.01156269678080423,0.005443099345138762,0.0
+R-HSA-9609690,HCMV Early Events,82,group 11: Neutrophil Degranulation (+840),0.011327964356326955,0.01054984973394312,0.0
+R-HSA-1257604,PIP3 Activates AKT Signaling,232,group 11: Neutrophil Degranulation (+840),0.011263143683988917,0.003882857431890443,0.0
+R-HSA-156842,Eukaryotic Translation Elongation,86,group 11: Neutrophil Degranulation (+840),0.01118426549887695,0.013503514642070513,0.0
+R-HSA-69481,G2/M Checkpoints,128,group 11: Neutrophil Degranulation (+840),0.011161198173412832,0.006536767362849787,0.0
+R-HSA-162909,Host Interactions Of HIV Factors,122,group 11: Neutrophil Degranulation (+840),0.010922275739327325,0.0007802068500313907,0.0
+R-HSA-3371556,Cellular Response To Heat Stress,94,group 11: Neutrophil Degranulation (+840),0.010910456880564029,0.004388030975242145,0.0
+R-HSA-72662,"mRNA Activation Upon Binding Of Cap-Binding Complex And eIFs, Subsequent Binding To 43S",57,group 11: Neutrophil Degranulation (+840),0.010909489388044893,0.008848792225544458,0.0
+R-HSA-382556,ABC-family Proteins Mediated Transport,94,group 11: Neutrophil Degranulation (+840),0.010836836437682889,0.008921649952972075,0.0
+R-HSA-6785807,Interleukin-4 And Interleukin-13 Signaling,72,group 11: Neutrophil Degranulation (+840),0.010836321708792623,0.0055656413287943,0.0
+R-HSA-167172,Transcription Of HIV Genome,67,group 11: Neutrophil Degranulation (+840),0.010834957872232782,-0.001061579901324876,0.0
+R-HSA-73886,Chromosome Maintenance,96,group 11: Neutrophil Degranulation (+840),0.010811311649000746,0.007141600640607066,0.0
+R-HSA-453279,Mitotic G1 Phase And G1/S Transition,135,group 11: Neutrophil Degranulation (+840),0.01069769138091449,0.007355407368158921,0.0
+R-HSA-5696398,Nucleotide Excision Repair,106,group 11: Neutrophil Degranulation (+840),0.0106723036845925,0.008966743658529595,0.0
+R-HSA-5578749,Transcriptional Regulation By Small RNAs,63,group 11: Neutrophil Degranulation (+840),0.010666841644225484,0.011318953449372202,0.0
+R-HSA-156902,Peptide Chain Elongation,83,group 11: Neutrophil Degranulation (+840),0.01066554279650672,0.012131322664790787,0.0
+R-HSA-2219528,PI3K/AKT Signaling In Cancer,79,group 11: Neutrophil Degranulation (+840),0.010635496566064214,0.006009786285430891,0.0
+R-HSA-8878166,Transcriptional Regulation By RUNX2,102,group 11: Neutrophil Degranulation (+840),0.010618566578822368,0.00858153821900487,0.0
+R-HSA-72202,Transport Of Mature Transcript To Cytoplasm,80,group 11: Neutrophil Degranulation (+840),0.010509373354567688,0.005245111559634097,0.0
+R-HSA-9705671,SARS-CoV-2 Activates/Modulates Innate And Adaptive Immune Responses,98,group 11: Neutrophil Degranulation (+840),0.01048974136237876,0.00604977784329094,0.0
+R-HSA-9013148,CDC42 GTPase Cycle,141,group 11: Neutrophil Degranulation (+840),0.010204488642403257,0.0017743126075947656,0.0
+R-HSA-8980692,RHOA GTPase Cycle,138,group 11: Neutrophil Degranulation (+840),0.010197342654751314,0.005120161017039208,0.0
+R-HSA-975871,MyD88 Cascade Initiated On Plasma Membrane,89,group 11: Neutrophil Degranulation (+840),0.010190388239561027,0.005911922052691807,0.0
+R-HSA-72163,mRNA Splicing - Major Pathway,180,group 11: Neutrophil Degranulation (+840),0.010179248823926358,0.00488153280923143,0.0
+R-HSA-176408,Regulation Of APC/C Activators Between G1/S And Early Anaphase,74,group 11: Neutrophil Degranulation (+840),0.01016876528955112,0.00512782614066964,0.0
+R-HSA-9018519,Estrogen-dependent Gene Expression,99,group 11: Neutrophil Degranulation (+840),0.010137084034129473,0.004958966479753144,0.0
+R-HSA-1632852,Macroautophagy,107,group 11: Neutrophil Degranulation (+840),0.010099290711292208,0.0063281415412348,0.0
+R-HSA-9612973,Autophagy,121,group 11: Neutrophil Degranulation (+840),0.010080065257981483,0.001922215319937095,0.0
+R-HSA-5693567,HDR Thru Homologous Recombination (HRR) Or Single Strand Annealing (SSA),100,group 11: Neutrophil Degranulation (+840),0.010070965371007826,0.006906727643799968,0.0
+R-HSA-69206,G1/S Transition,121,group 11: Neutrophil Degranulation (+840),0.010066629368594801,0.006934080668434035,0.0
+R-HSA-2565942,Regulation Of PLK1 Activity At G2/M Transition,85,group 11: Neutrophil Degranulation (+840),0.010046307520025362,0.006022486952133477,0.0
+R-HSA-166520,Signaling By NTRKs,124,group 11: Neutrophil Degranulation (+840),0.010041777517299278,0.005124663656461053,0.0
+R-HSA-373760,L1CAM Interactions,96,group 11: Neutrophil Degranulation (+840),0.009886288692395846,0.0060228700807448375,0.0
+R-HSA-6790901,rRNA Modification In Nucleus And Cytosol,60,group 11: Neutrophil Degranulation (+840),0.009874816378282572,0.0037425228967913424,0.0
+R-HSA-212165,Epigenetic Regulation Of Gene Expression,99,group 11: Neutrophil Degranulation (+840),0.009772065127173723,0.001526922074262984,0.0
+R-HSA-9609646,HCMV Infection,105,group 11: Neutrophil Degranulation (+840),0.0097592246695027,0.006228449976770207,0.0
+R-HSA-2500257,Resolution Of Sister Chromatid Cohesion,89,group 11: Neutrophil Degranulation (+840),0.009756997360757125,0.00440301568232826,0.0
+R-HSA-69239,Synthesis Of DNA,113,group 11: Neutrophil Degranulation (+840),0.009656754650088754,0.006375427903840318,0.0
+R-HSA-2454202,Fc Epsilon Receptor (FCERI) Signaling,120,group 11: Neutrophil Degranulation (+840),0.009566625933778487,0.00031594648491591217,0.0
+R-HSA-5663220,RHO GTPases Activate Formins,101,group 11: Neutrophil Degranulation (+840),0.009504453767825044,0.004909143884724472,0.0
+R-HSA-983705,Signaling By B Cell Receptor (BCR),97,group 11: Neutrophil Degranulation (+840),0.009493552714436299,0.003908229752414627,0.0
+R-HSA-168138,Toll Like Receptor 9 (TLR9) Cascade,97,group 11: Neutrophil Degranulation (+840),0.009465366446065828,0.002486662981682457,0.0
+R-HSA-9020702,Interleukin-1 Signaling,102,group 11: Neutrophil Degranulation (+840),0.00945267213007309,0.004063533247972373,0.0
+R-HSA-9610379,HCMV Late Events,75,group 11: Neutrophil Degranulation (+840),0.009447265444698318,0.004112581383087672,0.0
+R-HSA-176409,APC/C:Cdc20 Mediated Degradation Of Mitotic Proteins,68,group 11: Neutrophil Degranulation (+840),0.009433246810202313,0.003802253548492445,0.0
+R-HSA-9648025,EML4 And NUDC In Mitotic Spindle Formation,81,group 11: Neutrophil Degranulation (+840),0.009424049096276699,0.006855819796328433,0.0
+R-HSA-5389840,Mitochondrial Translation Elongation,80,group 11: Neutrophil Degranulation (+840),0.00942090895590254,0.0018677051795384615,0.0
+R-HSA-5632684,Hedgehog On State,78,group 11: Neutrophil Degranulation (+840),0.009397375261237434,0.00405692688684212,0.0
+R-HSA-5693538,Homology Directed Repair,105,group 11: Neutrophil Degranulation (+840),0.009342930352283736,0.004329069978557527,0.0
+R-HSA-6784531,tRNA Processing In Nucleus,51,group 11: Neutrophil Degranulation (+840),0.009324319056487815,0.005345633560937131,0.0
+R-HSA-380259,Loss Of Nlp From Mitotic Centrosomes,68,group 11: Neutrophil Degranulation (+840),0.009209327224614414,0.004348277460085228,0.0
+R-HSA-174084,Autodegradation Of Cdh1 By Cdh1:APC/C,61,group 11: Neutrophil Degranulation (+840),0.009198961261131058,0.0045556378211767876,0.0
+R-HSA-9013106,RHOC GTPase Cycle,70,group 11: Neutrophil Degranulation (+840),0.00918822306468767,0.004362921690335498,0.0
+R-HSA-202403,TCR Signaling,100,group 11: Neutrophil Degranulation (+840),0.00915545579677416,0.0015335075597977265,0.0
+R-HSA-166016,Toll Like Receptor 4 (TLR4) Cascade,121,group 11: Neutrophil Degranulation (+840),0.009140048886380963,0.003229865591856651,0.0
+R-HSA-9755511,KEAP1-NFE2L2 Pathway,94,group 11: Neutrophil Degranulation (+840),0.009137217078793999,0.004409910619360744,0.0
+R-HSA-1169410,Antiviral Mechanism By IFN-stimulated Genes,78,group 11: Neutrophil Degranulation (+840),0.009104186691091223,0.004910197202116251,0.0
+R-HSA-194138,Signaling By VEGF,97,group 11: Neutrophil Degranulation (+840),0.009041765299862472,0.001775720976293087,0.0
+R-HSA-1234174,Cellular Response To Hypoxia,69,group 11: Neutrophil Degranulation (+840),0.009025508346099217,0.00461756816774141,0.0
+R-HSA-5668541,TNFR2 Non-Canonical NF-kB Pathway,74,group 11: Neutrophil Degranulation (+840),0.008959837722413487,0.0042836925269148195,0.0
+R-HSA-5419276,Mitochondrial Translation Termination,80,group 11: Neutrophil Degranulation (+840),0.008943187219132195,0.005186006653602817,0.0
+R-HSA-5620912,Anchoring Of Basal Body To Plasma Membrane,96,group 11: Neutrophil Degranulation (+840),0.008916949052205784,0.004209485806641169,0.0
+R-HSA-168181,Toll Like Receptor 7/8 (TLR7/8) Cascade,93,group 11: Neutrophil Degranulation (+840),0.00890978770843565,0.004109665251671685,0.0
+R-HSA-5368286,Mitochondrial Translation Initiation,80,group 11: Neutrophil Degranulation (+840),0.008909136094371207,0.0019184549953024544,0.0
+R-HSA-8878159,Transcriptional Regulation By RUNX3,91,group 11: Neutrophil Degranulation (+840),0.008890953626862522,0.0023246032505994663,0.0
+R-HSA-9633012,Response Of EIF2AK4 (GCN2) To Amino Acid Deficiency,94,group 11: Neutrophil Degranulation (+840),0.008871916497335375,0.0067963366325420795,0.0
+R-HSA-2559584,Formation Of Senescence-Associated Heterochromatin Foci (SAHF),16,group 11: Neutrophil Degranulation (+840),0.008855199165073997,0.00292763962643221,0.0
+R-HSA-5621481,C-type Lectin Receptors (CLRs),111,group 11: Neutrophil Degranulation (+840),0.008775173223940497,0.001003666550386697,0.0
+R-HSA-198725,Nuclear Events (Kinase And Transcription Factor Activation),57,group 11: Neutrophil Degranulation (+840),0.008769285057620067,0.004664079401409254,0.0
+R-HSA-73884,Base Excision Repair,59,group 11: Neutrophil Degranulation (+840),0.008746047944059374,0.002378856038849335,0.0
+R-HSA-72649,Translation Initiation Complex Formation,56,group 11: Neutrophil Degranulation (+840),0.008720110486245762,0.005048638074076735,0.0
+R-HSA-69656,Cyclin A:Cdk2-associated Events At S Phase Entry,82,group 11: Neutrophil Degranulation (+840),0.008704953357356332,0.002067009472521022,0.0
+R-HSA-2559582,Senescence-Associated Secretory Phenotype (SASP),64,group 11: Neutrophil Degranulation (+840),0.008686810837302878,0.0013016866075486178,0.0
+R-HSA-5607764,CLEC7A (Dectin-1) Signaling,92,group 11: Neutrophil Degranulation (+840),0.00867143712140683,0.0024010504951002074,0.0
+R-HSA-9006936,Signaling By TGFB Family Members,110,group 11: Neutrophil Degranulation (+840),0.008665974076809677,0.006927141328924335,0.0
+R-HSA-975155,MyD88 Dependent Cascade Initiated On Endosome,93,group 11: Neutrophil Degranulation (+840),0.00863949439204219,0.003990886553219752,0.0
+R-HSA-166058,MyD88:MAL(TIRAP) Cascade Initiated On Plasma Membrane,99,group 11: Neutrophil Degranulation (+840),0.008624577451639382,0.005346309651577031,0.0
+R-HSA-204998,"Cell Death Signaling Via NRAGE, NRIF And NADE",69,group 11: Neutrophil Degranulation (+840),0.008585620238208922,0.004116110223403666,0.0
+R-HSA-170834,Signaling By TGF-beta Receptor Complex,88,group 11: Neutrophil Degranulation (+840),0.008577033994182692,0.00541437701205723,0.0
+R-HSA-8939236,RUNX1 Regulates Transcription Of Genes Involved In Differentiation Of HSCs,78,group 11: Neutrophil Degranulation (+840),0.008575868683125255,0.006143174025055487,0.0
+R-HSA-187037,Signaling By NTRK1 (TRKA),108,group 11: Neutrophil Degranulation (+840),0.00856344791704402,0.003234114193764981,0.0
+R-HSA-6807070,PTEN Regulation,132,group 11: Neutrophil Degranulation (+840),0.0085490412836299,0.005624941987880447,0.0
+R-HSA-159234,Transport Of Mature mRNAs Derived From Intronless Transcripts,42,group 11: Neutrophil Degranulation (+840),0.008540774746778248,0.0025001144349516835,0.0
+R-HSA-73772,RNA Polymerase I Promoter Escape,47,group 11: Neutrophil Degranulation (+840),0.008537735784612793,0.0035279232926313854,0.0
+R-HSA-3214847,HATs Acetylate Histones,91,group 11: Neutrophil Degranulation (+840),0.00852719435381498,0.004342838448937982,0.0
+R-HSA-176187,Activation Of ATR In Response To Replication Stress,31,group 11: Neutrophil Degranulation (+840),0.008526800515256443,0.005149410047451965,0.0
+R-HSA-6807505,RNA Polymerase II Transcribes snRNA Genes,72,group 11: Neutrophil Degranulation (+840),0.00852441992373916,0.004691861210158094,0.0
+R-HSA-5689603,UCH Proteinases,86,group 11: Neutrophil Degranulation (+840),0.008516353088178498,0.005949679043260403,0.0
+R-HSA-5628897,TP53 Regulates Metabolic Genes,77,group 11: Neutrophil Degranulation (+840),0.008454744862658918,0.004718598911640583,0.0
+R-HSA-69231,Cyclin D Associated Events In G1,44,group 11: Neutrophil Degranulation (+840),0.008453066716260687,0.004345809606093098,0.0
+R-HSA-73893,DNA Damage Bypass,46,group 11: Neutrophil Degranulation (+840),0.008449593996155564,0.0030089240503730253,0.0
+R-HSA-113510,E2F Mediated Regulation Of DNA Replication,21,group 11: Neutrophil Degranulation (+840),0.008400785507460646,0.0012607053812826053,0.0
+R-HSA-8939902,Regulation Of RUNX2 Expression And Activity,63,group 11: Neutrophil Degranulation (+840),0.008398065115206764,0.0003794199775438756,0.0
+R-HSA-380287,Centrosome Maturation,80,group 11: Neutrophil Degranulation (+840),0.00838593262873227,0.005331474442791659,0.0
+R-HSA-5610787,Hedgehog Off State,93,group 11: Neutrophil Degranulation (+840),0.008372139182510013,0.006739525711745955,0.0
+R-HSA-9679191,Potential Therapeutics For SARS,83,group 11: Neutrophil Degranulation (+840),0.008369168695639542,0.006824389926514414,0.0
+R-HSA-199992,trans-Golgi Network Vesicle Budding,70,group 11: Neutrophil Degranulation (+840),0.008367850252435053,0.0012886754094506613,0.0
+R-HSA-72702,Ribosomal Scanning And Start Codon Recognition,56,group 11: Neutrophil Degranulation (+840),0.008361034446506429,0.005349490944645367,0.0
+R-HSA-159236,Transport Of Mature mRNA Derived From An Intron-Containing Transcript,71,group 11: Neutrophil Degranulation (+840),0.008313747930885056,0.0029838289361214265,0.0
+R-HSA-194441,Metabolism Of Non-Coding RNA,51,group 11: Neutrophil Degranulation (+840),0.008302078040916535,0.006062006767024286,0.0
+R-HSA-167152,Formation Of HIV Elongation Complex In Absence Of HIV Tat,44,group 11: Neutrophil Degranulation (+840),0.008301597998193386,0.005112906068388838,0.0
+R-HSA-1236974,ER-Phagosome Pathway,78,group 11: Neutrophil Degranulation (+840),0.008288311244775857,-0.0007533452086499892,0.0
+R-HSA-68867,Assembly Of Pre-Replicative Complex,95,group 11: Neutrophil Degranulation (+840),0.008273461251741599,0.0029488005927851193,0.0
+R-HSA-2995410,Nuclear Envelope (NE) Reassembly,65,group 11: Neutrophil Degranulation (+840),0.008254095863835034,-0.0004504758724942803,0.0
+R-HSA-1236975,Antigen processing-Cross Presentation,91,group 11: Neutrophil Degranulation (+840),0.008244172420739434,0.003622365321352845,0.0
+R-HSA-9009391,Extra-nuclear Estrogen Signaling,64,group 11: Neutrophil Degranulation (+840),0.008188808073636965,0.0037739229842554778,0.0
+R-HSA-72695,"Formation Of Ternary Complex, And Subsequently, 43S Complex",49,group 11: Neutrophil Degranulation (+840),0.008183786850180294,0.004361436696149213,0.0
+R-HSA-5619084,ABC Transporter Disorders,69,group 11: Neutrophil Degranulation (+840),0.008166211347837569,0.0045652843877905976,0.0
+R-HSA-73864,RNA Polymerase I Transcription,65,group 11: Neutrophil Degranulation (+840),0.008165447214239481,0.001988852121285163,0.0
+R-HSA-4420097,VEGFA-VEGFR2 Pathway,88,group 11: Neutrophil Degranulation (+840),0.008143590393839247,0.004149960239883513,0.0
+R-HSA-68875,Mitotic Prophase,97,group 11: Neutrophil Degranulation (+840),0.008143330116803616,0.006082470523542724,0.0
+R-HSA-8856825,Cargo Recognition For Clathrin-Mediated Endocytosis,93,group 11: Neutrophil Degranulation (+840),0.008109086074953172,0.006611145855276846,0.0
+R-HSA-450408,AUF1 (hnRNP D0) Binds And Destabilizes mRNA,51,group 11: Neutrophil Degranulation (+840),0.008054915855251947,0.003276535152763245,0.0
+R-HSA-5368287,Mitochondrial Translation,86,group 11: Neutrophil Degranulation (+840),0.008044518714068237,0.0023192781637771985,0.0
+R-HSA-167238,Pausing And Recovery Of Tat-mediated HIV Elongation,30,group 11: Neutrophil Degranulation (+840),0.008033146786550848,0.0035456362419063227,0.0
+R-HSA-9006927,Signaling By Non-Receptor Tyrosine Kinases,49,group 11: Neutrophil Degranulation (+840),0.008033095905310633,0.003075704679140472,0.0
+R-HSA-1912422,Pre-NOTCH Expression And Processing,66,group 11: Neutrophil Degranulation (+840),0.00801689462988811,0.00317954784957692,0.0
+R-HSA-1226099,Signaling By FGFR In Disease,51,group 11: Neutrophil Degranulation (+840),0.008015383715505546,0.005622991659984109,0.0
+R-HSA-112382,Formation Of RNA Pol II Elongation Complex,57,group 11: Neutrophil Degranulation (+840),0.008002439935277788,0.003715261303459556,0.0
+R-HSA-432722,Golgi Associated Vesicle Biogenesis,54,group 11: Neutrophil Degranulation (+840),0.008002363624121753,0.0025084309459089127,0.0
+R-HSA-5250924,B-WICH Complex Positively Regulates rRNA Expression,46,group 11: Neutrophil Degranulation (+840),0.008000802084279713,0.0030823674131170266,0.0
+R-HSA-5687128,MAPK6/MAPK4 Signaling,83,group 11: Neutrophil Degranulation (+840),0.007977150525439973,0.00272675152606098,0.0
+R-HSA-176814,Activation Of APC/C And APC/C:Cdc20 Mediated Degradation Of Mitotic Proteins,69,group 11: Neutrophil Degranulation (+840),0.007965773167641107,0.0003257022489560768,0.0
+R-HSA-6781827,Transcription-Coupled Nucleotide Excision Repair (TC-NER),76,group 11: Neutrophil Degranulation (+840),0.007936713796689065,0.003772237178563955,0.0
+R-HSA-167242,Abortive Elongation Of HIV-1 Transcript In Absence Of Tat,23,group 11: Neutrophil Degranulation (+840),0.007932429340810088,0.005605965898575959,0.0
+R-HSA-2029480,Fcgamma Receptor (FCGR) Dependent Phagocytosis,78,group 11: Neutrophil Degranulation (+840),0.007876469647330311,0.005213845753096393,0.0
+R-HSA-5685938,HDR Thru Single Strand Annealing (SSA),33,group 11: Neutrophil Degranulation (+840),0.007863957397008346,0.004213925963849761,0.0
+R-HSA-190236,Signaling By FGFR,70,group 11: Neutrophil Degranulation (+840),0.007847939402070212,0.003787406974006444,0.0
+R-HSA-2559586,DNA Damage/Telomere Stress Induced Senescence,48,group 11: Neutrophil Degranulation (+840),0.007847452545795053,0.004969662873627385,0.0
+R-HSA-179409,APC-Cdc20 Mediated Degradation Of Nek2A,23,group 11: Neutrophil Degranulation (+840),0.007841107426448014,0.0016295730421552435,0.0
+R-HSA-917937,Iron Uptake And Transport,54,group 11: Neutrophil Degranulation (+840),0.007832599313874429,0.006409947179781739,0.0
+R-HSA-5387390,Hh Mutants Abrogate Ligand Secretion,53,group 11: Neutrophil Degranulation (+840),0.007827211921280882,0.005455560786649585,0.0
+R-HSA-9710421,Defective Pyroptosis,30,group 11: Neutrophil Degranulation (+840),0.007810907348422175,0.0024804835231043397,0.0
+R-HSA-203927,MicroRNA (miRNA) Biogenesis,24,group 11: Neutrophil Degranulation (+840),0.007804446425006202,0.0026726421490798203,0.0
+R-HSA-68949,Orc1 Removal From Chromatin,65,group 11: Neutrophil Degranulation (+840),0.007801922719738934,0.002549809809479484,0.0
+R-HSA-177243,Interactions Of Rev With Host Cellular Proteins,36,group 11: Neutrophil Degranulation (+840),0.0077952512093006745,0.004693757144268602,0.0
+R-HSA-4608870,Asymmetric Localization Of PCP Proteins,59,group 11: Neutrophil Degranulation (+840),0.007790318059624504,0.004224944791349117,0.0
+R-HSA-4641258,Degradation Of DVL,52,group 11: Neutrophil Degranulation (+840),0.007789550796230087,0.002492074411420617,0.0
+R-HSA-982772,Growth Hormone Receptor Signaling,21,group 11: Neutrophil Degranulation (+840),0.007773809318363635,0.004188048909272765,0.0
+R-HSA-76046,RNA Polymerase III Transcription Initiation,35,group 11: Neutrophil Degranulation (+840),0.00777173191683872,0.0030141903033654672,0.0
+R-HSA-381119,Unfolded Protein Response (UPR),83,group 11: Neutrophil Degranulation (+840),0.007761625142573671,0.0034659719300907453,0.0
+R-HSA-380320,Recruitment Of NuMA To Mitotic Centrosomes,79,group 11: Neutrophil Degranulation (+840),0.007752729818408409,0.00588904114687466,0.0
+R-HSA-5633008,TP53 Regulates Transcription Of Cell Death Genes,36,group 11: Neutrophil Degranulation (+840),0.00774913935456425,0.003561307100462727,0.0
+R-HSA-199418,Negative Regulation Of PI3K/AKT Network,85,group 11: Neutrophil Degranulation (+840),0.0077464163683204895,0.0040189649701642335,0.0
+R-HSA-450531,Regulation Of mRNA Stability By Proteins That Bind AU-rich Elements,85,group 11: Neutrophil Degranulation (+840),0.007738087394925014,0.004305743984338051,0.0
+R-HSA-5658442,Regulation Of RAS By GAPs,61,group 11: Neutrophil Degranulation (+840),0.007731048491096787,0.002776148590055527,0.0
+R-HSA-9013408,RHOG GTPase Cycle,72,group 11: Neutrophil Degranulation (+840),0.007724799584376357,0.0009834013262297958,0.0
+R-HSA-70326,Glucose Metabolism,78,group 11: Neutrophil Degranulation (+840),0.007719861047137213,0.004674638737051282,0.0
+R-HSA-9013423,RAC3 GTPase Cycle,84,group 11: Neutrophil Degranulation (+840),0.007692746692277901,0.0031392322198371403,0.0
+R-HSA-3214841,PKMTs Methylate Histone Lysines,44,group 11: Neutrophil Degranulation (+840),0.007685666872868936,0.0029153356914230245,0.0
+R-HSA-168271,Transport Of Ribonucleoproteins Into Host Nucleus,34,group 11: Neutrophil Degranulation (+840),0.007673105641201107,0.0014153823546075729,0.0
+R-HSA-9013694,Signaling By NOTCH4,80,group 11: Neutrophil Degranulation (+840),0.007667183948747845,0.003757024920487311,0.0
+R-HSA-141444,Unattached Kinetochores Signal Amplification Via A MAD2 Inhibitory Signal,77,group 11: Neutrophil Degranulation (+840),0.007663403127970908,0.0015881948211972485,0.0
+R-HSA-180910,Vpr-mediated Nuclear Import Of PICs,34,group 11: Neutrophil Degranulation (+840),0.007654522376340198,0.005736675680382177,0.0
+R-HSA-9696273,RND1 GTPase Cycle,34,group 11: Neutrophil Degranulation (+840),0.007643593652410654,0.0049181277706520634,0.0
+R-HSA-381070,IRE1alpha Activates Chaperones,47,group 11: Neutrophil Degranulation (+840),0.007638523799872373,0.0021614620316540824,0.0
+R-HSA-6781823,Formation Of TC-NER Pre-Incision Complex,51,group 11: Neutrophil Degranulation (+840),0.007637933577347736,0.003674274554650765,0.0
+R-HSA-5685942,HDR Thru Homologous Recombination (HRR),61,group 11: Neutrophil Degranulation (+840),0.007625726687374635,0.0031544886546907946,0.0
+R-HSA-8953750,Transcriptional Regulation By E2F6,31,group 11: Neutrophil Degranulation (+840),0.007620221487445247,0.001716345284567069,0.0
+R-HSA-2559580,Oxidative Stress Induced Senescence,77,group 11: Neutrophil Degranulation (+840),0.007616514646878833,0.0016078079647832055,0.0
+R-HSA-4641257,Degradation Of AXIN,51,group 11: Neutrophil Degranulation (+840),0.0076161264473477664,-0.000535407388524618,0.0
+R-HSA-202424,Downstream TCR Signaling,81,group 11: Neutrophil Degranulation (+840),0.007610366037100656,0.0011202532969036838,0.0
+R-HSA-6782135,Dual Incision In TC-NER,64,group 11: Neutrophil Degranulation (+840),0.007607717688345366,0.007546194041642593,0.0
+R-HSA-8854050,FBXL7 Down-Regulates AURKA During Mitotic Entry And In Early Mitosis,51,group 11: Neutrophil Degranulation (+840),0.0076024512454504305,-0.0017279948596842587,0.0
+R-HSA-4615885,SUMOylation Of DNA Replication Proteins,41,group 11: Neutrophil Degranulation (+840),0.007599262210887746,0.00365078772418201,0.0
+R-HSA-77075,RNA Pol II CTD Phosphorylation And Interaction With CE,27,group 11: Neutrophil Degranulation (+840),0.007578007547950403,0.0021622070571174845,0.0
+R-HSA-180786,Extension Of Telomeres,47,group 11: Neutrophil Degranulation (+840),0.007572497114917989,0.0022666635317727924,0.0
+R-HSA-5676590,NIK To Noncanonical NF-kB Signaling,55,group 11: Neutrophil Degranulation (+840),0.00755660398291045,0.0006851094270678004,0.0
+R-HSA-8943724,Regulation Of PTEN Gene Transcription,57,group 11: Neutrophil Degranulation (+840),0.007541981051770686,0.004305187407153426,0.0
+R-HSA-186763,Downstream Signal Transduction,26,group 11: Neutrophil Degranulation (+840),0.007531612634785094,0.002150095841352595,0.0
+R-HSA-164952,Role Of Nef In HIV-1 Replication And Disease Pathogenesis,23,group 11: Neutrophil Degranulation (+840),0.007503889780886219,0.0005925447985646315,0.0
+R-HSA-373755,Semaphorin Interactions,64,group 11: Neutrophil Degranulation (+840),0.007501196663558357,0.0021266805595951156,0.0
+R-HSA-5654689,PI-3K cascade:FGFR1,13,group 11: Neutrophil Degranulation (+840),0.007497576388759318,0.0001746936491690576,0.0
+R-HSA-5656169,Termination Of Translesion DNA Synthesis,31,group 11: Neutrophil Degranulation (+840),0.007486170816424666,0.002795620442338986,0.0
+R-HSA-69052,Switching Of Origins To A Post-Replicative State,85,group 11: Neutrophil Degranulation (+840),0.007472737204930666,0.0033430667463107966,0.0
+R-HSA-4085377,SUMOylation Of SUMOylation Proteins,34,group 11: Neutrophil Degranulation (+840),0.007459099957215307,0.003890703964607383,0.0
+R-HSA-166166,MyD88-independent TLR4 Cascade,98,group 11: Neutrophil Degranulation (+840),0.007453861189966674,0.003857974921411369,0.0
+R-HSA-1980143,Signaling By NOTCH1,73,group 11: Neutrophil Degranulation (+840),0.0074513962581138115,0.003166828725952655,0.0
+R-HSA-9031628,NGF-stimulated Transcription,35,group 11: Neutrophil Degranulation (+840),0.007442109749684016,0.001605087711941451,0.0
+R-HSA-168928,DDX58/IFIH1-mediated Induction Of Interferon-Alpha/Beta,64,group 11: Neutrophil Degranulation (+840),0.007437560676438714,0.0043917519142632954,0.0
+R-HSA-195253,Degradation Of Beta-Catenin By Destruction Complex,80,group 11: Neutrophil Degranulation (+840),0.007434286959706095,0.0032105615889304316,0.0
+R-HSA-193704,P75 NTR Receptor-Mediated Signaling,89,group 11: Neutrophil Degranulation (+840),0.007415386372624691,0.0029547506588278338,0.0
+R-HSA-168164,Toll Like Receptor 3 (TLR3) Cascade,96,group 11: Neutrophil Degranulation (+840),0.007399801006619582,0.0016279434780881274,0.0
+R-HSA-1168372,Downstream Signaling Events Of B Cell Receptor (BCR),76,group 11: Neutrophil Degranulation (+840),0.007398581126570638,0.001581695876084268,0.0
+R-HSA-168333,NEP/NS2 Interacts With Cellular Export Machinery,34,group 11: Neutrophil Degranulation (+840),0.0073849093812217905,0.0023508688862784767,0.0
+R-HSA-4086398,Ca2+ Pathway,60,group 11: Neutrophil Degranulation (+840),0.007376839253869918,0.004176011519157328,0.0
+R-HSA-9013420,RHOU GTPase Cycle,37,group 11: Neutrophil Degranulation (+840),0.007372125783161718,0.004664815498981625,0.0
+R-HSA-5654738,Signaling By FGFR2,59,group 11: Neutrophil Degranulation (+840),0.0073650728121905,0.00309254108753521,0.0
+R-HSA-8948751,Regulation Of PTEN Stability And Activity,64,group 11: Neutrophil Degranulation (+840),0.007348281578002971,0.0024966366418811958,0.0
+R-HSA-174184,Cdc20:Phospho-APC/C Mediated Degradation Of Cyclin A,66,group 11: Neutrophil Degranulation (+840),0.007342682126120238,0.001854004815686494,0.0
+R-HSA-427413,NoRC Negatively Regulates rRNA Expression,61,group 11: Neutrophil Degranulation (+840),0.007341451498963949,0.0024070039653452113,0.0
+R-HSA-5675482,Regulation Of Necroptotic Cell Death,25,group 11: Neutrophil Degranulation (+840),0.007340083294548094,0.002953995045972988,0.0
+R-HSA-429914,Deadenylation-dependent mRNA Decay,54,group 11: Neutrophil Degranulation (+840),0.007329341116108758,0.0037312001959071495,0.0
+R-HSA-5250941,Negative Epigenetic Regulation Of rRNA Expression,64,group 11: Neutrophil Degranulation (+840),0.007322674039435589,0.000890148098114878,0.0
+R-HSA-110320,Translesion Synthesis By POLH,19,group 11: Neutrophil Degranulation (+840),0.007318588659232403,0.001269600508167059,0.0
+R-HSA-174113,SCF-beta-TrCP Mediated Degradation Of Emi1,50,group 11: Neutrophil Degranulation (+840),0.00731647232373766,0.00451834922125272,0.0
+R-HSA-5358351,Signaling By Hedgehog,126,group 11: Neutrophil Degranulation (+840),0.0073100578602476405,0.0034519882618405974,0.0
+R-HSA-69473,G2/M DNA Damage Checkpoint,65,group 11: Neutrophil Degranulation (+840),0.007270769594568696,0.003833410944789648,0.0
+R-HSA-5651801,PCNA-Dependent Long Patch Base Excision Repair,21,group 11: Neutrophil Degranulation (+840),0.007267677495887472,0.0015320541290566325,0.0
+R-HSA-2682334,EPH-Ephrin Signaling,86,group 11: Neutrophil Degranulation (+840),0.007256493819394086,0.005037773751027998,0.0
+R-HSA-9013404,RAC2 GTPase Cycle,81,group 11: Neutrophil Degranulation (+840),0.00723744058425112,0.0039913457119837405,0.0
+R-HSA-2122947,NOTCH1 Intracellular Domain Regulates Transcription,48,group 11: Neutrophil Degranulation (+840),0.007222385811461609,0.003640866544446908,0.0
+R-HSA-73854,RNA Polymerase I Promoter Clearance,64,group 11: Neutrophil Degranulation (+840),0.007216039957514159,0.0017221922465250827,0.0
+R-HSA-1169091,Activation Of NF-kappaB In B Cells,63,group 11: Neutrophil Degranulation (+840),0.007209789782951949,0.0019856201700167732,0.0
+R-HSA-3371453,Regulation Of HSF1-mediated Heat Shock Response,76,group 11: Neutrophil Degranulation (+840),0.007205236981764941,0.005857116219121963,0.0
+R-HSA-3299685,Detoxification Of Reactive Oxygen Species,27,group 11: Neutrophil Degranulation (+840),0.007186124179713523,0.0024806761005311275,0.0
+R-HSA-73863,RNA Polymerase I Transcription Termination,30,group 11: Neutrophil Degranulation (+840),0.007179960382508383,0.00029037205255008305,0.0
+R-HSA-5610783,Degradation Of GLI2 By Proteasome,55,group 11: Neutrophil Degranulation (+840),0.007173251259235381,0.002977430504397489,0.0
+R-HSA-351202,Metabolism Of Polyamines,52,group 11: Neutrophil Degranulation (+840),0.00716732444312676,0.0016657421528361738,0.0
+R-HSA-109606,Intrinsic Pathway For Apoptosis,51,group 11: Neutrophil Degranulation (+840),0.00713861454302895,0.0009188967043155571,0.0
+R-HSA-416482,G Alpha (12/13) Signaling Events,70,group 11: Neutrophil Degranulation (+840),0.007136363218690395,0.004634092166888877,0.0
+R-HSA-69190,DNA Strand Elongation,30,group 11: Neutrophil Degranulation (+840),0.007112213873126351,0.0024409054062743962,0.0
+R-HSA-110331,Cleavage Of Damaged Purine,24,group 11: Neutrophil Degranulation (+840),0.007110077910365979,0.005666461023502052,0.0
+R-HSA-74752,Signaling By Insulin Receptor,56,group 11: Neutrophil Degranulation (+840),0.007095564211426713,0.005612817268120125,0.0
+R-HSA-9013695,NOTCH4 Intracellular Domain Regulates Transcription,20,group 11: Neutrophil Degranulation (+840),0.007092020160647951,0.003247261410351712,0.0
+R-HSA-169911,Regulation Of Apoptosis,49,group 11: Neutrophil Degranulation (+840),0.007078639817250482,0.002705916401173454,0.0
+R-HSA-157579,Telomere Maintenance,77,group 11: Neutrophil Degranulation (+840),0.007074836670357923,0.0037393159297062083,0.0
+R-HSA-5140745,"WNT5A-dependent Internalization Of FZD2, FZD5 And ROR2",11,group 11: Neutrophil Degranulation (+840),0.007065898890338712,0.00038367986038792876,0.0
+R-HSA-6782210,Gap-filling DNA Repair Synthesis And Ligation In TC-NER,63,group 11: Neutrophil Degranulation (+840),0.007057369935291255,0.0036013499624459656,0.0
+R-HSA-2980766,Nuclear Envelope Breakdown,51,group 11: Neutrophil Degranulation (+840),0.007050945349156036,0.005540930275747087,0.0
+R-HSA-165054,Rev-mediated Nuclear Export Of HIV RNA,34,group 11: Neutrophil Degranulation (+840),0.007048698167032483,0.002534425590420142,0.0
+R-HSA-198323,AKT Phosphorylates Targets In Cytosol,14,group 11: Neutrophil Degranulation (+840),0.007044464385041265,0.002300990237145015,0.0
+R-HSA-167200,Formation Of HIV-1 Elongation Complex Containing HIV-1 Tat,42,group 11: Neutrophil Degranulation (+840),0.007042680557627799,0.0020419903306174094,0.0
+R-HSA-177929,Signaling By EGFR,46,group 11: Neutrophil Degranulation (+840),0.007033167583512742,0.004008725110033993,0.0
+R-HSA-5693606,DNA Double Strand Break Response,53,group 11: Neutrophil Degranulation (+840),0.007025428875228607,0.0023842927364785284,0.0
+R-HSA-1980145,Signaling By NOTCH2,30,group 11: Neutrophil Degranulation (+840),0.007022964260619828,0.0030648611910874023,0.0
+R-HSA-6802952,Signaling By BRAF And RAF1 Fusions,58,group 11: Neutrophil Degranulation (+840),0.007019551804731205,0.004121746070450172,0.0
+R-HSA-4086400,PCP/CE Pathway,82,group 11: Neutrophil Degranulation (+840),0.0070122140691560395,0.0008784143163939007,0.0
+R-HSA-8852276,Role Of GTSE1 In G2/M Progression After G2 Checkpoint,54,group 11: Neutrophil Degranulation (+840),0.007002423171711675,0.00331134193809703,0.0
+R-HSA-9663891,Selective Autophagy,57,group 11: Neutrophil Degranulation (+840),0.007000136323582965,0.001487919334686012,0.0
+R-HSA-1236394,Signaling By ERBB4,56,group 11: Neutrophil Degranulation (+840),0.006995919443690613,0.0024431272241054102,0.0
+R-HSA-5696395,Formation Of Incision Complex In GG-NER,42,group 11: Neutrophil Degranulation (+840),0.006995318617900612,0.002378860721582896,0.0
+R-HSA-6788467,IL-6-type Cytokine Receptor Ligand Interactions,14,group 11: Neutrophil Degranulation (+840),0.006978292173905282,0.0029249154865101444,0.0
+R-HSA-8852135,Protein Ubiquitination,70,group 11: Neutrophil Degranulation (+840),0.006976368047210183,0.0029115076101152225,0.0
+R-HSA-76009,Platelet Aggregation (Plug Formation),28,group 11: Neutrophil Degranulation (+840),0.0069594955205980495,0.002029691563511733,0.0
+R-HSA-389356,CD28 Co-Stimulation,29,group 11: Neutrophil Degranulation (+840),0.0069582979652588655,0.0007638796488754451,0.0
+R-HSA-5619507,Activation Of HOX Genes During Differentiation,67,group 11: Neutrophil Degranulation (+840),0.006957672488376482,0.002973914907706785,0.0
+R-HSA-8940973,RUNX2 Regulates Osteoblast Differentiation,20,group 11: Neutrophil Degranulation (+840),0.0069575133067022975,0.004846998538196204,0.0
+R-HSA-5655862,Translesion Synthesis By POLK,17,group 11: Neutrophil Degranulation (+840),0.006956792754610463,-0.0001000358781311661,0.0
+R-HSA-5696400,Dual Incision In GG-NER,41,group 11: Neutrophil Degranulation (+840),0.006946234107688385,0.003456335652153939,0.0
+R-HSA-73762,RNA Polymerase I Transcription Initiation,45,group 11: Neutrophil Degranulation (+840),0.006941503084805336,0.0013600837977719494,0.0
+R-HSA-5676594,TNF Receptor Superfamily (TNFSF) Members Mediating Non-Canonical NF-kB Pathway,12,group 11: Neutrophil Degranulation (+840),0.006916728736443042,0.00010619466727803229,0.0
+R-HSA-427389,ERCC6 (CSB) And EHMT2 (G9a) Positively Regulate rRNA Expression,32,group 11: Neutrophil Degranulation (+840),0.00691244579731759,0.003286416920745978,0.0
+R-HSA-5693579,Homologous DNA Pairing And Strand Exchange,38,group 11: Neutrophil Degranulation (+840),0.006899656183952051,0.0018328027711936557,0.0
+R-HSA-6796648,TP53 Regulates Transcription Of DNA Repair Genes,59,group 11: Neutrophil Degranulation (+840),0.006899236981417605,0.0026450953879975712,0.0
+R-HSA-3108214,SUMOylation Of DNA Damage Response And Repair Proteins,73,group 11: Neutrophil Degranulation (+840),0.0068980451497659715,0.0023195432435750263,0.0
+R-HSA-8941856,RUNX3 Regulates NOTCH Signaling,13,group 11: Neutrophil Degranulation (+840),0.00688356680665323,0.0031002016187267143,0.0
+R-HSA-975138,TRAF6 Mediated Induction Of NFkB And MAP Kinases Upon TLR7/8 Or 9 Activation,92,group 11: Neutrophil Degranulation (+840),0.006880101914356277,0.0014762062001318554,0.0
+R-HSA-450294,MAP Kinase Activation,60,group 11: Neutrophil Degranulation (+840),0.006865357265855044,0.0012761865882202983,0.0
+R-HSA-69601,Ubiquitin Mediated Degradation Of Phosphorylated Cdc25A,48,group 11: Neutrophil Degranulation (+840),0.006858183213971334,0.0011936705674452242,0.0
+R-HSA-5619102,SLC Transporter Disorders,71,group 11: Neutrophil Degranulation (+840),0.00685461233606783,0.003953053310979158,0.0
+R-HSA-5610780,Degradation Of GLI1 By Proteasome,54,group 11: Neutrophil Degranulation (+840),0.006848120655799364,0.003087160853974638,0.0
+R-HSA-2173789,TGF-beta Receptor Signaling Activates SMADs,43,group 11: Neutrophil Degranulation (+840),0.006847089716683189,0.004903346920909826,0.0
+R-HSA-9696270,RND2 GTPase Cycle,37,group 11: Neutrophil Degranulation (+840),0.006844177742891203,0.003568888020381564,0.0
+R-HSA-9035034,RHOF GTPase Cycle,37,group 11: Neutrophil Degranulation (+840),0.006831075935387763,0.0017068439445574767,0.0
+R-HSA-350054,Notch-HLH Transcription Pathway,28,group 11: Neutrophil Degranulation (+840),0.0068263755541026466,0.0027528158418135716,0.0
+R-HSA-168274,Export Of Viral Ribonucleoproteins From Nucleus,35,group 11: Neutrophil Degranulation (+840),0.006824403573458983,0.004188107193331234,0.0
+R-HSA-8866652,Synthesis Of Active Ubiquitin: Roles Of E1 And E2 Enzymes,29,group 11: Neutrophil Degranulation (+840),0.006823780365639477,0.0022796992796065754,0.0
+R-HSA-5655291,Signaling By FGFR4 In Disease,10,group 11: Neutrophil Degranulation (+840),0.006823002485660994,0.000932491484854836,0.0
+R-HSA-2871837,FCERI Mediated NF-kB Activation,73,group 11: Neutrophil Degranulation (+840),0.00681183149167968,0.004462242955778493,0.0
+R-HSA-5213460,RIPK1-mediated Regulated Necrosis,27,group 11: Neutrophil Degranulation (+840),0.0067977401899505345,0.002561591855628649,0.0
+R-HSA-1474165,Reproduction,73,group 11: Neutrophil Degranulation (+840),0.00679428449090002,0.002898469137289794,0.0
+R-HSA-112409,RAF-independent MAPK1/3 Activation,22,group 11: Neutrophil Degranulation (+840),0.006789484316284531,0.003296187394530534,0.0
+R-HSA-5655253,Signaling By FGFR2 In Disease,32,group 11: Neutrophil Degranulation (+840),0.006785665434845368,0.003746372662972135,0.0
+R-HSA-5696394,DNA Damage Recognition In GG-NER,36,group 11: Neutrophil Degranulation (+840),0.00678538072862173,0.0008587480647838674,0.0
+R-HSA-5693571,Nonhomologous End-Joining (NHEJ),42,group 11: Neutrophil Degranulation (+840),0.006776636989266312,0.0013353065396950114,0.0
+R-HSA-3769402,Deactivation Of Beta-Catenin Transactivating Complex,38,group 11: Neutrophil Degranulation (+840),0.006772246845342787,0.004983387478860095,0.0
+R-HSA-2219530,Constitutive Signaling By Aberrant PI3K In Cancer,52,group 11: Neutrophil Degranulation (+840),0.006749624363344036,0.0002045184135204181,0.0
+R-HSA-937072,TRAF6-mediated Induction Of TAK1 Complex Within TLR4 Complex,14,group 11: Neutrophil Degranulation (+840),0.006743397870420683,0.0026535879468428903,0.0
+R-HSA-9637690,Response Of Mtb To Phagocytosis,20,group 11: Neutrophil Degranulation (+840),0.0067420924391194985,0.004363670306629501,0.0
+R-HSA-3928662,EPHB-mediated Forward Signaling,32,group 11: Neutrophil Degranulation (+840),0.006738723732848746,0.003669890042147017,0.0
+R-HSA-5358346,Hedgehog Ligand Biogenesis,58,group 11: Neutrophil Degranulation (+840),0.0067193279729493086,0.0033480753524054306,0.0
+R-HSA-381038,XBP1(S) Activates Chaperone Genes,45,group 11: Neutrophil Degranulation (+840),0.006718533516908854,0.0010848666517995298,0.0
+R-HSA-5357769,Caspase Activation Via Extrinsic Apoptotic Signaling Pathway,22,group 11: Neutrophil Degranulation (+840),0.006713566025008715,0.001673099622130394,0.0
+R-HSA-73856,RNA Polymerase II Transcription Termination,66,group 11: Neutrophil Degranulation (+840),0.00671058770277048,0.0013805818086257205,0.0
+R-HSA-9759194,Nuclear Events Mediated By NFE2L2,74,group 11: Neutrophil Degranulation (+840),0.006707832706555472,0.0018311533582163974,0.0
+R-HSA-174143,APC/C-mediated Degradation Of Cell Cycle Proteins,79,group 11: Neutrophil Degranulation (+840),0.0067053254333648326,0.0030796257774636615,0.0
+R-HSA-5696399,Global Genome Nucleotide Excision Repair (GG-NER),81,group 11: Neutrophil Degranulation (+840),0.0067022751240845045,0.0012290710637898883,0.0
+R-HSA-5218859,Regulated Necrosis,44,group 11: Neutrophil Degranulation (+840),0.0066973854075343805,0.0014635608039679938,0.0
+R-HSA-388841,Costimulation By CD28 Family,50,group 11: Neutrophil Degranulation (+840),0.006671497743118996,0.0002519829259836115,0.0
+R-HSA-8941858,Regulation Of RUNX3 Expression And Activity,51,group 11: Neutrophil Degranulation (+840),0.006662159977417629,0.0017862640251405538,0.0
+R-HSA-5693607,Processing Of DNA Double-Strand Break Ends,69,group 11: Neutrophil Degranulation (+840),0.006645838081268436,0.003954992725630291,0.0
+R-HSA-674695,RNA Polymerase II Pre-transcription Events,78,group 11: Neutrophil Degranulation (+840),0.006642980182689409,0.00024933690889156424,0.0
+R-HSA-9670095,Inhibition Of DNA Recombination At Telomere,36,group 11: Neutrophil Degranulation (+840),0.006642106116623065,0.0034300563676515593,0.0
+R-HSA-1912408,Pre-NOTCH Transcription And Translation,50,group 11: Neutrophil Degranulation (+840),0.006640513682732027,0.004166926645120838,0.0
+R-HSA-977225,Amyloid Fiber Formation,54,group 11: Neutrophil Degranulation (+840),0.006636562507493043,0.003998231887526345,0.0
+R-HSA-180585,Vif-mediated Degradation Of APOBEC3G,50,group 11: Neutrophil Degranulation (+840),0.006617128159219431,0.0034307089512003587,0.0
+R-HSA-9604323,Negative Regulation Of NOTCH4 Signaling,52,group 11: Neutrophil Degranulation (+840),0.00660335929902523,0.00467676457032212,0.0
+R-HSA-141430,Inactivation Of APC/C Via Direct Inhibition Of APC/C Complex,18,group 11: Neutrophil Degranulation (+840),0.006587816024114283,-0.000604468120218371,0.0
+R-HSA-69541,Stabilization Of P53,51,group 11: Neutrophil Degranulation (+840),0.006584242584136457,0.0032880675367778166,0.0
+R-HSA-5693565,Recruitment And ATM-mediated Phosphorylation Of Repair And Signal Proteins At DNA Double Strand Breaks,52,group 11: Neutrophil Degranulation (+840),0.006580591252393295,0.0013885603693779558,0.0
+R-HSA-3214858,RMTs Methylate Histone Arginines,41,group 11: Neutrophil Degranulation (+840),0.006574933159843845,0.0036743833881337194,0.0
+R-HSA-6804758,Regulation Of TP53 Activity Thru Acetylation,28,group 11: Neutrophil Degranulation (+840),0.006570153990463241,0.005432157269151503,0.0
+R-HSA-69017,CDK-mediated Phosphorylation And Removal Of Cdc6,68,group 11: Neutrophil Degranulation (+840),0.006562210077928762,0.004757981604657288,0.0
+R-HSA-69563,p53-Dependent G1 DNA Damage Response,60,group 11: Neutrophil Degranulation (+840),0.00654385054614237,0.0017454088805243372,0.0
+R-HSA-912446,Meiotic Recombination,38,group 11: Neutrophil Degranulation (+840),0.006538400462023535,0.0016409501730231567,0.0
+R-HSA-5675221,Negative Regulation Of MAPK Pathway,39,group 11: Neutrophil Degranulation (+840),0.00653825924451605,0.00311668192705838,0.0
+R-HSA-6811558,"PI5P, PP2A And IER3 Regulate PI3K/AKT Signaling",78,group 11: Neutrophil Degranulation (+840),0.006529731666708712,0.0021092810825211927,0.0
+R-HSA-75815,Ubiquitin-dependent Degradation Of Cyclin D,48,group 11: Neutrophil Degranulation (+840),0.006522477138713515,0.004048573286745523,0.0
+R-HSA-72165,mRNA Splicing - Minor Pathway,49,group 11: Neutrophil Degranulation (+840),0.006516297803441915,0.004300949044700246,0.0
+R-HSA-167161,HIV Transcription Initiation,45,group 11: Neutrophil Degranulation (+840),0.006511087311131848,0.0006115821213461459,0.0
+R-HSA-6802957,Oncogenic MAPK Signaling,73,group 11: Neutrophil Degranulation (+840),0.006497672711715094,0.003418583191742073,0.0
+R-HSA-1227986,Signaling By ERBB2,46,group 11: Neutrophil Degranulation (+840),0.006493982221335331,0.0002303693331487011,0.0
+R-HSA-9701192,Defective HDR Thru Homologous Recombination (HRR) Due To BRCA1 Loss-Of-Function,21,group 11: Neutrophil Degranulation (+840),0.0064899204097593486,0.0005550350621342659,0.0
+R-HSA-1538133,G0 And Early G1,25,group 11: Neutrophil Degranulation (+840),0.006480586336594138,0.0017578261846210807,0.0
+R-HSA-3899300,SUMOylation Of Transcription Cofactors,41,group 11: Neutrophil Degranulation (+840),0.006465199064380505,0.004125841691202368,0.0
+R-HSA-445144,Signal Transduction By L1,20,group 11: Neutrophil Degranulation (+840),0.006463066334599408,0.0015822144108824433,0.0
+R-HSA-937041,IKK Complex Recruitment Mediated By RIP1,20,group 11: Neutrophil Degranulation (+840),0.006454949874837362,0.004911818839027546,0.0
+R-HSA-9615017,"FOXO-mediated Transcription Of Oxidative Stress, Metabolic And Neuronal Genes",22,group 11: Neutrophil Degranulation (+840),0.0064448829280544006,0.0044618348788935695,0.0
+R-HSA-5205647,Mitophagy,27,group 11: Neutrophil Degranulation (+840),0.006444389575767287,0.0017433233316842235,0.0
+R-HSA-174417,Telomere C-strand (Lagging Strand) Synthesis,32,group 11: Neutrophil Degranulation (+840),0.006439679730089156,0.0016147130729655145,0.0
+R-HSA-168325,Viral Messenger RNA Synthesis,46,group 11: Neutrophil Degranulation (+840),0.006438528861499281,0.004525781318952795,0.0
+R-HSA-1059683,Interleukin-6 Signaling,11,group 11: Neutrophil Degranulation (+840),0.006434512829360695,0.0037846261519007387,0.0
+R-HSA-6804756,Regulation Of TP53 Activity Thru Phosphorylation,84,group 11: Neutrophil Degranulation (+840),0.006428906022397391,-0.0006349024357041344,0.0
+R-HSA-9013409,RHOJ GTPase Cycle,50,group 11: Neutrophil Degranulation (+840),0.006428516589270873,0.002850003166749957,0.0
+R-HSA-4551638,SUMOylation Of Chromatin Organization Proteins,54,group 11: Neutrophil Degranulation (+840),0.006427105980080758,0.0021503302779456133,0.0
+R-HSA-6783783,Interleukin-10 Signaling,21,group 11: Neutrophil Degranulation (+840),0.006415921978265742,0.00028225150046637284,0.0
+R-HSA-9675126,Diseases Of Mitotic Cell Cycle,36,group 11: Neutrophil Degranulation (+840),0.006411403298360233,0.0011617469362681732,0.0
+R-HSA-9008059,Interleukin-37 Signaling,17,group 11: Neutrophil Degranulation (+840),0.0064107831210387335,0.0013704942791082431,0.0
+R-HSA-937039,IRAK1 Recruits IKK Complex,10,group 11: Neutrophil Degranulation (+840),0.006404796058027926,0.0023248707794118672,0.0
+R-HSA-5655302,Signaling By FGFR1 In Disease,30,group 11: Neutrophil Degranulation (+840),0.006394135425364504,0.0016404925615643151,0.0
+R-HSA-5654716,Downstream Signaling Of Activated FGFR4,17,group 11: Neutrophil Degranulation (+840),0.0063838548417660896,-7.463872723747045e-05,0.0
+R-HSA-3229121,Glycogen Storage Diseases,13,group 11: Neutrophil Degranulation (+840),0.006383162172179733,8.778233095654286e-06,0.0
+R-HSA-6806003,Regulation Of TP53 Expression And Degradation,36,group 11: Neutrophil Degranulation (+840),0.006358963007233658,0.0003029271319974214,0.0
+R-HSA-140534,Caspase Activation Via Death Receptors In Presence Of Ligand,12,group 11: Neutrophil Degranulation (+840),0.006355419821328863,0.0014047948149527657,0.0
+R-HSA-1222556,ROS And RNS Production In Phagocytes,28,group 11: Neutrophil Degranulation (+840),0.006348460741830453,0.0009890581012587064,0.0
+R-HSA-5218920,VEGFR2 Mediated Vascular Permeability,26,group 11: Neutrophil Degranulation (+840),0.006343784385569313,0.0025679902408637643,0.0
+R-HSA-2173796,SMAD2/SMAD3:SMAD4 Heterotrimer Regulates Transcription,35,group 11: Neutrophil Degranulation (+840),0.006336280844821515,0.002207018808403518,0.0
+R-HSA-5357786,TNFR1-induced Proapoptotic Signaling,12,group 11: Neutrophil Degranulation (+840),0.006328533559848191,-0.001460778779000975,0.0
+R-HSA-5625740,RHO GTPases Activate PKNs,46,group 11: Neutrophil Degranulation (+840),0.006327988309573611,0.001147853257243696,0.0
+R-HSA-179419,APC:Cdc20 Mediated Degradation Of Cell Cycle Proteins Before Cycle Checkpoint Satisfied,67,group 11: Neutrophil Degranulation (+840),0.006326687615562104,-0.00011552824114914984,0.0
+R-HSA-112399,IRS-mediated Signaling,30,group 11: Neutrophil Degranulation (+840),0.006320057042836906,0.0016710793029051274,0.0
+R-HSA-9675135,Diseases Of DNA Repair,45,group 11: Neutrophil Degranulation (+840),0.006305853972237131,0.001089496411714208,0.0
+R-HSA-2559585,Oncogene Induced Senescence,30,group 11: Neutrophil Degranulation (+840),0.006299305750428052,0.0036630289728054777,0.0
+R-HSA-447115,Interleukin-12 Family Signaling,38,group 11: Neutrophil Degranulation (+840),0.006290565464661409,-0.0008403030032059178,0.0
+R-HSA-1169408,ISG15 Antiviral Mechanism,71,group 11: Neutrophil Degranulation (+840),0.0062902074682593375,0.0030469031868778983,0.0
+R-HSA-174411,Polymerase Switching On C-strand Of Telomere,24,group 11: Neutrophil Degranulation (+840),0.006288598440745372,0.0009078566078096628,0.0
+R-HSA-1839124,FGFR1 Mutant Receptor Activation,24,group 11: Neutrophil Degranulation (+840),0.0062846151062176895,0.004455217829381582,0.0
+R-HSA-174178,APC/C:Cdh1 Mediated Degradation Of Cdc20 And APC/C:Cdh1 Targets In Late Mitosis/Early G1,66,group 11: Neutrophil Degranulation (+840),0.006281455548803748,0.0013780645170481875,0.0
+R-HSA-77595,Processing Of Intronless Pre-mRNAs,20,group 11: Neutrophil Degranulation (+840),0.006279240350457998,0.0007889210977737093,0.0
+R-HSA-176033,Interactions Of Vpr With Host Cellular Proteins,37,group 11: Neutrophil Degranulation (+840),0.006268906562541754,0.0036882692224753555,0.0
+R-HSA-70171,Glycolysis,61,group 11: Neutrophil Degranulation (+840),0.006267157904024362,0.0035125245034578257,0.0
+R-HSA-912631,Regulation Of Signaling By CBL,16,group 11: Neutrophil Degranulation (+840),0.0062550657412029365,0.0018269166305253748,0.0
+R-HSA-77588,SLBP Dependent Processing Of Replication-Dependent Histone Pre-mRNAs,11,group 11: Neutrophil Degranulation (+840),0.006247428570966773,0.00016559092415263877,0.0
+R-HSA-175474,Assembly Of HIV Virion,17,group 11: Neutrophil Degranulation (+840),0.006246855956407548,0.0007077110607133364,0.0
+R-HSA-69615,G1/S DNA Damage Checkpoints,62,group 11: Neutrophil Degranulation (+840),0.006240279783526341,0.0026185554958647115,0.0
+R-HSA-2424491,DAP12 Signaling,23,group 11: Neutrophil Degranulation (+840),0.006239600307988871,-0.0002329204669149476,0.0
+R-HSA-445355,Smooth Muscle Contraction,36,group 11: Neutrophil Degranulation (+840),0.006234231921331167,0.0009171708967187442,0.0
+R-HSA-4570464,SUMOylation Of RNA Binding Proteins,45,group 11: Neutrophil Degranulation (+840),0.006225659307171354,-0.00030630071938503534,0.0
+R-HSA-917729,Endosomal Sorting Complex Required For Transport (ESCRT),28,group 11: Neutrophil Degranulation (+840),0.006224818976390791,0.0012485316224046983,0.0
+R-HSA-69186,Lagging Strand Synthesis,20,group 11: Neutrophil Degranulation (+840),0.006209965005331531,0.0015610207071586047,0.0
+R-HSA-1221632,Meiotic Synapsis,40,group 11: Neutrophil Degranulation (+840),0.006206315021441018,0.003320502235146705,0.0
+R-HSA-8950505,Gene And Protein Expression By JAK-STAT Signaling After Interleukin-12 Stimulation,29,group 11: Neutrophil Degranulation (+840),0.006205524722364794,0.0007762850877043092,0.0
+R-HSA-5678895,Defective CFTR Causes Cystic Fibrosis,56,group 11: Neutrophil Degranulation (+840),0.006204951780165498,0.0007718321140418994,0.0
+R-HSA-448424,Interleukin-17 Signaling,64,group 11: Neutrophil Degranulation (+840),0.006201334258194192,0.0001650936101214029,0.0
+R-HSA-8979227,Triglyceride Metabolism,24,group 11: Neutrophil Degranulation (+840),0.006199485893850609,0.003256317353079794,0.0
+R-HSA-5610785,GLI3 Is Processed To GLI3R By Proteasome,55,group 11: Neutrophil Degranulation (+840),0.006188695039698791,0.0008066838182639913,0.0
+R-HSA-162588,Budding And Maturation Of HIV Virion,26,group 11: Neutrophil Degranulation (+840),0.006180395916089765,0.0018846562956787239,0.0
+R-HSA-156711,Polo-like Kinase Mediated Events,12,group 11: Neutrophil Degranulation (+840),0.006173051747304024,-0.0001730422033870127,0.0
+R-HSA-9013407,RHOH GTPase Cycle,32,group 11: Neutrophil Degranulation (+840),0.006171328576194848,0.00027770152475568464,0.0
+R-HSA-2428928,IRS-related Events Triggered By IGF1R,33,group 11: Neutrophil Degranulation (+840),0.006170536668860685,0.0017540571995050414,0.0
+R-HSA-5358606,Mismatch Repair (MMR) Directed By MSH2:MSH3 (MutSbeta),13,group 11: Neutrophil Degranulation (+840),0.006165124452204278,0.0007351683081014926,0.0
+R-HSA-9656223,Signaling By RAF1 Mutants,35,group 11: Neutrophil Degranulation (+840),0.006153161248381613,0.0021843886870192364,0.0
+R-HSA-1433557,Signaling By SCF-KIT,36,group 11: Neutrophil Degranulation (+840),0.006148618066059899,0.0027856448221427856,0.0
+R-HSA-9634638,Estrogen-dependent Nuclear Events Downstream Of ESR-membrane Signaling,21,group 11: Neutrophil Degranulation (+840),0.006144946896257984,0.004163435919617768,0.0
+R-HSA-9645723,Diseases Of Programmed Cell Death,55,group 11: Neutrophil Degranulation (+840),0.006144310034894369,0.0005944614343752619,0.0
+R-HSA-381042,PERK Regulates Gene Expression,30,group 11: Neutrophil Degranulation (+840),0.006140926204842784,0.0022432891125208697,0.0
+R-HSA-399721,"Glutamate Binding, Activation Of AMPA Receptors And Synaptic Plasticity",31,group 11: Neutrophil Degranulation (+840),0.00613844577642725,0.0018519249765722634,0.0
+R-HSA-5696397,Gap-filling DNA Repair Synthesis And Ligation In GG-NER,25,group 11: Neutrophil Degranulation (+840),0.006131858820829667,6.775029556592927e-05,0.0
+R-HSA-111458,Formation Of Apoptosome,11,group 11: Neutrophil Degranulation (+840),0.00613051401763233,0.000570374841136072,0.0
+R-HSA-165159,MTOR Signaling,40,group 11: Neutrophil Degranulation (+840),0.006128716230455597,0.001167566190706566,0.0
+R-HSA-3232142,SUMOylation Of Ubiquitinylation Proteins,38,group 11: Neutrophil Degranulation (+840),0.00612511933254378,0.0015042444349091966,0.0
+R-HSA-9013026,RHOB GTPase Cycle,65,group 11: Neutrophil Degranulation (+840),0.00611992358835932,0.002989922999404371,0.0
+R-HSA-9725370,Signaling By ALK Fusions And Activated Point Mutants,53,group 11: Neutrophil Degranulation (+840),0.006112896736170623,0.005677098532905802,0.0
+R-HSA-73980,RNA Polymerase III Transcription Termination,21,group 11: Neutrophil Degranulation (+840),0.0061107876073762425,0.002243852720057475,0.0
+R-HSA-8936459,RUNX1 Regulates Genes Involved In Megakaryocyte Differentiation And Platelet Function,50,group 11: Neutrophil Degranulation (+840),0.0061107528267449985,0.001043328251616913,0.0
+R-HSA-9635486,Infection With Mycobacterium Tuberculosis,24,group 11: Neutrophil Degranulation (+840),0.006100928609385708,0.002251544748141896,0.0
+R-HSA-167044,Signaling To RAS,18,group 11: Neutrophil Degranulation (+840),0.0061000327204780306,-0.000673216743307421,0.0
+R-HSA-2029482,Regulation Of Actin Dynamics For Phagocytic Cup Formation,55,group 11: Neutrophil Degranulation (+840),0.006096328562125564,0.002368537119764369,0.0
+R-HSA-1502540,Signaling By Activin,13,group 11: Neutrophil Degranulation (+840),0.006090006653428614,0.0045589959902281405,0.0
+R-HSA-72086,mRNA Capping,29,group 11: Neutrophil Degranulation (+840),0.006084830283731917,0.0013548451209499034,0.0
+R-HSA-9664422,FCGR3A-mediated Phagocytosis,53,group 11: Neutrophil Degranulation (+840),0.006081060802971171,0.003743988387366244,0.0
+R-HSA-9754678,SARS-CoV-2 Modulates Host Translation Machinery,46,group 11: Neutrophil Degranulation (+840),0.006069758368490295,0.002354724485485349,0.0
+R-HSA-186797,Signaling By PDGF,46,group 11: Neutrophil Degranulation (+840),0.006067600432177611,0.0016967728899180657,0.0
+R-HSA-6783589,Interleukin-6 Family Signaling,21,group 11: Neutrophil Degranulation (+840),0.006066333219311318,-0.000518524109829741,0.0
+R-HSA-8866654,E3 Ubiquitin Ligases Ubiquitinate Target Proteins,51,group 11: Neutrophil Degranulation (+840),0.006062881170621071,0.0009526376748908661,0.0
+R-HSA-6804757,Regulation Of TP53 Degradation,35,group 11: Neutrophil Degranulation (+840),0.006062579516940987,0.0029646665612381184,0.0
+R-HSA-3928665,EPH-ephrin Mediated Repulsion Of Cells,46,group 11: Neutrophil Degranulation (+840),0.006061285407621793,0.0024324887420516463,0.0
+R-HSA-4641262,Disassembly Of Destruction Complex And Recruitment Of AXIN To Membrane,25,group 11: Neutrophil Degranulation (+840),0.006060618787147578,0.002229775672822143,0.0
+R-HSA-2428924,IGF1R Signaling Cascade,34,group 11: Neutrophil Degranulation (+840),0.00603673445271482,0.0014764658151761977,0.0
+R-HSA-936440,Negative Regulators Of DDX58/IFIH1 Signaling,34,group 11: Neutrophil Degranulation (+840),0.006029382619170188,0.0035570308059686795,0.0
+R-HSA-9703648,Signaling By FLT3 ITD And TKD Mutants,14,group 11: Neutrophil Degranulation (+840),0.006017914589226119,-0.0006682372122304514,0.0
+R-HSA-9645460,Alpha-protein Kinase 1 Signaling Pathway,11,group 11: Neutrophil Degranulation (+840),0.006015859371331378,0.002216460294439457,0.0
+R-HSA-72187,mRNA 3-End Processing,57,group 11: Neutrophil Degranulation (+840),0.00600351013195843,0.0015378153912024572,0.0
+R-HSA-5654687,Downstream Signaling Of Activated FGFR1,22,group 11: Neutrophil Degranulation (+840),0.005996179718759021,-0.0017338051705155521,0.0
+R-HSA-5362768,Hh Mutants Are Degraded By ERAD,52,group 11: Neutrophil Degranulation (+840),0.005994306892448626,0.002672576786426362,0.0
+R-HSA-4791275,Signaling By WNT In Cancer,29,group 11: Neutrophil Degranulation (+840),0.005992995077518202,0.0011598765142116464,0.0
+R-HSA-200425,Carnitine Metabolism,11,group 11: Neutrophil Degranulation (+840),0.005985933229311417,-0.0005188558640656992,0.0
+R-HSA-174430,Telomere C-strand Synthesis Initiation,12,group 11: Neutrophil Degranulation (+840),0.005979740794085093,-0.00016126120346598327,0.0
+R-HSA-8851708,Signaling By FGFR2 IIIa TM,19,group 11: Neutrophil Degranulation (+840),0.00597708161336506,0.001949284974634793,0.0
+R-HSA-9682385,FLT3 Signaling In Disease,25,group 11: Neutrophil Degranulation (+840),0.005976459306913381,0.0019726702665502673,0.0
+R-HSA-111471,Apoptotic Factor-Mediated Response,19,group 11: Neutrophil Degranulation (+840),0.00597346314162231,0.0011159146978934587,0.0
+R-HSA-9639288,Amino Acids Regulate mTORC1,52,group 11: Neutrophil Degranulation (+840),0.005970618693884147,-0.0002866533026099205,0.0
+R-HSA-5334118,DNA Methylation,20,group 11: Neutrophil Degranulation (+840),0.005967021030294946,0.0011272844638733658,0.0
+R-HSA-1250347,SHC1 Events In ERBB4 Signaling,12,group 11: Neutrophil Degranulation (+840),0.005963968586851386,0.0003515549942267171,0.0
+R-HSA-1234176,Oxygen-dependent Proline Hydroxylation Of Hypoxia-inducible Factor Alpha,61,group 11: Neutrophil Degranulation (+840),0.005959550592302487,0.0006238070470863022,0.0
+R-HSA-162658,Golgi Cisternae Pericentriolar Stack Reorganization,13,group 11: Neutrophil Degranulation (+840),0.005957215036644395,0.001619115978537593,0.0
+R-HSA-159230,Transport Of SLBP Dependant Mature mRNA,35,group 11: Neutrophil Degranulation (+840),0.005956503569362567,0.0013532962720819342,0.0
+R-HSA-69109,Leading Strand Synthesis,14,group 11: Neutrophil Degranulation (+840),0.005935244646980979,0.002907202774658799,0.0
+R-HSA-9634285,Constitutive Signaling By Overexpressed ERBB2,10,group 11: Neutrophil Degranulation (+840),0.0059318790676300874,0.003211288401339516,0.0
+R-HSA-180534,Vpu Mediated Degradation Of CD4,48,group 11: Neutrophil Degranulation (+840),0.005928206937269197,0.0028751863562501965,0.0
+R-HSA-3214815,HDACs Deacetylate Histones,47,group 11: Neutrophil Degranulation (+840),0.005926708574209488,0.00222757732422906,0.0
+R-HSA-5693537,Resolution Of D-Loop Structures,29,group 11: Neutrophil Degranulation (+840),0.005923366775095929,0.000849619565251487,0.0
+R-HSA-9616222,Transcriptional Regulation Of Granulopoiesis,42,group 11: Neutrophil Degranulation (+840),0.005922781473363087,0.0015610189115977846,0.0
+R-HSA-76066,RNA Polymerase III Transcription Initiation From Type 2 Promoter,26,group 11: Neutrophil Degranulation (+840),0.0059208491443884775,0.002392265841990593,0.0
+R-HSA-400685,Sema4D In Semaphorin Signaling,24,group 11: Neutrophil Degranulation (+840),0.005917872489472926,0.0018894952265873144,0.0
+R-HSA-6804760,Regulation Of TP53 Activity Thru Methylation,19,group 11: Neutrophil Degranulation (+840),0.0059171436277565435,-3.2550729665672405e-05,0.0
+R-HSA-5654696,Downstream Signaling Of Activated FGFR2,19,group 11: Neutrophil Degranulation (+840),0.005914554661642997,0.0009357620371883968,0.0
+R-HSA-606279,Deposition Of New CENPA-containing Nucleosomes At Centromere,35,group 11: Neutrophil Degranulation (+840),0.005906734721324707,0.0030800046285730785,0.0
+R-HSA-1251985,Nuclear Signaling By ERBB4,31,group 11: Neutrophil Degranulation (+840),0.005899911612011808,0.001976004837779328,0.0
+R-HSA-5674135,MAP2K And MAPK Activation,34,group 11: Neutrophil Degranulation (+840),0.005891687948832889,0.0027226020945818165,0.0
+R-HSA-113418,Formation Of Early Elongation Complex,33,group 11: Neutrophil Degranulation (+840),0.0058909436246830085,0.001196125329734059,0.0
+R-HSA-9013424,RHOV GTPase Cycle,34,group 11: Neutrophil Degranulation (+840),0.005888608940561318,0.0032148482982302085,0.0
+R-HSA-1362300,Transcription Of E2F Targets Under Negative Control By P107 (RBL1) And P130 (RBL2) In Complex With HDAC1,15,group 11: Neutrophil Degranulation (+840),0.005888155092568121,0.002985422356578056,0.0
+R-HSA-5693616,Presynaptic Phase Of Homologous DNA Pairing And Strand Exchange,35,group 11: Neutrophil Degranulation (+840),0.005886969298228643,0.001207248010633748,0.0
+R-HSA-5655332,Signaling By FGFR3 In Disease,14,group 11: Neutrophil Degranulation (+840),0.005884957640536398,-0.00010610314631776419,0.0
+R-HSA-201722,Formation Of beta-catenin:TCF Transactivating Complex,45,group 11: Neutrophil Degranulation (+840),0.005883396908214663,0.0007214165167533792,0.0
+R-HSA-5654736,Signaling By FGFR1,40,group 11: Neutrophil Degranulation (+840),0.005881289349695258,0.0019824312324635686,0.0
+R-HSA-3301854,Nuclear Pore Complex (NPC) Disassembly,34,group 11: Neutrophil Degranulation (+840),0.005867695240146023,0.0020877270193886944,0.0
+R-HSA-9614657,FOXO-mediated Transcription Of Cell Death Genes,15,group 11: Neutrophil Degranulation (+840),0.0058674157975967655,-0.00042896987637504937,0.0
+R-HSA-140342,Apoptosis Induced DNA Fragmentation,13,group 11: Neutrophil Degranulation (+840),0.005866910507892637,0.005509740489287651,0.0
+R-HSA-5250913,Positive Epigenetic Regulation Of rRNA Expression,60,group 11: Neutrophil Degranulation (+840),0.005865639214545994,0.004574420208809897,0.0
+R-HSA-9615710,Late Endosomal Microautophagy,27,group 11: Neutrophil Degranulation (+840),0.00586184292451589,0.0012247917702188716,0.0
+R-HSA-6802955,Paradoxical Activation Of RAF Signaling By Kinase Inactive BRAF,38,group 11: Neutrophil Degranulation (+840),0.005858700178954276,0.0020744651550739946,0.0
+R-HSA-8854691,Interleukin-20 Family Signaling,16,group 11: Neutrophil Degranulation (+840),0.0058483109228368215,0.0027307974530413046,0.0
+R-HSA-2173795,Downregulation Of SMAD2/3:SMAD4 Transcriptional Activity,30,group 11: Neutrophil Degranulation (+840),0.0058456752573581945,0.0018026375898625702,0.0
+R-HSA-5357956,TNFR1-induced NFkappaB Signaling Pathway,25,group 11: Neutrophil Degranulation (+840),0.005845428628539193,-0.00019437362614553423,0.0
+R-HSA-73929,"Base-Excision Repair, AP Site Formation",31,group 11: Neutrophil Degranulation (+840),0.005840857726676496,0.0010856245095396844,0.0
+R-HSA-174414,Processive Synthesis On C-strand Of Telomere,19,group 11: Neutrophil Degranulation (+840),0.00583955053480784,0.0009018513737828471,0.0
+R-HSA-211733,Regulation Of Activated PAK-2p34 By Proteasome Mediated Degradation,46,group 11: Neutrophil Degranulation (+840),0.005833391887229528,0.002850547831030781,0.0
+R-HSA-5663084,Diseases Of Carbohydrate Metabolism,28,group 11: Neutrophil Degranulation (+840),0.005832575929205139,0.002073921793707996,0.0
+R-HSA-9637687,Suppression Of Phagosomal Maturation,12,group 11: Neutrophil Degranulation (+840),0.005831167881448074,0.0004928925982676446,0.0
+R-HSA-5601884,PIWI-interacting RNA (piRNA) Biogenesis,25,group 11: Neutrophil Degranulation (+840),0.005827441173250456,0.001786514219129458,0.0
+R-HSA-210990,PECAM1 Interactions,11,group 11: Neutrophil Degranulation (+840),0.005824811514703778,-0.0006369490275392309,0.0
+R-HSA-9013406,RHOQ GTPase Cycle,55,group 11: Neutrophil Degranulation (+840),0.005819949154946529,-0.00023750626739229118,0.0
+R-HSA-186712,Regulation Of Beta-Cell Development,24,group 11: Neutrophil Degranulation (+840),0.005810701380823186,0.002587745988421375,0.0
+R-HSA-418885,DCC Mediated Attractive Signaling,14,group 11: Neutrophil Degranulation (+840),0.005809034014113792,0.0014899790147501334,0.0
+R-HSA-9665686,Signaling By ERBB2 TMD/JMD Mutants,20,group 11: Neutrophil Degranulation (+840),0.005805206681617488,0.002312319216052856,0.0
+R-HSA-1839126,FGFR2 Mutant Receptor Activation,23,group 11: Neutrophil Degranulation (+840),0.0057987361662958006,0.0013619327313790564,0.0
+R-HSA-174154,APC/C:Cdc20 Mediated Degradation Of Securin,61,group 11: Neutrophil Degranulation (+840),0.005785496581456292,0.003119066242943518,0.0
+R-HSA-372708,p130Cas Linkage To MAPK Signaling For Integrins,12,group 11: Neutrophil Degranulation (+840),0.005781579120538466,0.00019728893967112525,0.0
+R-HSA-9708530,Regulation Of BACH1 Activity,11,group 11: Neutrophil Degranulation (+840),0.005779373771385231,0.0021017120054057157,0.0
+R-HSA-9027276,Erythropoietin Activates Phosphoinositide-3-kinase (PI3K),11,group 11: Neutrophil Degranulation (+840),0.005777439790762077,-0.0001715024744044058,0.0
+R-HSA-9701190,Defective Homologous Recombination Repair (HRR) Due To BRCA2 Loss Of Function,36,group 11: Neutrophil Degranulation (+840),0.005771668395816775,0.003420759501750581,0.0
+R-HSA-5689896,Ovarian Tumor Domain Proteases,37,group 11: Neutrophil Degranulation (+840),0.0057686658970759076,0.0005132984687588759,0.0
+R-HSA-8983432,Interleukin-15 Signaling,11,group 11: Neutrophil Degranulation (+840),0.005759329052042153,0.0010145787554210984,0.0
+R-HSA-2299718,Condensation Of Prophase Chromosomes,30,group 11: Neutrophil Degranulation (+840),0.005756078853609309,0.001880359777060221,0.0
+R-HSA-8875360,InlB-mediated Entry Of Listeria Monocytogenes Into Host Cell,15,group 11: Neutrophil Degranulation (+840),0.005750805293742599,0.001115649392886553,0.0
+R-HSA-350562,Regulation Of Ornithine Decarboxylase (ODC),47,group 11: Neutrophil Degranulation (+840),0.005749573936413133,0.0013530340461511514,0.0
+R-HSA-1500620,Meiosis,62,group 11: Neutrophil Degranulation (+840),0.005749444819896056,0.003576692955539329,0.0
+R-HSA-9012852,Signaling By NOTCH3,47,group 11: Neutrophil Degranulation (+840),0.005744282327201691,-0.0015237953455653041,0.0
+R-HSA-2979096,NOTCH2 Activation And Transmission Of Signal To Nucleus,21,group 11: Neutrophil Degranulation (+840),0.005735509960628036,0.0023418889925233086,0.0
+R-HSA-6783310,Fanconi Anemia Pathway,34,group 11: Neutrophil Degranulation (+840),0.005731959734210681,0.0027543399744899945,0.0
+R-HSA-1170546,Prolactin Receptor Signaling,12,group 11: Neutrophil Degranulation (+840),0.005730322557422569,-0.0010952577120042406,0.0
+R-HSA-9614085,FOXO-mediated Transcription,57,group 11: Neutrophil Degranulation (+840),0.0057292648329413335,0.0021172280762766604,0.0
+R-HSA-5357905,Regulation Of TNFR1 Signaling,34,group 11: Neutrophil Degranulation (+840),0.005719714637814184,0.0003778367166523822,0.0
+R-HSA-6785631,ERBB2 Regulates Cell Motility,14,group 11: Neutrophil Degranulation (+840),0.005711160786449909,0.0037547371903201565,0.0
+R-HSA-429958,mRNA Decay By 3 To 5 Exoribonuclease,16,group 11: Neutrophil Degranulation (+840),0.005710502740327946,9.994270575589326e-05,0.0
+R-HSA-176974,Unwinding Of DNA,10,group 11: Neutrophil Degranulation (+840),0.005703637094885087,0.0025647805906191933,0.0
+R-HSA-2173793,Transcriptional Activity Of SMAD2/SMAD3:SMAD4 Heterotrimer,49,group 11: Neutrophil Degranulation (+840),0.005701327989355393,0.0013146032324584667,0.0
+R-HSA-6804116,TP53 Regulates Transcription Of Genes Involved In G1 Cell Cycle Arrest,13,group 11: Neutrophil Degranulation (+840),0.005695583522161943,0.0011607659139554016,0.0
+R-HSA-76071,RNA Polymerase III Transcription Initiation From Type 3 Promoter,27,group 11: Neutrophil Degranulation (+840),0.0056923939956736135,0.001962219127390199,0.0
+R-HSA-8847993,ERBB2 Activates PTK6 Signaling,11,group 11: Neutrophil Degranulation (+840),0.005686648654418759,0.003160606491328508,0.0
+R-HSA-167287,HIV Elongation Arrest And Recovery,32,group 11: Neutrophil Degranulation (+840),0.005677949805680852,0.0011705198101117276,0.0
+R-HSA-9762114,GSK3B And BTRC:CUL1-mediated-degradation Of NFE2L2,50,group 11: Neutrophil Degranulation (+840),0.0056755084401120875,0.0013897844920211355,0.0
+R-HSA-5693554,Resolution Of D-loop Structures Thru Synthesis-Dependent Strand Annealing (SDSA),23,group 11: Neutrophil Degranulation (+840),0.005675099259222684,0.0017498986166901887,0.0
+R-HSA-901042,Calnexin/calreticulin Cycle,26,group 11: Neutrophil Degranulation (+840),0.005669359589524378,0.002550901593349408,0.0
+R-HSA-1834949,Cytosolic Sensors Of Pathogen-Associated DNA,58,group 11: Neutrophil Degranulation (+840),0.005667751655475852,0.0005870251552551053,0.0
+R-HSA-8854518,AURKA Activation By TPX2,71,group 11: Neutrophil Degranulation (+840),0.005665607416165708,0.0024348800991720056,0.0
+R-HSA-381033,ATF6 (ATF6-alpha) Activates Chaperones,11,group 11: Neutrophil Degranulation (+840),0.00566522636899655,0.0003612802129782722,0.0
+R-HSA-2404192,Signaling By Type 1 Insulin-like Growth Factor 1 Receptor (IGF1R),35,group 11: Neutrophil Degranulation (+840),0.00566313244275141,0.0018900463336467511,0.0
+R-HSA-9665348,Signaling By ERBB2 ECD Mutants,15,group 11: Neutrophil Degranulation (+840),0.005661865238936902,0.00022617544476815965,0.0
+R-HSA-9758274,Regulation Of NF-kappa B Signaling,17,group 11: Neutrophil Degranulation (+840),0.00565945466874775,0.0018372120954882121,0.0
+R-HSA-198753,ERK/MAPK Targets,22,group 11: Neutrophil Degranulation (+840),0.005654214590544205,-0.0005163702095160261,0.0
+R-HSA-1236978,Cross-presentation Of Soluble Exogenous Antigens (Endosomes),45,group 11: Neutrophil Degranulation (+840),0.0056497405267367925,0.0011859684565570206,0.0
+R-HSA-9013507,NOTCH3 Activation And Transmission Of Signal To Nucleus,25,group 11: Neutrophil Degranulation (+840),0.005649640657386538,0.004252340701641515,0.0
+R-HSA-975163,IRAK2 Mediated Activation Of TAK1 Complex Upon TLR7/8 Or 9 Stimulation,13,group 11: Neutrophil Degranulation (+840),0.005649094077683512,0.0021717714728583816,0.0
+R-HSA-2173788,Downregulation Of TGF-beta Receptor Signaling,26,group 11: Neutrophil Degranulation (+840),0.005645727243085028,0.00199029172770679,0.0
+R-HSA-392517,Rap1 Signaling,15,group 11: Neutrophil Degranulation (+840),0.005642165906280397,0.0012739010498989956,0.0
+R-HSA-877312,Regulation Of IFNG Signaling,13,group 11: Neutrophil Degranulation (+840),0.005641156901068733,-0.0002893315762048587,0.0
+R-HSA-9673770,Signaling By PDGFRA Extracellular Domain Mutants,10,group 11: Neutrophil Degranulation (+840),0.005629191138797392,-2.939780242741108e-06,0.0
+R-HSA-212300,PRC2 Methylates Histones And DNA,30,group 11: Neutrophil Degranulation (+840),0.005628038409054556,0.003471760074389749,0.0
+R-HSA-9014325,"TICAM1,TRAF6-dependent Induction Of TAK1 Complex",11,group 11: Neutrophil Degranulation (+840),0.005617780126315557,0.0018325517454650254,0.0
+R-HSA-881907,Gastrin-CREB Signaling Pathway Via PKC And MAPK,14,group 11: Neutrophil Degranulation (+840),0.00561207154079072,0.0022882657643640415,0.0
+R-HSA-917977,Transferrin Endocytosis And Recycling,28,group 11: Neutrophil Degranulation (+840),0.0056085722897077465,0.0018531361556506454,0.0
+R-HSA-1445148,Translocation Of SLC2A4 (GLUT4) To Plasma Membrane,50,group 11: Neutrophil Degranulation (+840),0.005605770755866646,0.0006585945446067853,0.0
+R-HSA-427359,SIRT1 Negatively Regulates rRNA Expression,25,group 11: Neutrophil Degranulation (+840),0.005603060579485797,0.0032663319299172143,0.0
+R-HSA-8863795,Downregulation Of ERBB2 Signaling,28,group 11: Neutrophil Degranulation (+840),0.0056029186696524465,0.005188019300985616,0.0
+R-HSA-180746,Nuclear Import Of Rev Protein,33,group 11: Neutrophil Degranulation (+840),0.005601569078948992,0.002605255611852044,0.0
+R-HSA-69166,Removal Of Flap Intermediate,14,group 11: Neutrophil Degranulation (+840),0.005600380134705644,-0.0008045195485465228,0.0
+R-HSA-176412,Phosphorylation Of APC/C,19,group 11: Neutrophil Degranulation (+840),0.0055953659685486455,0.0009744112519547343,0.0
+R-HSA-1362277,Transcription Of E2F Targets Under Negative Control By DREAM Complex,18,group 11: Neutrophil Degranulation (+840),0.005594850521755673,0.000606679058400914,0.0
+R-HSA-5654699,SHC-mediated cascade:FGFR2,12,group 11: Neutrophil Degranulation (+840),0.005592639844468006,0.0006243840559909586,0.0
+R-HSA-5654710,PI-3K cascade:FGFR3,11,group 11: Neutrophil Degranulation (+840),0.005571481310644077,0.001368933912308421,0.0
+R-HSA-187687,Signaling To ERKs,32,group 11: Neutrophil Degranulation (+840),0.005568591566061822,-0.0006970055591955316,0.0
+R-HSA-73728,RNA Polymerase I Promoter Opening,19,group 11: Neutrophil Degranulation (+840),0.005563529393975071,0.004891000670977519,0.0
+R-HSA-380994,ATF4 Activates Genes In Response To Endoplasmic Reticulum Stress,25,group 11: Neutrophil Degranulation (+840),0.00556115164802315,0.0004122046838165261,0.0
+R-HSA-5663213,RHO GTPases Activate WASPs And WAVEs,33,group 11: Neutrophil Degranulation (+840),0.005557050991120701,0.0038052870302635712,0.0
+R-HSA-1266695,Interleukin-7 Signaling,17,group 11: Neutrophil Degranulation (+840),0.005554467720626775,0.0025082969658251388,0.0
+R-HSA-9634600,"Regulation Of Glycolysis By Fructose 2,6-Bisphosphate Metabolism",11,group 11: Neutrophil Degranulation (+840),0.005552129756010106,0.002571310489511234,0.0
+R-HSA-69202,Cyclin E Associated Events During G1/S Transition,80,group 11: Neutrophil Degranulation (+840),0.005549823004117046,-6.318506042589434e-05,0.0
+R-HSA-9703465,Signaling By FLT3 Fusion Proteins,18,group 11: Neutrophil Degranulation (+840),0.005539920696815065,0.0022984301086398772,0.0
+R-HSA-193648,NRAGE Signals Death Thru JNK,52,group 11: Neutrophil Degranulation (+840),0.005539435778460386,0.001709227052051574,0.0
+R-HSA-4419969,Depolymerisation Of Nuclear Lamina,15,group 11: Neutrophil Degranulation (+840),0.00552481378890353,0.0022809188772225752,0.0
+R-HSA-5625970,RHO GTPases Activate KTN1,10,group 11: Neutrophil Degranulation (+840),0.005519250188580511,0.00144446025774414,0.0
+R-HSA-8939243,RUNX1 Interacts With Co-Factors Whose Precise Effect On RUNX1 Targets Is Not Known,34,group 11: Neutrophil Degranulation (+840),0.005516422045085643,0.00032206308125751096,0.0
+R-HSA-159231,Transport Of Mature mRNA Derived From An Intronless Transcript,41,group 11: Neutrophil Degranulation (+840),0.005515358421208645,0.0023786326286062832,0.0
+R-HSA-69205,G1/S-Specific Transcription,26,group 11: Neutrophil Degranulation (+840),0.005509345810189527,0.00011818704690085723,0.0
+R-HSA-5607761,Dectin-1 Mediated Noncanonical NF-kB Signaling,56,group 11: Neutrophil Degranulation (+840),0.005492332266343726,0.0011656455567572266,0.0
+R-HSA-8941326,RUNX2 Regulates Bone Development,26,group 11: Neutrophil Degranulation (+840),0.005484800151217792,0.003603493310511112,0.0
+R-HSA-5654720,PI-3K cascade:FGFR4,11,group 11: Neutrophil Degranulation (+840),0.005479145254318255,0.00038576276594540107,0.0
+R-HSA-110329,Cleavage Of Damaged Pyrimidine,29,group 11: Neutrophil Degranulation (+840),0.005477663320370839,0.0021642264079127925,0.0
+R-HSA-5358508,Mismatch Repair,14,group 11: Neutrophil Degranulation (+840),0.005474554177499928,-1.3862029882147907e-05,0.0
+R-HSA-450513,"Tristetraprolin (TTP, ZFP36) Binds And Destabilizes mRNA",17,group 11: Neutrophil Degranulation (+840),0.005465975288215135,0.001184823118942404,0.0
+R-HSA-5689901,Metalloprotease DUBs,26,group 11: Neutrophil Degranulation (+840),0.005464317217978285,0.0018822281123721041,0.0
+R-HSA-5693568,Resolution Of D-loop Structures Thru Holliday Junction Intermediates,28,group 11: Neutrophil Degranulation (+840),0.005451770422494797,0.0010182275928673334,0.0
+R-HSA-9013508,NOTCH3 Intracellular Domain Regulates Transcription,23,group 11: Neutrophil Degranulation (+840),0.005446478464222371,-0.0006386029036366381,0.0
+R-HSA-450282,MAPK Targets/ Nuclear Events Mediated By MAP Kinases,29,group 11: Neutrophil Degranulation (+840),0.005437409117032568,0.00020433131794561632,0.0
+R-HSA-380972,Energy Dependent Regulation Of mTOR By LKB1-AMPK,28,group 11: Neutrophil Degranulation (+840),0.005432728757308322,-0.0005551841220585629,0.0
+R-HSA-198693,AKT Phosphorylates Targets In Nucleus,10,group 11: Neutrophil Degranulation (+840),0.005430659594140568,0.0026781635750739953,0.0
+R-HSA-5627123,RHO GTPases Activate PAKs,21,group 11: Neutrophil Degranulation (+840),0.00542764217840405,0.0014946054491883842,0.0
+R-HSA-9709603,Impaired BRCA2 Binding To PALB2,20,group 11: Neutrophil Degranulation (+840),0.005424526961859694,0.0012309327033290173,0.0
+R-HSA-6804114,TP53 Regulates Transcription Of Genes Involved In G2 Cell Cycle Arrest,17,group 11: Neutrophil Degranulation (+840),0.005422575176314656,0.0019203195540467277,0.0
+R-HSA-4641263,Regulation Of FZD By Ubiquitination,17,group 11: Neutrophil Degranulation (+840),0.005415473850365033,0.0005809904477791861,0.0
+R-HSA-6791312,TP53 Regulates Transcription Of Cell Cycle Genes,45,group 11: Neutrophil Degranulation (+840),0.005407040492213189,-0.0021786103170597926,0.0
+R-HSA-75893,TNF Signaling,43,group 11: Neutrophil Degranulation (+840),0.005405389292903592,0.0006345869226788637,0.0
+R-HSA-2894862,Constitutive Signaling By NOTCH1 HD+PEST Domain Mutants,58,group 11: Neutrophil Degranulation (+840),0.0054020601131369245,0.0008560877747368068,0.0
+R-HSA-430039,mRNA Decay By 5 To 3 Exoribonuclease,15,group 11: Neutrophil Degranulation (+840),0.005393282853074814,0.0013790348957991227,0.0
+R-HSA-450604,KSRP (KHSRP) Binds And Destabilizes mRNA,17,group 11: Neutrophil Degranulation (+840),0.005390641165569709,0.004047125706274528,0.0
+R-HSA-9614399,Regulation Of Localization Of FOXO Transcription Factors,12,group 11: Neutrophil Degranulation (+840),0.005381675312587581,0.0013291315270180348,0.0
+R-HSA-5654712,FRS-mediated FGFR4 Signaling,12,group 11: Neutrophil Degranulation (+840),0.005381313603079357,0.0010525578452507034,0.0
+R-HSA-174437,Removal Of Flap Intermediate From C-strand,17,group 11: Neutrophil Degranulation (+840),0.005379350924883156,0.001803048696674523,0.0
+R-HSA-9706369,Negative Regulation Of FLT3,13,group 11: Neutrophil Degranulation (+840),0.005365184987398206,0.0017598261400598857,0.0
+R-HSA-5654743,Signaling By FGFR4,31,group 11: Neutrophil Degranulation (+840),0.005365021005386321,0.001996762023136398,0.0
+R-HSA-1839117,Signaling By Cytosolic FGFR1 Fusion Mutants,17,group 11: Neutrophil Degranulation (+840),0.005359937864723487,0.00014348379375405784,0.0
+R-HSA-8853659,RET Signaling,33,group 11: Neutrophil Degranulation (+840),0.005351901824560936,-0.0002303546518123767,0.0
+R-HSA-933541,TRAF6 Mediated IRF7 Activation,15,group 11: Neutrophil Degranulation (+840),0.005349535105643415,0.0010612438417592785,0.0
+R-HSA-8964043,Plasma Lipoprotein Clearance,28,group 11: Neutrophil Degranulation (+840),0.005344201494166154,0.0018642270582495256,0.0
+R-HSA-8853884,Transcriptional Regulation By VENTX,36,group 11: Neutrophil Degranulation (+840),0.005338362729082168,0.000600532120151911,0.0
+R-HSA-110313,Translesion Synthesis By Y Family DNA Polymerases Bypasses Lesions On DNA Template,38,group 11: Neutrophil Degranulation (+840),0.005332758958067674,0.002747545533529774,0.0
+R-HSA-187577,SCF(Skp2)-mediated Degradation Of P27/P21,57,group 11: Neutrophil Degranulation (+840),0.005331487502997457,0.002142512348364107,0.0
+R-HSA-8963898,Plasma Lipoprotein Assembly,10,group 11: Neutrophil Degranulation (+840),0.0053278484513935775,0.001171137340425048,0.0
+R-HSA-5625900,RHO GTPases Activate CIT,18,group 11: Neutrophil Degranulation (+840),0.005324131891171357,0.0013247261682045063,0.0
+R-HSA-9664565,Signaling By ERBB2 KD Mutants,23,group 11: Neutrophil Degranulation (+840),0.005312463240125769,0.0012593253467639443,0.0
+R-HSA-176407,Conversion From APC/C:Cdc20 To APC/C:Cdh1 In Late Anaphase,18,group 11: Neutrophil Degranulation (+840),0.005289681974830011,-0.00030747285461984574,0.0
+R-HSA-2197563,NOTCH2 Intracellular Domain Regulates Transcription,10,group 11: Neutrophil Degranulation (+840),0.005287175588097652,0.002203676178432943,0.0
+R-HSA-9669938,Signaling By KIT In Disease,17,group 11: Neutrophil Degranulation (+840),0.005279559493893599,0.0019181101775029674,0.0
+R-HSA-391160,Signal Regulatory Protein Family Interactions,12,group 11: Neutrophil Degranulation (+840),0.005269534513156988,-0.0006398664228618145,0.0
+R-HSA-114604,GPVI-mediated Activation Cascade,27,group 11: Neutrophil Degranulation (+840),0.0052650319999360115,0.00033333701809169726,0.0
+R-HSA-9687139,Aberrant Regulation Of Mitotic Cell Cycle Due To RB1 Defects,34,group 11: Neutrophil Degranulation (+840),0.005256903864901071,0.0010938143861130812,0.0
+R-HSA-9646399,Aggrephagy,22,group 11: Neutrophil Degranulation (+840),0.0052458712361531995,0.0014824818264241911,0.0
+R-HSA-5689877,Josephin Domain DUBs,11,group 11: Neutrophil Degranulation (+840),0.0052443824294102145,-3.133748032269068e-06,0.0
+R-HSA-749476,RNA Polymerase III Abortive And Retractive Initiation,39,group 11: Neutrophil Degranulation (+840),0.0052443739876222115,0.001985108684566512,0.0
+R-HSA-171306,Packaging Of Telomere Ends,21,group 11: Neutrophil Degranulation (+840),0.005240630250230778,0.0024247834848210915,0.0
+R-HSA-201451,Signaling By BMP,23,group 11: Neutrophil Degranulation (+840),0.005238024823730654,0.0021972141397418456,0.0
+R-HSA-9013973,TICAM1-dependent Activation Of IRF3/IRF7,12,group 11: Neutrophil Degranulation (+840),0.005237765881524943,0.0008039654088497628,0.0
+R-HSA-5626467,RHO GTPases Activate IQGAPs,10,group 11: Neutrophil Degranulation (+840),0.005230433449358285,0.002266124649977428,0.0
+R-HSA-5654726,Negative Regulation Of FGFR1 Signaling,25,group 11: Neutrophil Degranulation (+840),0.005228011453745224,0.0018834790517576038,0.0
+R-HSA-157858,Gap Junction Trafficking And Regulation,15,group 11: Neutrophil Degranulation (+840),0.005223799934778442,0.0012902977203884801,0.0
+R-HSA-68616,Assembly Of ORC Complex At Origin Of Replication,25,group 11: Neutrophil Degranulation (+840),0.005223572412722792,0.0014438372735457962,0.0
+R-HSA-445989,TAK1-dependent IKK And NF-kappa-B Activation,40,group 11: Neutrophil Degranulation (+840),0.0052208701341997015,0.000712925975676626,0.0
+R-HSA-9664873,Pexophagy,11,group 11: Neutrophil Degranulation (+840),0.005216681385428597,0.0015672839723993093,0.0
+R-HSA-432142,Platelet Sensitization By LDL,16,group 11: Neutrophil Degranulation (+840),0.005216316257700151,0.0031910700700245797,0.0
+R-HSA-416993,Trafficking Of GluR2-containing AMPA Receptors,17,group 11: Neutrophil Degranulation (+840),0.005214478892384697,0.0024300537395174613,0.0
+R-HSA-6803205,TP53 Regulates Transcription Of Additional Cell Death Genes With Uncertain Roles In P53-Dependent Apoptosis,11,group 11: Neutrophil Degranulation (+840),0.005212032296931592,0.00047121981566306204,0.0
+R-HSA-5654704,SHC-mediated cascade:FGFR3,10,group 11: Neutrophil Degranulation (+840),0.005197273158089463,-0.00011017375101801007,0.0
+R-HSA-879415,Advanced Glycosylation Endproduct Receptor Signaling,11,group 11: Neutrophil Degranulation (+840),0.005195573343396171,0.0019238648099053535,0.0
+R-HSA-75067,Processing Of Capped Intronless Pre-mRNA,29,group 11: Neutrophil Degranulation (+840),0.0051786166876238784,0.0011434569946140983,0.0
+R-HSA-190873,Gap Junction Degradation,10,group 11: Neutrophil Degranulation (+840),0.005176204710733145,0.0004363287519663572,0.0
+R-HSA-933542,TRAF6 Mediated NF-kB Activation,23,group 11: Neutrophil Degranulation (+840),0.005173625706466136,0.0008366611017845571,0.0
+R-HSA-9613829,Chaperone Mediated Autophagy,18,group 11: Neutrophil Degranulation (+840),0.005168113954715733,0.001501809284736737,0.0
+R-HSA-110373,Resolution Of AP Sites Via Multiple-Nucleotide Patch Replacement Pathway,25,group 11: Neutrophil Degranulation (+840),0.005166406017901786,0.0002736635133624077,0.0
+R-HSA-180024,DARPP-32 Events,23,group 11: Neutrophil Degranulation (+840),0.005165823763315329,0.002767526495445054,0.0
+R-HSA-2172127,DAP12 Interactions,28,group 11: Neutrophil Degranulation (+840),0.005148364049856062,0.0005821148342329253,0.0
+R-HSA-5467337,APC Truncation Mutants Have Impaired AXIN Binding,13,group 11: Neutrophil Degranulation (+840),0.005144778483397312,0.0001784135224079364,0.0
+R-HSA-168643,"Nucleotide-binding Domain, Leucine Rich Repeat Containing NLR Signaling Pathways",46,group 11: Neutrophil Degranulation (+840),0.005141587576599704,0.0025421770974537595,0.0
+R-HSA-6804115,TP53 Regulates Transcription Of Additional Cell Cycle Genes With Uncertain Roles In P53 Pathway,18,group 11: Neutrophil Degranulation (+840),0.005136763970209759,0.00017654319177381694,0.0
+R-HSA-174490,Membrane Binding And Targetting Of GAG Proteins,15,group 11: Neutrophil Degranulation (+840),0.00513399380527563,0.00013601428909169045,0.0
+R-HSA-5627117,RHO GTPases Activate ROCKs,19,group 11: Neutrophil Degranulation (+840),0.005124696223257639,0.0016656404993045726,0.0
+R-HSA-429947,Deadenylation Of mRNA,23,group 11: Neutrophil Degranulation (+840),0.005124517782271634,0.0014743385934707475,0.0
+R-HSA-5654732,Negative Regulation Of FGFR3 Signaling,22,group 11: Neutrophil Degranulation (+840),0.005122848586016532,0.0009661689228596515,0.0
+R-HSA-9617828,FOXO-mediated Transcription Of Cell Cycle Genes,17,group 11: Neutrophil Degranulation (+840),0.005120784692035621,0.0012580203032302962,0.0
+R-HSA-6802948,Signaling By High-Kinase Activity BRAF Mutants,30,group 11: Neutrophil Degranulation (+840),0.005116028769604736,0.0025706872214504984,0.0
+R-HSA-8963899,Plasma Lipoprotein Remodeling,16,group 11: Neutrophil Degranulation (+840),0.00510716838998941,0.0020560934679815547,0.0
+R-HSA-2122948,Activated NOTCH1 Transmits Signal To Nucleus,30,group 11: Neutrophil Degranulation (+840),0.00510647229818722,0.0022989492860506287,0.0
+R-HSA-3322077,Glycogen Synthesis,12,group 11: Neutrophil Degranulation (+840),0.005086702785170558,0.001831670760002453,0.0
+R-HSA-532668,N-glycan Trimming In ER And Calnexin/Calreticulin Cycle,35,group 11: Neutrophil Degranulation (+840),0.005084902845654574,0.0004083011498732958,0.0
+R-HSA-9617629,Regulation Of FOXO Transcriptional Activity By Acetylation,10,group 11: Neutrophil Degranulation (+840),0.00507927329902995,0.0019604991555388553,0.0
+R-HSA-399954,Sema3A PAK Dependent Axon Repulsion,16,group 11: Neutrophil Degranulation (+840),0.00507340419631041,0.001105591313680634,0.0
+R-HSA-164938,Nef-mediated Downmodulation Of Cell Surface Receptors By Recruitment To Clathrin Adapters,16,group 11: Neutrophil Degranulation (+840),0.005072756691873311,0.0009732437232742086,0.0
+R-HSA-5654733,Negative Regulation Of FGFR4 Signaling,22,group 11: Neutrophil Degranulation (+840),0.005069414263599063,0.0010683303087716922,0.0
+R-HSA-1227990,Signaling By ERBB2 In Cancer,24,group 11: Neutrophil Degranulation (+840),0.0050623903581793655,0.0012091185932513327,0.0
+R-HSA-174048,APC/C:Cdc20 Mediated Degradation Of Cyclin B,22,group 11: Neutrophil Degranulation (+840),0.0050562337731500555,-0.0010334415413672104,0.0
+R-HSA-202670,ERKs Are Inactivated,13,group 11: Neutrophil Degranulation (+840),0.005045890793861856,0.0026763443598974844,0.0
+R-HSA-450302,Activated TAK1 Mediates P38 MAPK Activation,18,group 11: Neutrophil Degranulation (+840),0.005043774131503967,5.9716316172853116e-06,0.0
+R-HSA-1963642,PI3K Events In ERBB2 Signaling,15,group 11: Neutrophil Degranulation (+840),0.00503704576097997,0.0010811530466889963,0.0
+R-HSA-209560,NF-kB Is Activated And Signals Survival,12,group 11: Neutrophil Degranulation (+840),0.005019878764450353,0.0009593139979915577,0.0
+R-HSA-349425,Autodegradation Of E3 Ubiquitin Ligase COP1,47,group 11: Neutrophil Degranulation (+840),0.005008110350975631,0.0017336430755995026,0.0
+R-HSA-9615933,Postmitotic Nuclear Pore Complex (NPC) Reformation,27,group 11: Neutrophil Degranulation (+840),0.005007603612719291,0.0018121465671902114,0.0
+R-HSA-525793,Myogenesis,23,group 11: Neutrophil Degranulation (+840),0.005005710653741686,0.001284584180029924,0.0
+R-HSA-74751,Insulin Receptor Signaling Cascade,35,group 11: Neutrophil Degranulation (+840),0.00499377927330512,0.0017591162379540037,0.0
+R-HSA-2691232,Constitutive Signaling By NOTCH1 HD Domain Mutants,15,group 11: Neutrophil Degranulation (+840),0.004990308138569501,-0.00038395464900531806,0.0
+R-HSA-416572,Sema4D Induced Cell Migration And Growth-Cone Collapse,20,group 11: Neutrophil Degranulation (+840),0.004990215522189766,0.00017924552434124053,0.0
+R-HSA-6803204,TP53 Regulates Transcription Of Genes Involved In Cytochrome C Release,18,group 11: Neutrophil Degranulation (+840),0.004987205513328772,0.0009288563358859392,0.0
+R-HSA-169893,Prolonged ERK Activation Events,13,group 11: Neutrophil Degranulation (+840),0.004983646780034425,0.0016549593681975238,0.0
+R-HSA-171007,p38MAPK Events,12,group 11: Neutrophil Degranulation (+840),0.004982119085921653,-0.0002198549376316805,0.0
+R-HSA-9006115,Signaling By NTRK2 (TRKB),21,group 11: Neutrophil Degranulation (+840),0.004980692283301693,3.05991961795371e-05,0.0
+R-HSA-180336,SHC1 Events In EGFR Signaling,10,group 11: Neutrophil Degranulation (+840),0.004978732501195598,0.001346520242632323,0.0
+R-HSA-109704,PI3K Cascade,27,group 11: Neutrophil Degranulation (+840),0.004977805775632663,0.0009453502170435968,0.0
+R-HSA-9696264,RND3 GTPase Cycle,35,group 11: Neutrophil Degranulation (+840),0.0049727960719067954,0.001595511882860592,0.0
+R-HSA-174824,"Plasma Lipoprotein Assembly, Remodeling, And Clearance",49,group 11: Neutrophil Degranulation (+840),0.004971563585977646,0.0010551646051135321,0.0
+R-HSA-110314,Recognition Of DNA Damage By PCNA-containing Replication Complex,29,group 11: Neutrophil Degranulation (+840),0.004938208799162027,0.0003198581567266956,0.0
+R-HSA-354192,Integrin Signaling,24,group 11: Neutrophil Degranulation (+840),0.004926936230148678,0.0012489566885051317,0.0
+R-HSA-9027284,Erythropoietin Activates RAS,12,group 11: Neutrophil Degranulation (+840),0.004926884320162047,0.0015242821138235741,0.0
+R-HSA-450321,JNK (c-Jun Kinases) Phosphorylation And Activation Mediated By Activated Human TAK1,17,group 11: Neutrophil Degranulation (+840),0.004920923361363347,-0.0016147309793814201,0.0
+R-HSA-5099900,WNT5A-dependent Internalization Of FZD4,15,group 11: Neutrophil Degranulation (+840),0.004905398337082183,0.0022062758560468863,0.0
+R-HSA-1606322,ZBP1(DAI) Mediated Induction Of Type I IFNs,18,group 11: Neutrophil Degranulation (+840),0.004904363974257988,-1.8667756230570375e-05,0.0
+R-HSA-6807004,Negative Regulation Of MET Activity,21,group 11: Neutrophil Degranulation (+840),0.0049041508484860665,0.0022729210938268805,0.0
+R-HSA-5358747,CTNNB1 S33 Mutants Not Phosphorylated,14,group 11: Neutrophil Degranulation (+840),0.0049013122107233785,0.0010137858715461333,0.0
+R-HSA-1181150,Signaling By NODAL,16,group 11: Neutrophil Degranulation (+840),0.00489416372709734,0.002256139876990346,0.0
+R-HSA-9705462,Inactivation Of CSF3 (G-CSF) Signaling,24,group 11: Neutrophil Degranulation (+840),0.004884541042196423,0.002559129409783054,0.0
+R-HSA-75035,Chk1/Chk2(Cds1) Mediated Inactivation Of Cyclin B:Cdk1 Complex,12,group 11: Neutrophil Degranulation (+840),0.004883612848826195,0.0013141791097586975,0.0
+R-HSA-9020591,Interleukin-12 Signaling,34,group 11: Neutrophil Degranulation (+840),0.004882871248104247,-0.00013959564457763918,0.0
+R-HSA-9034015,Signaling By NTRK3 (TRKC),15,group 11: Neutrophil Degranulation (+840),0.004879332433348143,0.002084495999588398,0.0
+R-HSA-2029481,FCGR Activation,10,group 11: Neutrophil Degranulation (+840),0.00487828230469535,0.0015197668313339818,0.0
+R-HSA-180292,GAB1 Signalosome,14,group 11: Neutrophil Degranulation (+840),0.004873670373465649,-0.0015728723359097784,0.0
+R-HSA-6804759,Regulation Of TP53 Activity Thru Association With Co-factors,13,group 11: Neutrophil Degranulation (+840),0.004863106920304945,0.0029784419893985614,0.0
+R-HSA-73933,Resolution Of Abasic Sites (AP Sites),38,group 11: Neutrophil Degranulation (+840),0.004862916718720028,0.0027214914056821727,0.0
+R-HSA-68962,Activation Of Pre-Replicative Complex,28,group 11: Neutrophil Degranulation (+840),0.004862232118574543,0.0007248187400637107,0.0
+R-HSA-8876384,Listeria Monocytogenes Entry Into Host Cells,19,group 11: Neutrophil Degranulation (+840),0.0048499243866683825,0.001496794237755239,0.0
+R-HSA-5654706,FRS-mediated FGFR3 Signaling,12,group 11: Neutrophil Degranulation (+840),0.004847169819660879,0.0015900924079323886,0.0
+R-HSA-171319,Telomere Extension By Telomerase,21,group 11: Neutrophil Degranulation (+840),0.0048426328584062475,0.00054163320310181,0.0
+R-HSA-196299,Beta-catenin Phosphorylation Cascade,16,group 11: Neutrophil Degranulation (+840),0.004827382779774903,0.0017546979323378763,0.0
+R-HSA-3928663,EPHA-mediated Growth Cone Collapse,15,group 11: Neutrophil Degranulation (+840),0.004824717528526119,-1.1114261506008915e-05,0.0
+R-HSA-163560,Triglyceride Catabolism,17,group 11: Neutrophil Degranulation (+840),0.0048203862326464345,0.0004237707520951517,0.0
+R-HSA-1643713,Signaling By EGFR In Cancer,21,group 11: Neutrophil Degranulation (+840),0.004808109490816497,0.0009852566586778266,0.0
+R-HSA-8849471,"PTK6 Regulates RHO GTPases, RAS GTPase And MAP Kinases",12,group 11: Neutrophil Degranulation (+840),0.0048076913795523715,0.0018206880406069104,0.0
+R-HSA-5205685,PINK1-PRKN Mediated Mitophagy,21,group 11: Neutrophil Degranulation (+840),0.004798204890823276,0.0021281497777090406,0.0
+R-HSA-9013700,NOTCH4 Activation And Transmission Of Signal To Nucleus,11,group 11: Neutrophil Degranulation (+840),0.00478865748214125,0.0023157630885543767,0.0
+R-HSA-5654708,Downstream Signaling Of Activated FGFR3,17,group 11: Neutrophil Degranulation (+840),0.00478647847983481,7.407434917695354e-05,0.0
+R-HSA-193692,Regulated Proteolysis Of p75NTR,11,group 11: Neutrophil Degranulation (+840),0.004785498175414879,-0.00020097736414754764,0.0
+R-HSA-5619107,Defective TPR May Confer Susceptibility Towards Thyroid Papillary Carcinoma (TPC),31,group 11: Neutrophil Degranulation (+840),0.004779446224082198,0.001405156948021613,0.0
+R-HSA-8875555,MET Activates RAP1 And RAC1,11,group 11: Neutrophil Degranulation (+840),0.004762968088844145,0.00154926482846804,0.0
+R-HSA-2871796,FCERI Mediated MAPK Activation,28,group 11: Neutrophil Degranulation (+840),0.0047566844201725675,-0.00015569750627037138,0.0
+R-HSA-1236382,Constitutive Signaling By Ligand-Responsive EGFR Cancer Variants,18,group 11: Neutrophil Degranulation (+840),0.00474565731150259,0.0003232966277300875,0.0
+R-HSA-450385,Butyrate Response Factor 1 Binds And Destabilizes mRNA,17,group 11: Neutrophil Degranulation (+840),0.004744869981738502,0.001800733843119815,0.0
+R-HSA-1433559,Regulation Of KIT Signaling,15,group 11: Neutrophil Degranulation (+840),0.004743660168729178,-0.0004959162467639544,0.0
+R-HSA-399956,CRMPs In Sema3A Signaling,16,group 11: Neutrophil Degranulation (+840),0.00473832054790287,0.0008346792237534828,0.0
+R-HSA-9648895,Response Of EIF2AK1 (HRI) To Heme Deficiency,15,group 11: Neutrophil Degranulation (+840),0.004727188625246665,-0.000209541596705094,0.0
+R-HSA-418889,Caspase Activation Via Dependence Receptors In Absence Of Ligand,10,group 11: Neutrophil Degranulation (+840),0.0047241584431395815,0.0008209195081144571,0.0
+R-HSA-9725371,Nuclear Events Stimulated By ALK Signaling In Cancer,18,group 11: Neutrophil Degranulation (+840),0.004723903124706062,0.0018039076171407942,0.0
+R-HSA-168276,NS1 Mediated Effects On Host Pathways,40,group 11: Neutrophil Degranulation (+840),0.00472202946553283,0.001458498426436563,0.0
+R-HSA-9734009,Defective Intrinsic Pathway For Apoptosis,20,group 11: Neutrophil Degranulation (+840),0.004711190742140605,-0.0008227717614499852,0.0
+R-HSA-437239,Recycling Pathway Of L1,28,group 11: Neutrophil Degranulation (+840),0.004706139817056483,0.0030326066532870757,0.0
+R-HSA-5621575,CD209 (DC-SIGN) Signaling,17,group 11: Neutrophil Degranulation (+840),0.004705399496015161,-0.00017924242347362452,0.0
+R-HSA-912694,Regulation Of IFNA/IFNB Signaling,11,group 11: Neutrophil Degranulation (+840),0.004704269342189144,0.00036224400370201695,0.0
+R-HSA-4641265,Repression Of WNT Target Genes,14,group 11: Neutrophil Degranulation (+840),0.0046937126071158785,0.001839155305751774,0.0
+R-HSA-166208,mTORC1-mediated Signaling,24,group 11: Neutrophil Degranulation (+840),0.0046880886677881485,0.000881548162578838,0.0
+R-HSA-170968,Frs2-mediated Activation,11,group 11: Neutrophil Degranulation (+840),0.004685947980329205,0.0026966514668310994,0.0
+R-HSA-432720,Lysosome Vesicle Biogenesis,33,group 11: Neutrophil Degranulation (+840),0.004670840885413226,0.002080119014935917,0.0
+R-HSA-912526,Interleukin Receptor SHC Signaling,17,group 11: Neutrophil Degranulation (+840),0.004662683861472218,2.1769625309389085e-05,0.0
+R-HSA-9006335,Signaling By Erythropoietin,23,group 11: Neutrophil Degranulation (+840),0.004656412286123545,0.00035827246611006556,0.0
+R-HSA-5654700,FRS-mediated FGFR2 Signaling,14,group 11: Neutrophil Degranulation (+840),0.0046518182756637725,0.0021066624084051,0.0
+R-HSA-376172,DSCAM Interactions,11,group 11: Neutrophil Degranulation (+840),0.004650518595698779,0.0017234018520684913,0.0
+R-HSA-6803529,FGFR2 Alternative Splicing,24,group 11: Neutrophil Degranulation (+840),0.004648960024607763,0.0025000627662302576,0.0
+R-HSA-9607240,FLT3 Signaling,34,group 11: Neutrophil Degranulation (+840),0.0046462054285457575,0.0010012255265610293,0.0
+R-HSA-69273,Cyclin A/B1/B2 Associated Events During G2/M Transition,22,group 11: Neutrophil Degranulation (+840),0.004638816371571936,0.0025167738797608765,0.0
+R-HSA-110312,Translesion Synthesis By REV1,16,group 11: Neutrophil Degranulation (+840),0.0046360388921546135,0.00021293410507496445,0.0
+R-HSA-70221,Glycogen Breakdown (Glycogenolysis),14,group 11: Neutrophil Degranulation (+840),0.004626713689405301,-0.0011947007351955107,0.0
+R-HSA-1963640,GRB2 Events In ERBB2 Signaling,14,group 11: Neutrophil Degranulation (+840),0.004625587693910841,0.0028335274031633163,0.0
+R-HSA-512988,"Interleukin-3, Interleukin-5 And GM-CSF Signaling",33,group 11: Neutrophil Degranulation (+840),0.00461741543337466,0.0001965386449592188,0.0
+R-HSA-5674400,Constitutive Signaling By AKT1 E17K In Cancer,26,group 11: Neutrophil Degranulation (+840),0.00460841379037632,0.0011928303886088543,0.0
+R-HSA-201556,Signaling By ALK,24,group 11: Neutrophil Degranulation (+840),0.004606268228963017,0.001960138494614512,0.0
+R-HSA-2995383,Initiation Of Nuclear Envelope (NE) Reformation,18,group 11: Neutrophil Degranulation (+840),0.004605652311801027,0.0012511465401621536,0.0
+R-HSA-9671555,Signaling By PDGFR In Disease,17,group 11: Neutrophil Degranulation (+840),0.004604458143802407,0.0010281142506573815,0.0
+R-HSA-9709570,Impaired BRCA2 Binding To RAD51,30,group 11: Neutrophil Degranulation (+840),0.004592046650694841,-0.0005085558962309733,0.0
+R-HSA-111447,Activation Of BAD And Translocation To Mitochondria,15,group 11: Neutrophil Degranulation (+840),0.004589072920245629,0.0002566149676067653,0.0
+R-HSA-5656121,Translesion Synthesis By POLI,17,group 11: Neutrophil Degranulation (+840),0.00458660083956093,8.190682223357726e-05,0.0
+R-HSA-193639,p75NTR Signals Via NF-kB,15,group 11: Neutrophil Degranulation (+840),0.004575330521827524,0.0016771404991231976,0.0
+R-HSA-111461,Cytochrome C-Mediated Apoptotic Response,13,group 11: Neutrophil Degranulation (+840),0.0045610869719678445,0.001675060991256032,0.0
+R-HSA-2730905,Role Of LAT2/NTAL/LAB On Calcium Mobilization,12,group 11: Neutrophil Degranulation (+840),0.0045606610049509395,0.00014591849176213146,0.0
+R-HSA-69183,Processive Synthesis On Lagging Strand,15,group 11: Neutrophil Degranulation (+840),0.004549220050546988,0.0005972877732710913,0.0
+R-HSA-933543,NF-kB Activation Thru FADD/RIP-1 Pathway Mediated By Caspase-8 And -10,13,group 11: Neutrophil Degranulation (+840),0.004542398030309291,-0.0008403028358588926,0.0
+R-HSA-182971,EGFR Downregulation,28,group 11: Neutrophil Degranulation (+840),0.004536935353295984,0.00020198352151055588,0.0
+R-HSA-3928664,Ephrin Signaling,18,group 11: Neutrophil Degranulation (+840),0.004536816495385857,-0.0004452833817049395,0.0
+R-HSA-9013405,RHOD GTPase Cycle,48,group 11: Neutrophil Degranulation (+840),0.004534457785756153,0.0016148420062381775,0.0
+R-HSA-73780,RNA Polymerase III Chain Elongation,17,group 11: Neutrophil Degranulation (+840),0.004531035747751988,0.0004555862931010779,0.0
+R-HSA-2564830,Cytosolic Iron-Sulfur Cluster Assembly,12,group 11: Neutrophil Degranulation (+840),0.004523436745167,0.0007934008262236602,0.0
+R-HSA-159227,Transport Of SLBP Independent Mature mRNA,34,group 11: Neutrophil Degranulation (+840),0.004507022408247625,-0.0006441562880718266,0.0
+R-HSA-9687136,Aberrant Regulation Of Mitotic Exit In Cancer Due To RB1 Defects,19,group 11: Neutrophil Degranulation (+840),0.004501825450501262,0.0004952125421550591,0.0
+R-HSA-2465910,MASTL Facilitates Mitotic Progression,10,group 11: Neutrophil Degranulation (+840),0.004501231105591691,0.0005046189237327781,0.0
+R-HSA-8982491,Glycogen Metabolism,23,group 11: Neutrophil Degranulation (+840),0.004490450439457703,-0.0008407456004351843,0.0
+R-HSA-9700645,ALK Mutants Bind TKIs,12,group 11: Neutrophil Degranulation (+840),0.004490213936551916,0.0017805292362027103,0.0
+R-HSA-373752,Netrin-1 Signaling,48,group 11: Neutrophil Degranulation (+840),0.004486179508671354,0.0006714833788282704,0.0
+R-HSA-5654741,Signaling By FGFR3,32,group 11: Neutrophil Degranulation (+840),0.004483091104104799,0.00015360330493422225,0.0
+R-HSA-3134975,Regulation Of Innate Immune Responses To Cytosolic DNA,12,group 11: Neutrophil Degranulation (+840),0.004481645720468003,0.001272026658912182,0.0
+R-HSA-210993,Tie2 Signaling,13,group 11: Neutrophil Degranulation (+840),0.004480602524945734,0.002174746363743907,0.0
+R-HSA-450520,HuR (ELAVL1) Binds And Stabilizes mRNA,10,group 11: Neutrophil Degranulation (+840),0.004472777728677995,0.00039390534540871157,0.0
+R-HSA-1295596,Spry Regulation Of FGF Signaling,16,group 11: Neutrophil Degranulation (+840),0.004444582000452733,0.002279642055509612,0.0
+R-HSA-5673000,RAF Activation,32,group 11: Neutrophil Degranulation (+840),0.004444485427530569,0.0010119673089502611,0.0
+R-HSA-5668599,RHO GTPases Activate NADPH Oxidases,17,group 11: Neutrophil Degranulation (+840),0.004442290943490847,0.00015683369856560602,0.0
+R-HSA-937042,IRAK2 Mediated Activation Of TAK1 Complex,10,group 11: Neutrophil Degranulation (+840),0.004419827431152275,-0.0006849871519807493,0.0
+R-HSA-205043,NRIF Signals Cell Death From Nucleus,15,group 11: Neutrophil Degranulation (+840),0.0044162702847319515,0.0030685314745642245,0.0
+R-HSA-2173791,TGF-beta Receptor Signaling In EMT (Epithelial To Mesenchymal Transition),16,group 11: Neutrophil Degranulation (+840),0.004390329159243758,-0.00047837304111453705,0.0
+R-HSA-110056,MAPK3 (ERK1) Activation,10,group 11: Neutrophil Degranulation (+840),0.004389663761426394,-0.00047472844482399524,0.0
+R-HSA-5637810,Constitutive Signaling By EGFRvIII,14,group 11: Neutrophil Degranulation (+840),0.0043852876416521965,-0.0012230817195086274,0.0
+R-HSA-389357,CD28 Dependent PI3K/Akt Signaling,18,group 11: Neutrophil Degranulation (+840),0.004384053927615396,0.0008054846689628903,0.0
+R-HSA-77387,Insulin Receptor Recycling,22,group 11: Neutrophil Degranulation (+840),0.004372814815261814,0.0020220416709616986,0.0
+R-HSA-177504,Retrograde Neurotrophin Signaling,13,group 11: Neutrophil Degranulation (+840),0.004370151810403282,0.0021335319877834992,0.0
+R-HSA-399955,SEMA3A-Plexin Repulsion Signaling By Inhibiting Integrin Adhesion,14,group 11: Neutrophil Degranulation (+840),0.0043336598745199965,0.0010341946419794113,0.0
+R-HSA-901032,ER Quality Control Compartment (ERQC),21,group 11: Neutrophil Degranulation (+840),0.004314908545495847,0.00017748459038557484,0.0
+R-HSA-190828,Gap Junction Trafficking,13,group 11: Neutrophil Degranulation (+840),0.004314066329576327,0.004262416884303093,0.0
+R-HSA-76061,RNA Polymerase III Transcription Initiation From Type 1 Promoter,27,group 11: Neutrophil Degranulation (+840),0.004312112615063936,-0.000744966372512863,0.0
+R-HSA-5684264,MAP3K8 (TPL2)-dependent MAPK1/3 Activation,16,group 11: Neutrophil Degranulation (+840),0.0043034425757083475,-0.0005015660883509554,0.0
+R-HSA-452723,Transcriptional Regulation Of Pluripotent Stem Cells,17,group 11: Neutrophil Degranulation (+840),0.004284599342978346,0.0005126672625920037,0.0
+R-HSA-5654695,PI-3K cascade:FGFR2,13,group 11: Neutrophil Degranulation (+840),0.004283962888106451,-9.295029391068965e-05,0.0
+R-HSA-936964,Activation Of IRF3/IRF7 Mediated By TBK1/IKK Epsilon,15,group 11: Neutrophil Degranulation (+840),0.004269734892197017,0.0027363421078189275,0.0
+R-HSA-113501,Inhibition Of Replication Initiation Of Damaged DNA By RB1/E2F1,13,group 11: Neutrophil Degranulation (+840),0.004216675874303584,0.0004541953215084504,0.0
+R-HSA-5625886,Activated PKN1 Stimulates Transcription Of Androgen Receptor Regulated KLK2 And KLK3,22,group 11: Neutrophil Degranulation (+840),0.004205399905716195,0.000682702110207174,0.0
+R-HSA-8934903,Receptor Mediated Mitophagy,10,group 11: Neutrophil Degranulation (+840),0.004183129926204239,0.001534372730529867,0.0
+R-HSA-1810476,RIP-mediated NFkB Activation Via ZBP1,15,group 11: Neutrophil Degranulation (+840),0.004178207763076081,0.0022447525267489253,0.0
+R-HSA-202433,Generation Of Second Messenger Molecules,21,group 11: Neutrophil Degranulation (+840),0.0041634020951509445,0.0007258083960186923,0.0
+R-HSA-451927,Interleukin-2 Family Signaling,28,group 11: Neutrophil Degranulation (+840),0.0041633946718490225,0.0018439821321226191,0.0
+R-HSA-202427,Phosphorylation Of CD3 And TCR Zeta Chains,12,group 11: Neutrophil Degranulation (+840),0.004155826054797587,0.001080587795295287,0.0
+R-HSA-354194,GRB2:SOS Provides Linkage To MAPK Signaling For Integrins,12,group 11: Neutrophil Degranulation (+840),0.004150909580833178,0.0010042963492378476,0.0
+R-HSA-389948,PD-1 Signaling,11,group 11: Neutrophil Degranulation (+840),0.004149038694040274,0.0016749791195252329,0.0
+R-HSA-389513,CTLA4 Inhibitory Signaling,18,group 11: Neutrophil Degranulation (+840),0.004088013669055634,0.0004528084636331187,0.0
+R-HSA-373753,Nephrin Family Interactions,20,group 11: Neutrophil Degranulation (+840),0.004083796951256819,0.0008196172351017595,0.0
+R-HSA-9758941,Gastrulation,10,group 11: Neutrophil Degranulation (+840),0.004080272191453394,0.002350776011077187,0.0
+R-HSA-2586552,Signaling By Leptin,10,group 11: Neutrophil Degranulation (+840),0.004075217757312881,0.0011397831578506157,0.0
+R-HSA-428540,Activation Of RAC1,11,group 11: Neutrophil Degranulation (+840),0.004075193150616172,0.0019823218560486564,0.0
+R-HSA-5654727,Negative Regulation Of FGFR2 Signaling,24,group 11: Neutrophil Degranulation (+840),0.004065140804657673,-0.0003263061267352896,0.0
+R-HSA-210744,Regulation Of Gene Expression In Late Stage (Branching Morphogenesis) Pancreatic Bud Precursor Cells,14,group 11: Neutrophil Degranulation (+840),0.004061064596773299,0.002513821642205585,0.0
+R-HSA-918233,TRAF3-dependent IRF Activation Pathway,14,group 11: Neutrophil Degranulation (+840),0.004049215258604263,-0.0003769708714389708,0.0
+R-HSA-8866427,VLDLR Internalisation And Degradation,15,group 11: Neutrophil Degranulation (+840),0.004047313474426519,0.003089378001750447,0.0
+R-HSA-5654693,FRS-mediated FGFR1 Signaling,14,group 11: Neutrophil Degranulation (+840),0.003997218612605169,-0.0007595472150205751,0.0
+R-HSA-168927,"TICAM1, RIP1-mediated IKK Complex Recruitment",18,group 11: Neutrophil Degranulation (+840),0.003940199332319642,0.0002637442183913663,0.0
+R-HSA-1250196,SHC1 Events In ERBB2 Signaling,20,group 11: Neutrophil Degranulation (+840),0.003931814943113704,0.0006437343465950107,0.0
+R-HSA-8964038,LDL Clearance,14,group 11: Neutrophil Degranulation (+840),0.003918519500254306,0.0020835411992447916,0.0
+R-HSA-168638,NOD1/2 Signaling Pathway,30,group 11: Neutrophil Degranulation (+840),0.003898908087038593,0.00248221777517756,0.0
+R-HSA-5358565,Mismatch Repair (MMR) Directed By MSH2:MSH6 (MutSalpha),13,group 11: Neutrophil Degranulation (+840),0.0038444385930927376,0.0001331793249119073,0.0
+R-HSA-8862803,Deregulated CDK5 Triggers Neurodegenerative Pathways In Alzheimers Disease Models,18,group 11: Neutrophil Degranulation (+840),0.003785052535349061,-0.0013693966739083407,0.0
+R-HSA-4655427,SUMOylation Of DNA Methylation Proteins,15,group 11: Neutrophil Degranulation (+840),0.003753403186598562,0.0011880294127240632,0.0
+R-HSA-5685939,HDR Thru MMEJ (alt-NHEJ),11,group 11: Neutrophil Degranulation (+840),0.0037401795927415426,0.0001228591211111052,0.0
+R-HSA-111367,SLBP Independent Processing Of Histone Pre-mRNAs,10,group 11: Neutrophil Degranulation (+840),0.003734924142215385,-4.496027831919491e-06,0.0
+R-HSA-9674555,Signaling By CSF3 (G-CSF),29,group 11: Neutrophil Degranulation (+840),0.0036931430520410887,0.000811688025132753,0.0
+R-HSA-1358803,Downregulation Of ERBB2:ERBB3 Signaling,13,group 11: Neutrophil Degranulation (+840),0.003684000115322691,-0.0002132990293466719,0.0
+R-HSA-9659787,Aberrant Regulation Of Mitotic G1/S Transition In Cancer Due To RB1 Defects,16,group 11: Neutrophil Degranulation (+840),0.0036697935037733197,0.0006498901719896821,0.0
+R-HSA-5654688,SHC-mediated cascade:FGFR1,12,group 11: Neutrophil Degranulation (+840),0.0036486378193130494,0.0008274700520269107,0.0
+R-HSA-416700,Other Semaphorin Interactions,19,group 11: Neutrophil Degranulation (+840),0.003597635893403726,0.0007306069528567605,0.0
+R-HSA-114452,Activation Of BH3-only Proteins,28,group 11: Neutrophil Degranulation (+840),0.003500716460935803,0.0005437297497701366,0.0
+R-HSA-5654719,SHC-mediated cascade:FGFR4,10,group 11: Neutrophil Degranulation (+840),0.00344574064972329,-0.0007258183938392903,0.0
+R-HSA-209543,p75NTR Recruits Signaling Complexes,12,group 11: Neutrophil Degranulation (+840),0.003403960863104627,0.0006428039177990286,0.0
+R-HSA-9755779,SARS-CoV-2 Targets Host Intracellular Signaling And Regulatory Pathways,12,group 11: Neutrophil Degranulation (+840),0.003345968734307246,0.001277188730018679,0.0

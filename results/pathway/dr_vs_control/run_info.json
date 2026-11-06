@@ -38,13 +38,13 @@
   "n_samples": 59,
   "n_donors": 31,
   "n_case": 39,
-  "n_genes": 35,
-  "n_pathways": 5,
-  "n_categories": 5,
-  "dann_params": 83,
+  "n_genes": 7655,
+  "n_pathways": 1300,
+  "n_categories": 25,
+  "dann_params": 64998,
   "dense_hidden": [
-    2,
-    5
+    8,
+    25
   ],
   "soma_source": "gene-overlap-25"
 }

@@ -1,6 +1,26 @@
 pathway,name,size,categories,mean_abs_contribution,case_minus_control,top25_share,theme
-R-HSA-162582,Signal Transduction,11,group 2: Signal Transduction (+0),0.5141646690666676,0.7486924114637077,1.0,False
-R-HSA-168256,Immune System,16,group 5: Immune System (+0),0.4819176706217103,0.7149689495563507,1.0,True
-R-HSA-168249,Innate Immune System,11,group 4: Innate Immune System (+0),0.3824380995863575,0.5860216686874629,1.0,True
-R-HSA-1430728,Metabolism,10,group 1: Metabolism (+0),0.3146014640644445,0.3682694603689015,1.0,False
-R-HSA-1643685,Disease,14,group 3: Disease (+0),0.29678911238403644,0.40810149639844895,1.0,False
+R-HSA-446203,Asparagine N-linked Glycosylation,264,group 12: Asparagine N-linked Glycosylation (+22),0.19634659157087236,0.21630372665822506,0.8,False
+R-HSA-1483257,Phospholipid Metabolism,181,group 5: Phospholipid Metabolism (+17),0.15277299853949414,0.12861254964314867,0.9,False
+R-HSA-6811442,Intra-Golgi And Retrograde Golgi-to-ER Traffic,172,group 12: Asparagine N-linked Glycosylation (+22),0.14891319647470835,0.09587683401128742,0.7,False
+R-HSA-948021,Transport To Golgi And Subsequent Modification,152,group 12: Asparagine N-linked Glycosylation (+22),0.13754394122604596,0.07741889053955674,0.5,False
+R-HSA-5668914,Diseases Of Metabolism,199,group 15: Extracellular Matrix Organization (+95),0.12343079418701641,0.11231230983510614,0.7,False
+R-HSA-909733,Interferon Alpha/Beta Signaling,52,group 10: Interferon Gamma Signaling (+8),0.11444164971678944,0.048812237503007054,0.4,True
+R-HSA-1474244,Extracellular Matrix Organization,223,group 15: Extracellular Matrix Organization (+95),0.11233680925758208,0.10783930606208741,0.8,True
+R-HSA-9609507,Protein Localization,154,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.1121772107178882,0.07319436001358554,0.8,False
+R-HSA-76002,"Platelet Activation, Signaling And Aggregation",214,group 15: Extracellular Matrix Organization (+95),0.11149263187485225,0.10035711659118533,0.6,False
+R-HSA-1500931,Cell-Cell Communication,102,group 7: Cell-Cell Communication (+12),0.11112734840598779,0.06741715552983805,0.5,False
+R-HSA-199977,ER To Golgi Anterograde Transport,126,group 12: Asparagine N-linked Glycosylation (+22),0.10943179649569221,0.06885442689526826,0.6,False
+R-HSA-1483206,Glycerophospholipid Biosynthesis,110,group 5: Phospholipid Metabolism (+17),0.10505727107194647,0.09561761169577948,0.4,False
+R-HSA-983231,Factors Involved In Megakaryocyte Development And Platelet Production,105,group 12: Asparagine N-linked Glycosylation (+22),0.10470281239930478,0.04961692492244765,0.5,False
+R-HSA-9007101,Rab Regulation Of Trafficking,118,group 12: Asparagine N-linked Glycosylation (+22),0.10395706496753936,0.06272210861090571,0.5,False
+R-HSA-8856688,Golgi-to-ER Retrograde Transport,106,group 12: Asparagine N-linked Glycosylation (+22),0.10383465633553973,0.05214784884825349,0.3,False
+R-HSA-1428517,Citric Acid (TCA) Cycle And Respiratory Electron Transport,158,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.09989994628260196,0.06693864029832185,0.5,False
+R-HSA-6811434,COPI-dependent Golgi-to-ER Retrograde Traffic,73,group 12: Asparagine N-linked Glycosylation (+22),0.09843582228867936,0.08770764708518981,0.4,False
+R-HSA-418594,G Alpha (I) Signaling Events,192,group 9: Transmission Across Chemical Synapses (+160),0.09819605588218418,0.07071387419011443,0.5,False
+R-HSA-877300,Interferon Gamma Signaling,73,group 10: Interferon Gamma Signaling (+8),0.09702522748039435,0.04630722968373448,0.4,True
+R-HSA-6782315,tRNA Modification In Nucleus And Cytosol,41,group 3: tRNA Aminoacylation (+3),0.09681781660883798,0.0337574378127465,0.5,False
+R-HSA-2132295,MHC Class II Antigen Presentation,94,group 12: Asparagine N-linked Glycosylation (+22),0.09400299293131141,-0.01273160134907812,0.3,True
+R-HSA-211859,Biological Oxidations,131,group 17: Citric Acid (TCA) Cycle And Respiratory Electron Transport (+90),0.09168285783222418,0.05689588008215651,0.3,False
+R-HSA-163125,Post-translational Modification: Synthesis Of GPI-anchored Proteins,55,group 14: Post-translational Modification: Synthesis Of GPI-anchored Proteins (+2),0.09084736419154994,0.0515950220200466,0.3,False
+R-HSA-198933,Immunoregulatory Interactions Between A Lymphoid And A non-Lymphoid Cell,55,group 10: Interferon Gamma Signaling (+8),0.09053049059249303,0.032882012224872595,0.2,True
+R-HSA-3214842,HDMs Demethylate Histones,24,group 18: HDMs Demethylate Histones (+0),0.08766506717587678,0.047289400286972524,0.4,False
